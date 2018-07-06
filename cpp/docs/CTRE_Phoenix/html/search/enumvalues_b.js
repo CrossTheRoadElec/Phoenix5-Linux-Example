@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['magnetometer12pt',['Magnetometer12Pt',['../classctre_1_1phoenix_1_1sensors_1_1_pigeon_i_m_u.html#a9d68b32fb459ed333cdc56039f280be8a53816a0194e4950c37b9b64c97d029b0',1,'ctre::phoenix::sensors::PigeonIMU::Magnetometer12Pt()'],['../class_low_level_pigeon_imu.html#a766d59093eb5ae3bb28d2f9ceb584a34ab9f625f2938c6acf07384a740fdc2e76',1,'LowLevelPigeonImu::Magnetometer12Pt()']]],
+  ['magnetometer360',['Magnetometer360',['../classctre_1_1phoenix_1_1sensors_1_1_pigeon_i_m_u.html#a9d68b32fb459ed333cdc56039f280be8a31a6544e0296d8165185ec620894accc',1,'ctre::phoenix::sensors::PigeonIMU::Magnetometer360()'],['../class_low_level_pigeon_imu.html#a766d59093eb5ae3bb28d2f9ceb584a34ae0c05e4dbc048268dd58be84429a2dc8',1,'LowLevelPigeonImu::Magnetometer360()']]],
+  ['modecurrentcontrol',['modeCurrentControl',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba02cbb74f245db5a507ea4c0346cf1a70',1,'signalTypes.h']]],
+  ['modedutycyclecontrol',['modeDutyCycleControl',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55bad8f2c7201737c891eb150f3569eaf095',1,'signalTypes.h']]],
+  ['modemotionmagic',['modeMotionMagic',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55bac737c419a2af897c8116680ba8a2c51e',1,'signalTypes.h']]],
+  ['modemotionprofile',['modeMotionProfile',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55bad5d53744eaad847e34e2dc95d398ee29',1,'signalTypes.h']]],
+  ['modenodrive',['modeNoDrive',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55badf63457c74701ac863e9b15056ce0027',1,'signalTypes.h']]],
+  ['modeposcontrol',['modePosControl',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba8666e6a572c5b222cad3e69e844f6a5b',1,'signalTypes.h']]],
+  ['modeslavefollower',['modeSlaveFollower',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba150584cc3c17bfeecd6ca76973e9bad1',1,'signalTypes.h']]],
+  ['modespeedcontrol',['modeSpeedControl',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba17ba9bbd22471ecb45ca1639b43ffa2f',1,'signalTypes.h']]],
+  ['module_5fnot_5finit_5fget_5ferror',['MODULE_NOT_INIT_GET_ERROR',['../namespacectre_1_1phoenix.html#ab3a22fd2d2cd99e3c672f37a054e3171a950fd778e0316c1e4874442adc1406a8',1,'ctre::phoenix']]],
+  ['module_5fnot_5finit_5fset_5ferror',['MODULE_NOT_INIT_SET_ERROR',['../namespacectre_1_1phoenix.html#ab3a22fd2d2cd99e3c672f37a054e3171adab0af9b051b7dea45a779117e96444e',1,'ctre::phoenix']]],
+  ['motionmagic',['MotionMagic',['../namespacectre_1_1phoenix_1_1motorcontrol.html#a005f39c5a73e9bd580bd62bcb116520ca68e2b0401fc71ab26bad42e12d9d06b6',1,'ctre::phoenix::motorcontrol']]],
+  ['motionmagicarc',['motionMagicArc',['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55ba2d447df9386f8d9c1d82b9531f815ec2',1,'signalTypes.h']]],
+  ['motionprofile',['MotionProfile',['../namespacectre_1_1phoenix_1_1motorcontrol.html#a005f39c5a73e9bd580bd62bcb116520ca88fbd988aeddc8939562a9364272b204',1,'ctre::phoenix::motorcontrol']]],
+  ['motionprofilearc',['MotionProfileArc',['../namespacectre_1_1phoenix_1_1motorcontrol.html#a005f39c5a73e9bd580bd62bcb116520ca2bf9593679102dd507467597c23034ce',1,'ctre::phoenix::motorcontrol::MotionProfileArc()'],['../signal_types_8h.html#a06fc87d81c62e9abb8790b6e5713c55badc40486cf6af29ccf8ca677667d13bf3',1,'motionProfileArc():&#160;signalTypes.h']]],
+  ['motprof_5foutputtype_5fdisabled',['MotProf_OutputType_Disabled',['../signal_types_8h.html#a381d87973b483dea084d3f9f9691bf54a0c29cc244651eb5fb359a268d205169b',1,'signalTypes.h']]],
+  ['motprof_5foutputtype_5fenabled',['MotProf_OutputType_Enabled',['../signal_types_8h.html#a381d87973b483dea084d3f9f9691bf54aa894a4e2669249e75116fb9377138745',1,'signalTypes.h']]],
+  ['motprof_5foutputtype_5fhold',['MotProf_OutputType_Hold',['../signal_types_8h.html#a381d87973b483dea084d3f9f9691bf54a3c10a82205b3d57a7a31793f3478302e',1,'signalTypes.h']]],
+  ['motprof_5foutputtype_5finvalid',['MotProf_OutputType_Invalid',['../signal_types_8h.html#a381d87973b483dea084d3f9f9691bf54a33dd4fe7b7c12d9c5f28b7cb639d8462',1,'signalTypes.h']]],
+  ['motproffirmthreshold',['MotProfFirmThreshold',['../namespacectre_1_1phoenix.html#ab3a22fd2d2cd99e3c672f37a054e3171a9b1a307ca265dc9878bb52ebc8c78851',1,'ctre::phoenix']]],
+  ['motproffirmthreshold2',['MotProfFirmThreshold2',['../namespacectre_1_1phoenix.html#ab3a22fd2d2cd99e3c672f37a054e3171a80e145fff0eed0bb19ce1f48bf3be294',1,'ctre::phoenix']]]
+];
