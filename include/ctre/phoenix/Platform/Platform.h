@@ -27,7 +27,7 @@ namespace can {
 	//-------------- Low Level CANBus interface, this is required if using phoenix-canutil--------------------------//
 	void CANbus_GetStatus(float *busUtilPerc, uint32_t *busOffCount, uint32_t *txFullCount, uint32_t *rec, uint32_t *tec, int32_t *status);
 	int32_t CANbus_SendFrame(uint32_t messageID, const uint8_t *data, uint8_t dataSize);
-	int32_t CANbus_ReceiveFrames(canframe_t * toFill, int capacity, int & size);
+	int32_t CANbus_ReceiveFrame(canframe_t &toFill);
 
 	//-------------- Mid Level CANBus interface, this is required if NOT using phoenix-canutil, --------------------------//
 	void CANComm_SendMessage(uint32_t messageID, const uint8_t *data, uint8_t dataSize, int32_t periodMs, int32_t *status);
