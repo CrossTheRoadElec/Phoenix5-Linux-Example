@@ -68,7 +68,7 @@ int main() {
             }            
  
             talon->Set(ControlMode::PercentOutput, ((double) SDL_JoystickGetAxis(joy, 1)) / 32767.0);
-            
+               
             std::this_thread::sleep_for(std::chrono::milliseconds(20));
         }
         SDL_JoystickClose(joy);
