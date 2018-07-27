@@ -1,7 +1,8 @@
 #include "ctre/Phoenix.h"
+#include <string>
 #include <iostream>
-#include <unistd.h>
 #include <chrono>
+#include <thread>
 #include "Platform-linux-socket-can.h"
 #include <SDL2/SDL.h>
 
@@ -13,6 +14,14 @@ using namespace ctre::phoenix::motorcontrol;
 using namespace ctre::phoenix::motorcontrol::can;
 
 int main() {
+
+    std::cout << "Please input the name of your can interface: ";
+    
+    std::string interface;
+
+    std::cin >> interface;
+
+    ctre::phoenix::platform::can::SetCANInterface(interface.c_str());
 
     TalonSRX * talon = new TalonSRX(1);
     
@@ -60,7 +69,7 @@ int main() {
  
             talon->Set(ControlMode::PercentOutput, ((double) SDL_JoystickGetAxis(joy, 1)) / 32767.0);
             
-            usleep(20000);
+            std::this_thread::sleep_for(std::chrono::microseconds(20));
         }
         SDL_JoystickClose(joy);
     } else {
