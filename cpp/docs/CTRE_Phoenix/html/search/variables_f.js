@@ -1,9 +1,0 @@
-var searchData=
-[
-  ['remotelossofsignal',['RemoteLossOfSignal',['../structctre_1_1phoenix_1_1motorcontrol_1_1_faults.html#accc444fe321ff0f52ca5274e1b305086',1,'ctre::phoenix::motorcontrol::Faults::RemoteLossOfSignal()'],['../structctre_1_1phoenix_1_1motorcontrol_1_1_sticky_faults.html#a1f30c03d06c0198baacdad26ef63131f',1,'ctre::phoenix::motorcontrol::StickyFaults::RemoteLossOfSignal()']]],
-  ['resetcount',['resetCount',['../struct_i_gadgeteer_uart_client_1_1_gadgeteer_uart_status.html#a2f795d350895079d89ba2a79dec0ec4d',1,'IGadgeteerUartClient::GadgeteerUartStatus::resetCount()'],['../struct_reset_stats.html#aa7b60069c023f48528eaf9f93f2c944c',1,'ResetStats::resetCount()']]],
-  ['resetduringen',['ResetDuringEn',['../structctre_1_1phoenix_1_1motorcontrol_1_1_faults.html#ab711754c5651e861adb753d05a46a63f',1,'ctre::phoenix::motorcontrol::Faults::ResetDuringEn()'],['../structctre_1_1phoenix_1_1motorcontrol_1_1_sticky_faults.html#afec8f3940481fe524e6c1ece1fd7fe30',1,'ctre::phoenix::motorcontrol::StickyFaults::ResetDuringEn()']]],
-  ['resetflags',['resetFlags',['../struct_reset_stats.html#ac058992bc098a0f991a721757bca0d29',1,'ResetStats']]],
-  ['reverselimitswitch',['ReverseLimitSwitch',['../structctre_1_1phoenix_1_1motorcontrol_1_1_faults.html#aeaa7097cba189062e23ac5848a7568e5',1,'ctre::phoenix::motorcontrol::Faults::ReverseLimitSwitch()'],['../structctre_1_1phoenix_1_1motorcontrol_1_1_sticky_faults.html#a082dd99affb7269e8c92033629c4e591',1,'ctre::phoenix::motorcontrol::StickyFaults::ReverseLimitSwitch()']]],
-  ['reversesoftlimit',['ReverseSoftLimit',['../structctre_1_1phoenix_1_1motorcontrol_1_1_faults.html#a72783fb4d000abdbc5b183a9498c7352',1,'ctre::phoenix::motorcontrol::Faults::ReverseSoftLimit()'],['../structctre_1_1phoenix_1_1motorcontrol_1_1_sticky_faults.html#a89561595a2c45e725ed2970ba71877a3',1,'ctre::phoenix::motorcontrol::StickyFaults::ReverseSoftLimit()']]]
-];

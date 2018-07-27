@@ -2,7 +2,7 @@
 #include <iostream>
 #include <unistd.h>
 #include <chrono>
-#include <ctre/phoenix/Platform/SysWatchdog.h>
+#include "Platform-linux-socket-can.h"
 #include <SDL2/SDL.h>
 
 // SDL code from https://gist.github.com/fabiocolacio/423169234b8daf876d8eb75d8a5f2e95
@@ -53,11 +53,13 @@ int main() {
             if (SDL_QuitRequested()) {
                 quit = 1;
             }
-            
+           
+            if(SDL_JoystickGetButton(joy, 4)) {
+                ctre::phoenix::platform::FeedWatchDog(100);
+            }            
+ 
             talon->Set(ControlMode::PercentOutput, ((double) SDL_JoystickGetAxis(joy, 1)) / 32767.0);
             
-            SysWatchdog::GetInstance().Feed(100);
-
             usleep(20000);
         }
         SDL_JoystickClose(joy);

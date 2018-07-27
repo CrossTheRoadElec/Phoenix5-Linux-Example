@@ -5,7 +5,7 @@ PROJECT ( example C CXX )
 
 cmake_minimum_required(VERSION 3.1)
 
-add_definitions(-std=c++11 -Wno-deprecated-declarations -Wno-switch -ftrack-macro-expansion=0 -DPCL_ONLY_CORE_POINT_TYPES=ON -DNO_EXPLICIT_INSTANTIATIONS)
+add_definitions(-std=c++11)
 
 # Set the output folder where your program will be created
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
@@ -17,15 +17,16 @@ find_package (Threads REQUIRED)
 find_package(SDL2 REQUIRED)
 
 # The following folder will be included
-include_directories("${PROJECT_SOURCE_DIR}/cpp/include")
+include_directories("${PROJECT_SOURCE_DIR}/include")
 include_directories(${SDL2_INCLUDE_DIRS})
 
 link_directories("${PROJECT_SOURCE_DIR}/cpp/lib")
 
 add_executable(example ${PROJECT_SOURCE_DIR}/example.cpp)
 
-target_link_libraries(example ${CMAKE_SOURCE_DIR}/cpp/lib/libCTRE_Phoenix.a)
-target_link_libraries(example ${CMAKE_SOURCE_DIR}/cpp/lib/libCTRE_PhoenixCCI.a)
-target_link_libraries(example /usr/lib/libicsneoAPI.so)
+target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/x86-64/libCTRE_Phoenix.a)
+target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/x86-64/libCTRE_PhoenixCCI.a)
+target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/x86-64/libCTRE_PhoenixPlatform.a)
+target_link_libraries(example ${CMAKE_SOURCE_DIR}/lib/x86-64/libCTRE_PhoenixCanutils.a)
 target_link_libraries(example Threads::Threads)
 target_link_libraries(example ${SDL2_LIBRARIES})
