@@ -1,5 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 sudo modprobe vcan
-sudo ip link add dev vcan0 type vcan
-sudo ip link set up vcan0
+
+interface=vcan0
+if [ $# -gt 0 ]; then
+    interface=$1
+fi
+
+sudo ip link add dev $interface type vcan
+sudo ip link set up $interface
