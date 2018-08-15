@@ -29,6 +29,7 @@ If you link in phoenix-can-utils, you don't need to implement   CANComm_* , just
 SocketCAN USB adapter used below.
 - Firmware : https://github.com/HubertD/candleLight_fw
 - Hardware : http://canable.io/
+
 Or alternatively deploy the SocketCAN firmware to a HERO
 - Firmware : https://github.com/CrossTheRoadElec/HERO-STM32F4
 - Hardware : http://www.ctr-electronics.com/control-system/hro.html
