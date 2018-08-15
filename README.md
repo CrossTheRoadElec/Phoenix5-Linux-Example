@@ -1,4 +1,4 @@
-# Phoenix-Linux-Example
+# Phoenix-Linux-SocketCAN-Example
 
 General example using CTRE Phoenix class library on Linux/RaspPi platforms.
 
