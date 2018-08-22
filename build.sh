@@ -2,4 +2,4 @@
 
 cmake -H. -Bbuild
 
-sudo cmake --build build -- -j3
+cmake --build build -- -j3
