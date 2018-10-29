@@ -19,7 +19,7 @@ TalonSRX talRght(0);
 void initDrive()
 {
 	/* both talons should blink green when driving forward */
-	talRght->SetInverted(true);
+	talRght.SetInverted(true);
 }
 
 void drive(double fwd, double turn)
@@ -27,8 +27,8 @@ void drive(double fwd, double turn)
 	double left = fwd - turn;
 	double rght = fwd + turn; /* positive turn means turn robot LEFT */
 
-	talLeft->Set(ControlMode::PercentOutput, left);
-	talRght->Set(ControlMode::PercentOutput, rght);
+	talLeft.Set(ControlMode::PercentOutput, left);
+	talRght.Set(ControlMode::PercentOutput, rght);
 }
 /** simple wrapper for code cleanup */
 void sleepApp(int ms)
