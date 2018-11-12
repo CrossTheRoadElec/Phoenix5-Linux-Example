@@ -33,3 +33,9 @@ SocketCAN USB adapter used below.
 Or alternatively deploy the SocketCAN firmware to a HERO
 - Firmware : https://github.com/CrossTheRoadElec/HERO-STM32F4
 - Hardware : http://www.ctr-electronics.com/control-system/hro.html
+
+#### Test Platform
+Test robot has a RaspPi + CANable.
+![image](https://user-images.githubusercontent.com/14191527/48369511-c7fb3200-e684-11e8-8188-a9b38075beb3.png)
+
+Robot also has an FRC roboRIO - however this only necessary to enable actuators if using FRC-firmware for CTRE CAN actuators.
