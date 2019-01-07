@@ -2,13 +2,13 @@
 #define signalTypes__h_
 
 enum{
-	modeDutyCycleControl = 0,	//!< Demand is signed 16bit 0.16fixedPt. 7FFF is fullfor.  8000 is fullRev.
-	modePosControl = 1,			//!< Demand 24bit position.
-	modeSpeedControl = 2,		//!< Demand is 24 bit speed.
-	modeCurrentControl = 3,		//!< Demand is 24 bit current.
-	modeSlaveFollower = 5,		//!< Demand is the can node to follow.
-	modeMotionProfile = 6,		//!< Demand is unused,could be used in future. Control6 has everything we want.
-	modeMotionMagic = 7,		//!< Reserved
+	modeDutyCycleControl = 0,	
+	modePosControl = 1,			
+	modeSpeedControl = 2,		
+	modeCurrentControl = 3,		
+	modeSlaveFollower = 5,		
+	modeMotionProfile = 6,		
+	modeMotionMagic = 7,		
 	motionMagicArc = 8,
 	//9
 	motionProfileArc = 10,

@@ -14,8 +14,8 @@ enum ParamEnum
 	eQuadFilterEn = 91,
 	eQuadIdxPolarity=108,
     eMotionProfileHasUnderrunErr = 119,
-    eMotionProfileTrajectoryPointDurationMs = 120, //motionProfileTrajectoryPeriod
-
+    eMotionProfileTrajectoryPointDurationMs = 120,
+    eMotionProfileTrajectoryInterpolDis = 121,
 
 	eStatusFramePeriod = 300,
 	eOpenloopRamp = 301,
