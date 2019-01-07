@@ -1,8 +1,13 @@
 # Phoenix-Linux-SocketCAN-Example
 
 General example using CTRE Phoenix class library on Linux/RaspPi platforms.
+Two use cases are demonstrated...
+- Run robot with **no roboRIO** for nonFRC usecases (wireless gamepad plugged into Raspberry PI).
+- Run  robot **with roboRIO** in FRC competition (roboRIO is used for gamepad and enable/disable, Talons controlled from Raspberry PI).
 
-Requires libsdl2-dev (sudo apt-get install libsdl2-dev) for USB Gamepad interface.
+Note: Requires libsdl2-dev (sudo apt-get install libsdl2-dev) for USB Gamepad interface on Raspberry PI.
+
+Note: There is no more FRC versus nonFRC firmware.  Latest Talon/Victor firmware works for both use cases.
 
 Simple example here, we use libSDL2 to get gamepad values...
 - [example.cpp](example.cpp)
@@ -38,4 +43,4 @@ Or alternatively deploy the SocketCAN firmware to a HERO
 Test robot has a RaspPi + CANable.
 ![image](https://user-images.githubusercontent.com/14191527/48369511-c7fb3200-e684-11e8-8188-a9b38075beb3.png)
 
-Robot also has an FRC roboRIO - however this only necessary to enable actuators if using FRC-firmware for CTRE CAN actuators.
+Robot also has an FRC roboRIO - however this only necessary to enable actuators if CTRE CAN devices are FRC-Locked.  See Phoenix Tuner to determine/modify FRC Lock state.
