@@ -27,6 +27,7 @@ enum ErrorCode
 	SensorNotPresent = -7,		//!< Sensor is not present
 	FirmwareTooOld = -8,
 	CouldNotChangePeriod = -9,
+	BufferFailure = -10,
 
 
 	//General
@@ -54,6 +55,7 @@ enum ErrorCode
 	TicksPerRevZero = -501,
 	DistanceBetweenWheelsTooSmall = -502,
 	GainsAreNotSet = -503,
+	WrongRemoteLimitSwitchSource = -504,
 
 	//Higher Level
 	IncompatibleMode = -600,
@@ -65,8 +67,13 @@ enum ErrorCode
     TalonFeatureRequiresHigherFirm = MotorControllerFeatureRequiresHigherFirm,
     ConfigFactoryDefaultRequiresHigherFirm = -702,
 
+	//Operating system centric
+	LibraryCouldNotBeLoaded = -800,
+	MissingRoutineInLibrary = -801,
+	ResourceNotAvailable = -802,
+	
 	//CAN Related
-	PulseWidthSensorNotPresent = 10,	//!< Special Code for "isSensorPresent"
+	PulseWidthSensorNotPresent = +10,	//!< Special Code for "isSensorPresent"
 
 	//General
 	GeneralWarning = 100,
@@ -75,7 +82,6 @@ enum ErrorCode
 	FirmVersionCouldNotBeRetrieved = 103,
 	FeaturesNotAvailableYet = 104, // feature will be release in an upcoming release
 	ControlModeNotValid = 105, // Current control mode of motor controller not valid for this call
-
 	ControlModeNotSupportedYet = 106,
 	CascadedPIDNotSupporteYet= 107,
 	AuxiliaryPIDNotSupportedYet= 107,

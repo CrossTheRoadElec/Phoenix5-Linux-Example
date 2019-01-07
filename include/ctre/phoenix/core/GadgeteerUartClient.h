@@ -50,20 +50,5 @@ public:
     }
 
 protected:
-	enum GadgeteerState
-	{
-		GadState_WaitChirp1 = 0,
-		GadState_WaitBLInfo = 1,
-		GadState_WaitBitrateResp = 2,
-		GadState_WaitSwitchDelay = 3,
-		GadState_WaitChirp2 = 4,
-		GadState_Connected_Idle = 5,
-		GadState_Connected_ReqChirp = 6,
-		GadState_Connected_RespChirp = 7,
-		GadState_Connected_ReqCanBus = 8,
-		GadState_Connected_RespCanBus = 9,
-		GadState_Connected_RespIsoThenChirp = 10,
-		GadState_Connected_RespIsoThenCanBus = 11,
-	};
 };
 #endif

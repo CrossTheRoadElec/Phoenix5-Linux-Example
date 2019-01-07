@@ -1,9 +1,11 @@
+#define Phoenix_No_WPI // remove WPI dependencies
 #include "ctre/Phoenix.h"
+#include "ctre/phoenix/platform/Platform.h"
+#include "ctre/phoenix/unmanaged/Unmanaged.h"
 #include <string>
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "Platform-linux-socket-can.h"
 #include <SDL2/SDL.h>
 #include <unistd.h>
 
@@ -115,7 +117,7 @@ int main() {
 
 			/* [SAFETY] only enable drive if top left shoulder button is held down */
 			if (SDL_JoystickGetButton(joy, 4)) {
-				ctre::phoenix::platform::FeedWatchDog(100);
+				ctre::phoenix::unmanaged::FeedEnable(100);
 			}
 
 			/* loop yield for a bit */

@@ -1,28 +1,38 @@
 #pragma once
+
+#ifndef Phoenix_No_WPI
+#define Phoenix_WPI
+#endif
+
 #include "ctre/phoenix/CANifier.h"
 #include "ctre/phoenix/ErrorCode.h"
 #include "ctre/phoenix/paramEnum.h"
 #include "ctre/phoenix/HsvToRgb.h"
 #include "ctre/phoenix/LinearInterpolation.h"
-#include "ctre/phoenix/Motion/MotionProfileStatus.h"
-#include "ctre/phoenix/Motion/TrajectoryPoint.h"
-#include "ctre/phoenix/MotorControl/CAN/TalonSRX.h"
-#include "ctre/phoenix/MotorControl/CAN/VictorSPX.h"
-#include "ctre/phoenix/MotorControl/CAN/WPI_TalonSRX.h"
-#include "ctre/phoenix/MotorControl/CAN/WPI_VictorSPX.h"
-#include "ctre/phoenix/MotorControl/DemandType.h"
-#include "ctre/phoenix/MotorControl/Faults.h"
-#include "ctre/phoenix/MotorControl/FollowerType.h"
-#include "ctre/phoenix/MotorControl/SensorCollection.h"
-#include "ctre/phoenix/MotorControl/IMotorController.h"
-#include "ctre/phoenix/MotorControl/IMotorControllerEnhanced.h"
-#include "ctre/phoenix/Sensors/PigeonIMU.h"
-#include "ctre/phoenix/Signals/MovingAverage.h"
-#include "ctre/phoenix/Tasking/Schedulers/ConcurrentScheduler.h"
-#include "ctre/phoenix/Tasking/ILoopable.h"
-#include "ctre/phoenix/Tasking/IProcessable.h"
-#include "ctre/phoenix/Tasking/ButtonMonitor.h"
+#include "ctre/phoenix/motion/BufferedTrajectoryPointStream.h"
+#include "ctre/phoenix/motion/MotionProfileStatus.h"
+#include "ctre/phoenix/motion/TrajectoryPoint.h"
+#include "ctre/phoenix/motorcontrol/can/TalonSRX.h"
+#include "ctre/phoenix/motorcontrol/can/VictorSPX.h"
+#include "ctre/phoenix/motorcontrol/DemandType.h"
+#include "ctre/phoenix/motorcontrol/Faults.h"
+#include "ctre/phoenix/motorcontrol/FollowerType.h"
+#include "ctre/phoenix/motorcontrol/IMotorController.h"
+#include "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h"
+#include "ctre/phoenix/motorcontrol/InvertType.h"
+#include "ctre/phoenix/motorcontrol/SensorCollection.h"
+#include "ctre/phoenix/sensors/PigeonIMU.h"
+#include "ctre/phoenix/signals/MovingAverage.h"
+#include "ctre/phoenix/tasking/Schedulers/ConcurrentScheduler.h"
+#include "ctre/phoenix/tasking/ILoopable.h"
+#include "ctre/phoenix/tasking/IProcessable.h"
 #include "ctre/phoenix/Utilities.h"
+
+#ifdef Phoenix_WPI
+#include "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h"
+#include "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h"
+#include "ctre/phoenix/tasking/ButtonMonitor.h"
+#endif
 
 using namespace ctre;
 using namespace ctre::phoenix;
