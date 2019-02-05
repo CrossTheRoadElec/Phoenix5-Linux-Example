@@ -14,7 +14,7 @@ Simple example here, we use libSDL2 to get gamepad values...
 
 Library binaries here
 - [Raspberry PI (linux-armhf) ](lib/raspberry)
-- [Linux Desktop (linux-arm64)](lib/x86-64)
+- [Linux Desktop (linux-amd64)](lib/x86-64)
 
 This is the requisite platform interface for the integrator to provide for other platforms.
 - [include/ctre/phoenix/Platform/Platform.h](include/ctre/phoenix/Platform/Platform.h)
