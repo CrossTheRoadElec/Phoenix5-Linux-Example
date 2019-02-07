@@ -30,6 +30,9 @@ If you link in phoenix-can-utils, you don't need to implement   CANComm_* , just
 | libCTRE_PhoenixCCI.a | Phoenix Common C Interface, leave this be. |
 | libCTRE_Phoenix.a | Class library, this is built from Phoenix-frc-lib. |
 
+For the latest version of binaries, see our maven repository here:  
+http://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/
+
 #### CAN USB Adapter
 SocketCAN USB adapter used below.
 - Firmware : https://github.com/HubertD/candleLight_fw
