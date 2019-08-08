@@ -48,45 +48,36 @@ Test robot has a RaspPi + CANable.
 
 Robot also has an FRC roboRIO - however this only necessary to enable actuators if CTRE CAN devices are FRC-Locked.  See Phoenix Tuner to determine/modify FRC Lock state.
 
-
-## Using FRCVision Raspberry Pi image to control your robot
+## Using Raspbian Buster Raspberry Pi image to control your robot
 
 ### Materials needed:
  - Raspberry Pi (3B+)
  - Micro SD card
- - CANable with CandleLight Firmware
+ - CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
  - Laptop
- - [FRC Vision Image](https://github.com/wpilibsuite/FRCVision-pi-gen/releases)
+ - Raspbian Buster with desktop  (https://www.raspberrypi.org/downloads/raspbian/)
 
-### Network Topology:
-This guide was tested with a Windows PC, which can bridge two network adapters.
-The typical setup is to connect one network adapter to the Raspberry Pi, and another network to the Internet.  The windows “network bridge” feature is then used to bridge both networks, which provides Internet to the Raspberry PI.
 
 ### Procedure:
- 1. Flash SD card with FRC vision image.
- 2. Use Windows computer and network bridging to (or alternative strategy) to provide Internet to the Raspberry PI.
- 3. Connect to raspberry pi directly over Ethernet.
- 4. SSH into raspberry pi using its DNS IP `ssh frcvision.local -lpi`
-     - Username is pi
-     - Password is raspberry
- 5. Connect to internet over WiFi/other Ethernet port.
- 6. Bridge internet and raspberry pi.
-    1. Open network adapters/network connections (Control Panel/Network and Internet/Network Connections)
-    2. Highlight both connections.
-    3. Right-Click and select bridge.
- 7. Set raspberry pi to write mode by navigating to frcvision.local on webpage, and pressing Writable button at top.
- 8. Install CAN tools `sudo apt-get install can-utils`.
- 9. Install git `sudo apt-get install git`.
- 10. Install necessary libs to build example.
+ 1. Flash SD card with Raspbian Dessktop image.(see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
+ 2. Boot your pi and connect to a wifi network(if you'd like to use tuner on a windows pc make sure your windows pc and raspberry pi is connected to the same network.
+ 3. Open a terminal in the raspberry pi.
+ 4. Install CAN tools `sudo apt-get install can-utils`.
+ 5. Install git `sudo apt-get install git`.
+ 6. Install necessary libs to build example.
      -  `sudo apt-get install cmake`
      -  `sudo apt-get install libsdl2-dev `
- 11. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
- 12. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/`.
- 13. Chmod shell scripts to allow you to use them:
+ 7. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
+ 8. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/`.
+ 9. Chmod shell scripts to allow you to use them:
      -  `chmod +x build.sh`
      -  `chmod +x clean.sh`
      -  `chmod +x canableStart.sh`
- 14. Bring up CAN0 `./canableStart.sh` -> `sudo ifconfig can0 up` 
- 15. Run build.sh `./build.sh`
- 16. Run program `./bin/example`
- 17. You're now running Phoenix on a raspberry pi.  Confirm there are no error messages being sent to console output.
+ 10. Bring up CAN0 `./canableStart.sh` -> `sudo ifconfig can0 up` 
+ 11. Run build.sh `./build.sh`
+ 12. Run program `./bin/example`
+ 13. You're now running Phoenix on a raspberry pi.  Confirm there are no error messages being sent to console output.
+
+
+Currently only raspberrry pi 3 running ubuntu mate supports Phoenix tuner.
+Future updates will expand compatibility.
