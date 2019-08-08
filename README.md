@@ -79,5 +79,5 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  13. You're now running Phoenix on a raspberry pi.  Confirm there are no error messages being sent to console output.
 
 
-Currently only raspberrry pi 3 running ubuntu mate supports Phoenix tuner.
+Currently only the Raspberry Pi 3 running ubuntu mate supports Phoenix tuner.
 Future updates will expand compatibility.
