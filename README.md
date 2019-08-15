@@ -79,11 +79,11 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  13. You're now running Phoenix on a raspberry pi.  Confirm there are no error messages being sent to console output.
 
 If your talons do not appear to enable when operating with the gamepad plugged dirrectly into the pi it's possible that they are frc locked.
-To clear the frc lock without Phoenix tuner 
-1.Remove power from each talon 
-2.With the talon you'd like to clear off hold the B/C cal button and apply power.
-3.Once the talon led flash green you can release the B/C cal button
-4.The talon is no longer frc locked.
+To clear the frc lock without Phoenix tuner.   
+1.Remove power from each talon.   
+2.With the talon you'd like to clear off hold the B/C cal button and apply power.  
+3.Once the talon led flash green you can release the B/C cal button.  
+4.The talon is no longer frc locked.  
 
 Currently only the Raspberry Pi 3 running ubuntu mate supports Phoenix tuner.
 Future updates will expand compatibility.
