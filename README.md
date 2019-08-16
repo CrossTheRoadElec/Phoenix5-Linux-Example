@@ -82,9 +82,68 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
 If your talons do not appear to enable when operating with the gamepad plugged dirrectly into the pi it's possible that they are frc locked.
 Follow the instructions below to clear frc lock without Phoenix Tuner.   
 1.Remove power from each talon.   
-2.With the talon you'd like to clear off hold the B/C cal button and apply power.  
-3.Once the talon led flash green you can release the B/C cal button.  
+2.With the talon you'd like to clear unpowered hold the B/C cal button and apply power.  
+3.Once the talon leds flash green you can release the B/C cal button.  
 4.The talon is no longer frc locked.  
 
 Currently only the Raspberry Pi 3 running ubuntu mate supports Phoenix tuner.
 Future updates will expand compatibility.
+
+
+# Jetson nano Setup
+Setup nano using instructions from Nvidia 
+https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro    
+Once you have your nano setup.  
+Open a terminal and run the following commands to install necessary files.  
+`sudo apt-get install update`  
+`sudo apt-get install upgrade `  
+Once this is completed continue to the  Example setup.  
+#### Example setup: 
+1.	Install CAN tools `sudo apt-get install can-utils`.
+2.	Install git `sudo apt-get install git`.  
+3.	Install necessary libs to build example
+	`sudo apt-get install cmake`
+	`sudo apt-get install libsdl2-dev`
+4.	adding files for hotswapping compatibility 
+5.	Navigate  to `/etc/network/` 
+6.	Right click and select `open in terminal` from the dropdown
+7.	Type `sudo gedit interfaces`
+8.	Copy the following lines into the file and save
+`allow-hotplug can0`    
+`iface can0 can static`     
+    `bitrate 1000000`    
+    `up /sbin/ip link set $IFACE down`    
+    `up /sbin/ip link set $IFACE up type can`    
+9.	You may get a warning in your terminal; this is expected and not an issue.
+10.	Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
+11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
+12.	`git checkout addJetsonTx` 
+13.	Chmod shell scripts to allow you to use them:
+	`chmod +x build.sh`
+	`chmod+x clean.sh`
+	`chmod+x canableStart.sh`
+14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`
+15.	Run Build.sh `./build.sh`
+16.	Run program `./bin/example`
+17.	You're now running Phoenix on a Jetson nano. Confirm there are no error messages being sent to console output.
+#### Note: Only the wired logitech f310 works with the jetson right now
+18.	If you get the error `SocketCan: No buffer space available`.
+19. Stop your Program with `Ctrl+z'.
+20.	Run the command `sudo ifconfig can0 txqueuelen 1000`.  
+21.Restart your program with `./bin/example`.
+
+
+
+### Connecting to Diag server:
+1.	Make sure your Nvidia jetson is connected to the same wifi network as the windows pc you want to run tuner on 
+2.	Open a terminal on the jetson and run `ifconfig`.
+3.	![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)
+4.	Find the ip listed under wlan0 and next to inet. 
+5.	Enter your ip into Phoenix tuner. 
+6.	Click `Install Phoenix Library/Diagnostics`.
+7.	Enter your user name and password when prompted.
+b.	In this terminal the user is `ctre`.
+	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
+8.	Tuner will then install and start the diag server on the jetson.
+9.	The diagnostics server is now installed and running on your jetson.
+
