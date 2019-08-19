@@ -141,8 +141,7 @@ Once this is completed continue to the  Example setup.
 4.	Find the ip listed under wlan0 and next to inet. 
 5.	Enter your ip into Phoenix tuner. 
 6.	Click `Install Phoenix Library/Diagnostics`.
-7.	Enter your user name and password when prompted.
-b.	In this terminal the user is `ctre`.
+7.	Enter your user name and password when prompted.(To find your user name look at a terminal in this terminal the user is `ctre`).
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
 8.	Tuner will then install and start the diag server on the jetson.
 9.	The diagnostics server is now installed and running on your jetson.
