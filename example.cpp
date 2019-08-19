@@ -92,11 +92,14 @@ int main() {
 			num_buttons,
 			num_hats);
 
-		/* I'm using a logitech F350 wireless in D mode.
+		/* I'm using a logitech F310 wired in D mode.
 		If num axis is 6, then gamepad is in X mode, so neutral drive and wait for D mode.
 		[SAFETY] This means 'X' becomes our robot-disable button.
-		This can be removed if that's not the goal. */
-		if (num_axes >= 6) {
+		This can be removed if that's not the goal.
+		To use X mode  uncomment the if statement below and comment out the currently used if statement and then switch the get joystick code below
+		This will make D mode the robot disable button and the X mode enable*/
+		//if(num_axes<=4){
+		if (num_axes >= 7) {
 			/* back to top of while loop */
 			continue;
 		}
@@ -112,12 +115,15 @@ int main() {
 
 			/* grab some stick values */
 			double y = ((double)SDL_JoystickGetAxis(joy, 1)) / -32767.0;
-			double turn = ((double)SDL_JoystickGetAxis(joy, 2)) / -32767.0;
+			//double turn = ((double)SDL_JoystickGetAxis(joy,2)) / -32767.0;// comment this line out if  x mode.
+			double turn = ((double)SDL_JoystickGetAxis(joy,3)) / -32767.0; //uncomment this line to use x mode.
 			drive(y, turn);
 
 			/* [SAFETY] only enable drive if top left shoulder button is held down */
+
 			if (SDL_JoystickGetButton(joy, 4)) {
 				ctre::phoenix::unmanaged::FeedEnable(100);
+
 			}
 
 			/* loop yield for a bit */
