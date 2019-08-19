@@ -129,7 +129,7 @@ Once this is completed continue to the  Example setup.
 16.	Run program `./bin/example`
 17.	You're now running Phoenix on a Jetson nano. Confirm there are no error messages being sent to console output.
 18.	If you get the error `SocketCan: No buffer space available`.
-19.	`Stop your Program with Ctrl+z`.
+19.	Stop your Program with `Ctrl+z`.
 20.	Run the command `sudo ifconfig can0 txqueuelen 1000`.  
 21.	Restart your program with `./bin/example`.
 
