@@ -115,7 +115,7 @@ Once this is completed continue to the  Example setup.
     `up /sbin/ip link set $IFACE down`    
     `up /sbin/ip link set $IFACE up type can`    
     Your file should look like this when finished.
-![interfacesa](https://user-images.githubusercontent.com/51933047/63290651-e2a3ac80-c28f-11e9-991d-df2b08066483.png)
+![sudo](https://user-images.githubusercontent.com/51933047/63291621-e9332380-c291-11e9-8eac-91f53e9e89ce.png)
 9.	When saving you may get a warning in your terminal; this is expected and not an issue.
 10.	Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
 11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
