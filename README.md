@@ -65,9 +65,9 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  3. Open a terminal in the raspberry pi.
  4. Install CAN tools `sudo apt-get install can-utils`.
  5. Install git `sudo apt-get install git`.
- 6. Install necessary libs to build example.
-     -  `sudo apt-get install cmake`
-     -  `sudo apt-get install libsdl2-dev `
+ 6. Install necessary libs to build example.  
+     -  `sudo apt-get install cmake`  
+     -  `sudo apt-get install libsdl2-dev `  
  7. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
  8. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/`.
  9. Chmod shell scripts to allow you to use them:
@@ -101,9 +101,9 @@ Once this is completed continue to the  Example setup.
 #### Example setup: 
 1.	Install CAN tools `sudo apt-get install can-utils`.
 2.	Install git `sudo apt-get install git`.  
-3.	Install necessary libs to build example
-	`sudo apt-get install cmake`
-	`sudo apt-get install libsdl2-dev`
+3.	Install necessary libs to build example.   
+		`sudo apt-get install cmake`  
+		`sudo apt-get install libsdl2-dev`  
 4.	adding files for hotswapping compatibility 
 5.	Navigate  to `/etc/network/` 
 6.	Right click and select `open in terminal` from the dropdown
