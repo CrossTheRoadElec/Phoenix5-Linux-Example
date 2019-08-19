@@ -94,7 +94,6 @@ Future updates will expand compatibility.
 Setup nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
 Once you have your nano setup open a terminal and run the following commands to install necessary files.  
-    
 `sudo apt-get install update`  
 `sudo apt-get install upgrade`  
 Once this is completed continue to the  Example setup.  
@@ -147,5 +146,5 @@ Once this is completed continue to the  Example setup.
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
 8.	Tuner will then install and start the diag server on the jetson.
 9.	The diagnostics server is now installed and running on your jetson.
-#### Errata: The wireless Logitech f710 is currently not supported on the nvidia jetson nano due to a driver issue.
+#### Errata: The wireless Logitech F710 is currently not supported on the nvidia jetson nano due to a driver issue.
 
