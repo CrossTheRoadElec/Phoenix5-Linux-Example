@@ -90,8 +90,8 @@ Currently only the Raspberry Pi 3 running ubuntu mate supports Phoenix tuner.
 Future updates will expand compatibility.
 
 
-# Jetson nano setup
-Setup nano using instructions from Nvidia. 
+# Jetson Nano setup
+Setup Jetson Nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
 Once you have your nano setup open a terminal and run the following commands to install necessary files.  
 `sudo apt-get install update`  
@@ -126,7 +126,7 @@ Once this is completed continue to the  Example setup.
 14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`
 15.	Run Build.sh `./build.sh`
 16.	Run program `./bin/example`
-17.	You're now running Phoenix on a Jetson nano. Confirm there are no error messages being sent to console output.
+17.	You're now running Phoenix on a Jetson Nano. Confirm there are no error messages being sent to console output.
 18.	If you get the error `SocketCan: No buffer space available`.
 19.	Stop your Program with `Ctrl+z`.
 20.	Run the command `sudo ifconfig can0 txqueuelen 1000`.  
@@ -135,8 +135,8 @@ Once this is completed continue to the  Example setup.
 
 
 ### Connecting to Diag server:
-1.	Make sure your Nvidia jetson is connected to the same wifi network as the windows pc you want to run tuner on 
-2.	Open a terminal on the jetson and run `ifconfig`.
+1.	Make sure your Nvidia Jetson is connected to the same wifi network as the windows pc you want to run tuner on 
+2.	Open a terminal on the Jetson and run `ifconfig`.
 3.	![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)
 4.	Find the ip listed under wlan0 and next to inet. 
 5.	Enter your ip into Phoenix tuner. 
@@ -144,7 +144,12 @@ Once this is completed continue to the  Example setup.
 7.	Enter your user name and password when prompted.(To find your user name look at the text before the `@` in the terminal).  
 	In this terminal the user is `ctre`.
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
-8.	Tuner will then install and start the diag server on the jetson.
-9.	The diagnostics server is now installed and running on your jetson.
-#### Errata: The wireless Logitech F710 is currently not supported on the nvidia jetson nano due to a driver issue.
+8.	Tuner will then install and start the diag server on the 
+
+
+
+
+.
+9.	The diagnostics server is now installed and running on your Jetson.
+#### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
 
