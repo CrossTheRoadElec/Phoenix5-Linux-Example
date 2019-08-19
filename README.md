@@ -108,9 +108,9 @@ Once this is completed continue to the  Example setup.
 5.	Navigate  to `/etc/network/` 
 6.	Right click and select `open in terminal` from the dropdown
 7.	Type `sudo gedit interfaces`
-8.	Copy the following lines into the file and save
-`allow-hotplug can0`    
-`iface can0 can static`     
+8.	Copy the following lines into the file and save  
+    `allow-hotplug can0`    
+    `iface can0 can static`     
     `bitrate 1000000`    
     `up /sbin/ip link set $IFACE down`    
     `up /sbin/ip link set $IFACE up type can`    
@@ -141,7 +141,8 @@ Once this is completed continue to the  Example setup.
 4.	Find the ip listed under wlan0 and next to inet. 
 5.	Enter your ip into Phoenix tuner. 
 6.	Click `Install Phoenix Library/Diagnostics`.
-7.	Enter your user name and password when prompted.(To find your user name look at a terminal in this terminal the user is `ctre`).
+7.	Enter your user name and password when prompted.(To find your user name look at the text before the `@` in the terminal).  
+	In this terminal the user is `ctre`.
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
 8.	Tuner will then install and start the diag server on the jetson.
 9.	The diagnostics server is now installed and running on your jetson.
