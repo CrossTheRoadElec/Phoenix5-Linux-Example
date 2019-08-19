@@ -105,8 +105,8 @@ Once this is completed continue to the  Example setup.
 		`sudo apt-get install cmake`  
 		`sudo apt-get install libsdl2-dev`  
 4.	adding files for hotswapping compatibility 
-5.	Navigate  to `/etc/network/` 
-6.	Right click and select `open in terminal` from the dropdown
+5.	Open a new terminal
+6.	Type `cd /etc/network/.`
 7.	Type `sudo gedit interfaces`
 8.	Copy the following lines into the file and click save  
     `allow-hotplug can0`    
