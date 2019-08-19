@@ -144,12 +144,7 @@ Once this is completed continue to the  Example setup.
 7.	Enter your user name and password when prompted.(To find your user name look at the text before the `@` in the terminal).  
 	In this terminal the user is `ctre`.
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
-8.	Tuner will then install and start the diag server on the 
-
-
-
-
-.
+8.	Tuner will then install and start the diag server on the Jetson.
 9.	The diagnostics server is now installed and running on your Jetson.
 #### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
 
