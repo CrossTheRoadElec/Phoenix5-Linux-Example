@@ -92,11 +92,11 @@ Future updates will expand compatibility.
 
 # Jetson nano Setup
 Setup nano using instructions from Nvidia 
-https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro    
-Once you have your nano setup.  
-Open a terminal and run the following commands to install necessary files.  
+https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
+Once you have your nano setup open a terminal and run the following commands to install necessary files.  
+    
 `sudo apt-get install update`  
-`sudo apt-get install upgrade `  
+`sudo apt-get install upgrade`  
 Once this is completed continue to the  Example setup.  
 #### Example setup: 
 1.	Install CAN tools `sudo apt-get install can-utils`.
@@ -128,9 +128,9 @@ Once this is completed continue to the  Example setup.
 17.	You're now running Phoenix on a Jetson nano. Confirm there are no error messages being sent to console output.
 #### Note: Only the wired logitech f310 works with the jetson right now
 18.	If you get the error `SocketCan: No buffer space available`.
-19. Stop your Program with `Ctrl+z'.
+19.	`Stop your Program with `Ctrl+z'.
 20.	Run the command `sudo ifconfig can0 txqueuelen 1000`.  
-21.Restart your program with `./bin/example`.
+21.	Restart your program with `./bin/example`.
 
 
 
