@@ -108,13 +108,15 @@ Once this is completed continue to the  Example setup.
 5.	Navigate  to `/etc/network/` 
 6.	Right click and select `open in terminal` from the dropdown
 7.	Type `sudo gedit interfaces`
-8.	Copy the following lines into the file and save  
+8.	Copy the following lines into the file and click save  
     `allow-hotplug can0`    
     `iface can0 can static`     
     `bitrate 1000000`    
     `up /sbin/ip link set $IFACE down`    
     `up /sbin/ip link set $IFACE up type can`    
-9.	You may get a warning in your terminal; this is expected and not an issue.
+    Your file should look like this when finished.
+![interfacesa](https://user-images.githubusercontent.com/51933047/63290651-e2a3ac80-c28f-11e9-991d-df2b08066483.png)
+9.	When saving you may get a warning in your terminal; this is expected and not an issue.
 10.	Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
 11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
 12.	`git checkout addJetsonTx` 
