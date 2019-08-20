@@ -71,9 +71,9 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  7. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
  8. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/`.
  9. Chmod shell scripts to allow you to use them:
-     -  `chmod +x build.sh`
-     -  `chmod +x clean.sh`
-     -  `chmod +x canableStart.sh`
+     -  `chmod +x build.sh`  
+     -  `chmod +x clean.sh`  
+     -  `chmod +x canableStart.sh`  
  10. Bring up CAN0 `./canableStart.sh` -> `sudo ifconfig can0 up` 
  11. Run build.sh `./build.sh`
  12. Run program `./bin/example`
@@ -122,10 +122,10 @@ Once this is completed continue to the  Example setup.
 10.	Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
 11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
 12.	`git checkout addJetsonTx` 
-13.	Chmod shell scripts to allow you to use them:
-	`chmod +x build.sh`
-	`chmod+x clean.sh`
-	`chmod+x canableStart.sh`
+13.	Chmod shell scripts to allow you to use them:  
+	`chmod +x build.sh`  
+	`chmod+x clean.sh`  
+	`chmod+x canableStart.sh`  
 14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`
 15.	Run Build.sh `./build.sh`
 16.	Run program `./bin/example`
