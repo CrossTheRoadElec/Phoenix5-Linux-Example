@@ -94,8 +94,10 @@ Future updates will expand compatibility.
 Setup Jetson Nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
 Once you have your nano setup open a terminal and run the following commands to install necessary files.  
-`sudo apt-get update`    
-`sudo apt-get upgrade`  
+* `sudo apt-get upgrade`  
+* `sudo apt-get update`    
+* `sudo apt-get upgrade`  
+
 Once this is completed continue to the  Example setup.  
 #### Example setup: 
 1.	Install CAN tools `sudo apt-get install can-utils`.
