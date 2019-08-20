@@ -121,7 +121,6 @@ Once this is completed continue to the Example setup.
 10. Type `cd`.
 10.	Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
 11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
-12.	Type `git checkout addJetsonTx` .
 13.	Chmod shell scripts to allow you to use them:  
      -  `chmod +x build.sh`  
      -  `chmod +x clean.sh`  
