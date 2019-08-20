@@ -1357,7 +1357,7 @@ public:
 	 * Gets the active trajectory target heading using
 	 * MotionMagicArc/MotionProfileArc control modes.
 	 *
-	 * @return The Active Trajectory Heading in degreees.
+	 * @return The Active Trajectory Heading in degrees.
 	 */
 [[deprecated("Replaced by GetActiveTrajectoryPosition(1)")]]
 	virtual double GetActiveTrajectoryHeading();
