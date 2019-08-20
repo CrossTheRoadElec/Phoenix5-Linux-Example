@@ -91,7 +91,7 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
      -  `chmod +x build.sh`  
      -  `chmod +x clean.sh`  
      -  `chmod +x canableStart.sh`  
-14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`(if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
+14.	Bring up can 0 `./canableStart.sh` (if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
      
 # Validating SocketCan functionality 
 1. Type `sudo ifconfig can0 up` to bring up can 0.
@@ -99,14 +99,6 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 3. Type `cansend` to send a CAN frame, your talons LEDs should change to orange since a valid CAN message has been seen.
 4. Use `candump` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
 
-# Running Socket Can Example: 
-1.	Run Build.sh `./build.sh`.
-16.	Run program `./bin/example`.
-17.	You're now running Phoenix on a Jetson Nano. Confirm there are no error messages being sent to console output.
-18.	If you get the error `SocketCan: No buffer space available`.
-19.	Stop your Program with `Ctrl+z`.
-20.	Run the command `sudo ifconfig can0 txqueuelen 1000`.  
-21.	Restart your program with `./bin/example`.
 
 ## setting up socketcan hot swapping
 1. adding files for hot swapping compatibility 
@@ -143,6 +135,16 @@ Follow the instructions below to clear FRC lock without Phoenix Tuner.
 2. With the talon you'd like to clear unpowered hold the B/C cal button and apply power.  
 3. Once the talon leds flash green you can release the B/C cal button.  
 4. The talon is no longer FRC locked.  
+
+
+
+# Running Socket Can Example: 
+1.	Run Build.sh `./build.sh`.
+16.	Run program `./bin/example`.
+17.	You're now running Phoenix on a Jetson Nano. Confirm there are no error messages being sent to console output.
+18.	If you get the error `SocketCan: No buffer space available`.
+19.	Stop your Program with `Ctrl+z`.
+21.	Restart your program with `./bin/example`.
 
 #### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
 
