@@ -95,6 +95,8 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
      
 # Validating SocketCan functionality 
 1. Use `ifconfig` to display status of the CAN socket.
+2. The first thing listed should be can0 and should look like this
+![can0](https://user-images.githubusercontent.com/51933047/63381988-c6733e80-c367-11e9-91fc-7e2f620fea02.png).  
 3. Type `cansend` to send a CAN frame, your talons LEDs should change to orange since a valid CAN message has been seen.
 4. Use `candump` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
 
