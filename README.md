@@ -62,7 +62,7 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
 ### Procedure:
  1. Flash SD card with Raspbian Desktop image. (see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
  2. Boot your Pi and connect to a Wi-Fi network (if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network.
- 3. Continue with Socket Can Example Setup.
+ 3. Continue with Software Setup.
 
 
 # Jetson Nano setup
@@ -73,7 +73,7 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  - Laptop  
  1. Setup Jetson Nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
-2. Continue with  Socket Can Example Setup
+2. Continue with Software Setup.
 
 # Software Setup: 
 1. Once you have your Device setup open a terminal and run the following commands to install necessary files.  
@@ -97,11 +97,11 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 1. Use `ifconfig` to display status of the CAN socket.
 2. The first thing listed should be can0 and should look like this
 ![can0](https://user-images.githubusercontent.com/51933047/63381988-c6733e80-c367-11e9-91fc-7e2f620fea02.png).  
-3. Type `cansend` to send a CAN frame, your talons LEDs should change to orange since a valid CAN message has been seen.
-4. Use `candump` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
+3. Type `cansend can0 999#DEADBEEF` to send a CAN frame, your talons should now blink orange since a valid CAN message has been seen.
+4. Use `candump can0` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
 
 
-## setting up socketcan hot swapping
+## Set up hot swapping
 1. adding files for hot swapping compatibility 
 5. Open a new terminal
 6. Type `cd /etc/network/.`
@@ -131,15 +131,6 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 9. The diagnostics server is now installed and running on your device.
 10. Once connected see  https://phoenix-documentation.readthedocs.io/en/latest/ch13_MC.html?highlight=frc%20lock#confirm-frc-unlock
 to confirm the device you are using are not frc locked.
-
-# Talons not enabling
-If your talons do not appear to enable when operating with the gamepad plugged directly into the Pi, it's possible that they are FRC locked.
-Follow the instructions below to clear FRC lock without Phoenix Tuner.   
-1. Remove power from each talon.   
-2. With the talon you'd like to clear unpowered hold the B/C cal button and apply power.  
-3. Once the talon leds flash green you can release the B/C cal button.  
-4. The talon is no longer FRC locked.  
-
 
 
 # Running Socket Can Example: 
