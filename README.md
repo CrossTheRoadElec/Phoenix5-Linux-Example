@@ -89,7 +89,7 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 # Validating SocketCan functionality 
 1. Type `sudo ifconfig can0 up` to bring up can 0.
 2. Use `ifconfig` to display status of the CAN socket.
-3. type `cansend` to send a CAN frame, your talons LEDs should change to orange since a valid CAN message has been seen.
+3. Type `cansend` to send a CAN frame, your talons LEDs should change to orange since a valid CAN message has been seen.
 4. Use `candump` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.
 # Running Socket Can Example: 
 1. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
