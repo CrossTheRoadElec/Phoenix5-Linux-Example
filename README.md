@@ -61,8 +61,8 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
 
 ### Procedure:
  1. Flash SD card with Raspbian Dessktop image.(see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
- 2. Boot your pi and connect to a wifi network(if you'd like to use tuner on a windows pc make sure your windows pc and raspberry pi is connected to the same network.
- 3. Open a terminal in the raspberry pi.
+ 2. Boot your pi and connect to a wifi network(if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network.
+ 3. Open a terminal in the Raspberry Pi.
  4. Install CAN tools `sudo apt-get install can-utils`.
  5. Install git `sudo apt-get install git`.
  6. Install necessary libs to build example.  
@@ -77,16 +77,16 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  10. Bring up CAN0 `./canableStart.sh` -> `sudo ifconfig can0 up` 
  11. Run build.sh `./build.sh`
  12. Run program `./bin/example`
- 13. You're now running Phoenix on a raspberry pi.  Confirm there are no error messages being sent to console output.
+ 13. You're now running Phoenix on a Raspberry PI.  Confirm there are no error messages being sent to console output.
 
-If your talons do not appear to enable when operating with the gamepad plugged dirrectly into the pi it's possible that they are frc locked.
-Follow the instructions below to clear frc lock without Phoenix Tuner.   
-1.Remove power from each talon.   
-2.With the talon you'd like to clear unpowered hold the B/C cal button and apply power.  
-3.Once the talon leds flash green you can release the B/C cal button.  
-4.The talon is no longer frc locked.  
+If your talons do not appear to enable when operating with the gamepad plugged dirrectly into the pi it's possible that they are FRC locked.
+Follow the instructions below to clear FRC lock without Phoenix Tuner.   
+1. Remove power from each talon.   
+2. With the talon you'd like to clear unpowered hold the B/C cal button and apply power.  
+3. Once the talon leds flash green you can release the B/C cal button.  
+4. The talon is no longer FRC locked.  
 
-Currently only the Raspberry Pi 3 running ubuntu mate supports Phoenix tuner.
+Currently only the Raspberry PI 3 running ubuntu mate supports Phoenix tuner.
 Future updates will expand compatibility.
 
 
@@ -138,16 +138,16 @@ Once this is completed continue to the  Example setup.
 
 
 ### Connecting to Diag server:
-1.	Make sure your Nvidia Jetson is connected to the same wifi network as the windows pc you want to run tuner on 
+1.	Make sure your Nvidia Jetson is connected to the same wifi network as the windows PC you want to run Tuner on 
 2.	Open a terminal on the Jetson and run `ifconfig`.
 3.	![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)
-4.	Find the ip listed under wlan0 and next to inet. 
+4.	Find the ip listed under wlan0 and next to inet.(**Note: depending on your connection setup the ip you want to use may be next to a different wlan#**).   
 5.	Enter your ip into Phoenix tuner. 
 6.	Click `Install Phoenix Library/Diagnostics`.
 7.	Enter your user name and password when prompted.(To find your user name look at the text before the `@` in the terminal).  
 	In this terminal the user is `ctre`.
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
-8.	Tuner will then install and start the diag server on the Jetson.
+8.	Tuner will then install and start the diagnostics server on the Jetson.
 9.	The diagnostics server is now installed and running on your Jetson.
 #### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
 
