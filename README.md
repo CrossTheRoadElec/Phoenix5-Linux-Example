@@ -126,7 +126,7 @@ Once this is completed continue to the  Example setup.
 	`chmod +x build.sh`  
 	`chmod+x clean.sh`  
 	`chmod+x canableStart.sh`  
-14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`
+14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`(if you see the messege `Device or resourse busy` it means the can network is already up and requries no further action)  
 15.	Run Build.sh `./build.sh`
 16.	Run program `./bin/example`
 17.	You're now running Phoenix on a Jetson Nano. Confirm there are no error messages being sent to console output.
