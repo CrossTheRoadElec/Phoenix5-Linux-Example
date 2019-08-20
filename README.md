@@ -75,7 +75,7 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
 2. Continue with  Socket Can Example Setup
 
-# Socket Can Example Setup: 
+# Software Setup: 
 1. Once you have your Device setup open a terminal and run the following commands to install necessary files.  
      -  `sudo apt-get upgrade`  
      -  `sudo apt-get update`    
@@ -85,21 +85,22 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 3.	Install necessary libs to build example.   
      -  `sudo apt-get install cmake`  
      -  `sudo apt-get install libsdl2-dev`    
+4. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`.  
+5. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
+13.	Chmod shell scripts to allow you to use them:  
+     -  `chmod +x build.sh`  
+     -  `chmod +x clean.sh`  
+     -  `chmod +x canableStart.sh`  
+14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`(if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
      
 # Validating SocketCan functionality 
 1. Type `sudo ifconfig can0 up` to bring up can 0.
 2. Use `ifconfig` to display status of the CAN socket.
 3. Type `cansend` to send a CAN frame, your talons LEDs should change to orange since a valid CAN message has been seen.
-4. Use `candump` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.
+4. Use `candump` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
+
 # Running Socket Can Example: 
-1. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
-11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
-13.	Chmod shell scripts to allow you to use them:  
-     -  `chmod +x build.sh`  
-     -  `chmod +x clean.sh`  
-     -  `chmod +x canableStart.sh`  
-14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`(if you see the message `Device or resource busy` it means the can network is already up and requires no further action).  
-15.	Run Build.sh `./build.sh`.
+1.	Run Build.sh `./build.sh`.
 16.	Run program `./bin/example`.
 17.	You're now running Phoenix on a Jetson Nano. Confirm there are no error messages being sent to console output.
 18.	If you get the error `SocketCan: No buffer space available`.
