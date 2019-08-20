@@ -94,8 +94,7 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 14.	Bring up can 0 `./canableStart.sh` (if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
      
 # Validating SocketCan functionality 
-1. Type `sudo ifconfig can0 up` to bring up can 0.
-2. Use `ifconfig` to display status of the CAN socket.
+1. Use `ifconfig` to display status of the CAN socket.
 3. Type `cansend` to send a CAN frame, your talons LEDs should change to orange since a valid CAN message has been seen.
 4. Use `candump` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
 
@@ -123,8 +122,8 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 ![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)  
 5. Enter your ip into Phoenix tuner. 
 6. Click `Install Phoenix Library/Diagnostics`.
-7. Enter your username and password when prompted. (To find your username look at the text before the `@` in the terminal).  
-	In this terminal the user is `ctre`.
+7. Enter your username and password when prompted. (**Note: The user must have sudo permissions to successfully install Tuner** ).  
+	(To find your username look at the text before the `@` in the terminal for example in this terminal the user is `ctre`. ).  
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
 8. Tuner will then install and start the diagnostics server on the device.
 9. The diagnostics server is now installed and running on your device.
