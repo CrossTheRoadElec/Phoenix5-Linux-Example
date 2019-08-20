@@ -141,9 +141,7 @@ to confirm the device you are using are not frc locked.
 1.	Run Build.sh `./build.sh`.
 16.	Run program `./bin/example`.
 17.	You're now running Phoenix on a Jetson Nano. Confirm there are no error messages being sent to console output.
-18.	If you get the error `SocketCan: No buffer space available`.
-19.	Stop your Program with `Ctrl+z`.
-21.	Restart your program with `./bin/example`.
+19.	You can stop your Program with `Ctrl+z`.
 
 #### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
 
