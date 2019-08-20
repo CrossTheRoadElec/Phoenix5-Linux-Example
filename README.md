@@ -138,17 +138,16 @@ Once this is completed continue to the Example setup.
 
 
 ### Connecting to Diagnostics server:
-1.	Make sure your Nvidia Jetson is connected to the same Wi-Fi network as the windows PC you want to run Tuner on. 
-2.	Open a terminal on the Jetson and run `ifconfig`.
-4.	Find the ip listed under wlan0 and next to inet. (**Note: depending on your connection setup the ip you want to use may be under a different wlan#**).   
+1. Make sure your Nvidia Jetson is connected to the same Wi-Fi network as the windows PC you want to run Tuner on. 
+2. Open a terminal on the Jetson and run `ifconfig`.
+4. Find the ip listed under wlan0 and next to inet. (**Note: depending on your connection setup the ip you want to use may be under a different wlan#**).   
 ![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)  
-
-5.	Enter your ip into Phoenix tuner. 
-6.	Click `Install Phoenix Library/Diagnostics`.
-7.	Enter your username and password when prompted. (To find your username look at the text before the `@` in the terminal).  
+5. Enter your ip into Phoenix tuner. 
+6. Click `Install Phoenix Library/Diagnostics`.
+7. Enter your username and password when prompted. (To find your username look at the text before the `@` in the terminal).  
 	In this terminal the user is `ctre`.
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
-8.	Tuner will then install and start the diagnostics server on the Jetson.
-9.	The diagnostics server is now installed and running on your Jetson.
+8. Tuner will then install and start the diagnostics server on the Jetson.
+9. The diagnostics server is now installed and running on your Jetson.
 #### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
 
