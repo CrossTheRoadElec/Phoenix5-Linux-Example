@@ -2,7 +2,7 @@
 
 General example using CTRE Phoenix class library on Linux/RaspPi platforms.
 Two use cases are demonstrated...
-- Run robot with **no roboRIO** for nonFRC usecases (wireless gamepad plugged into Raspberry PI).
+- Run robot with **no roboRIO** for nonFRC use cases (wireless gamepad plugged into Raspberry PI).
 - Run  robot **with roboRIO** in FRC competition (roboRIO is used for gamepad and enable/disable, Talons controlled from Raspberry PI).
 
 Note: Requires libsdl2-dev (sudo apt-get install libsdl2-dev) for USB Gamepad interface on Raspberry PI.
@@ -56,12 +56,12 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  - Micro SD card
  - CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
  - Laptop
- - Raspbian Buster with desktop  (https://www.raspberrypi.org/downloads/raspbian/)
+ - Raspbian Buster with desktop (https://www.raspberrypi.org/downloads/raspbian/)
 
 
 ### Procedure:
- 1. Flash SD card with Raspbian Dessktop image.(see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
- 2. Boot your pi and connect to a wifi network(if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network.
+ 1. Flash SD card with Raspbian Desktop image. (see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
+ 2. Boot your Pi and connect to a Wi-Fi network (if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network.
  3. Open a terminal in the Raspberry Pi.
  4. Install CAN tools `sudo apt-get install can-utils`.
  5. Install git `sudo apt-get install git`.
@@ -77,9 +77,9 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  10. Bring up CAN0 `./canableStart.sh` -> `sudo ifconfig can0 up` 
  11. Run build.sh `./build.sh`
  12. Run program `./bin/example`
- 13. You're now running Phoenix on a Raspberry PI.  Confirm there are no error messages being sent to console output.
+ 13. You're now running Phoenix on a Raspberry Pi.  Confirm there are no error messages being sent to console output.
 
-If your talons do not appear to enable when operating with the gamepad plugged dirrectly into the pi it's possible that they are FRC locked.
+If your talons do not appear to enable when operating with the gamepad plugged directly into the Pi, it's possible that they are FRC locked.
 Follow the instructions below to clear FRC lock without Phoenix Tuner.   
 1. Remove power from each talon.   
 2. With the talon you'd like to clear unpowered hold the B/C cal button and apply power.  
@@ -98,14 +98,14 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
      -  `sudo apt-get update`    
      -  `sudo apt-get upgrade`  
 
-Once this is completed continue to the  Example setup.  
+Once this is completed continue to the Example setup.  
 #### Example setup: 
 1.	Install CAN tools `sudo apt-get install can-utils`.
 2.	Install git `sudo apt-get install git`.  
 3.	Install necessary libs to build example.   
      -  `sudo apt-get install cmake`  
      -  `sudo apt-get install libsdl2-dev`  
-4.	adding files for hotswapping compatibility 
+4.	adding files for hot swapping compatibility 
 5.	Open a new terminal
 6.	Type `cd /etc/network/.`
 7.	Type `sudo gedit interfaces`
@@ -121,14 +121,14 @@ Once this is completed continue to the  Example setup.
 10. Type `cd`.
 10.	Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
 11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
-12.	`git checkout addJetsonTx` 
+12.	Type `git checkout addJetsonTx` .
 13.	Chmod shell scripts to allow you to use them:  
      -  `chmod +x build.sh`  
      -  `chmod +x clean.sh`  
      -  `chmod +x canableStart.sh`  
-14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`(if you see the messege `Device or resourse busy` it means the can network is already up and requries no further action)  
-15.	Run Build.sh `./build.sh`
-16.	Run program `./bin/example`
+14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`(if you see the message `Device or resource busy` it means the can network is already up and requires no further action).  
+15.	Run Build.sh `./build.sh`.
+16.	Run program `./bin/example`.
 17.	You're now running Phoenix on a Jetson Nano. Confirm there are no error messages being sent to console output.
 18.	If you get the error `SocketCan: No buffer space available`.
 19.	Stop your Program with `Ctrl+z`.
@@ -137,14 +137,14 @@ Once this is completed continue to the  Example setup.
 
 
 
-### Connecting to Diag server:
-1.	Make sure your Nvidia Jetson is connected to the same wifi network as the windows PC you want to run Tuner on 
+### Connecting to Diagnostics server:
+1.	Make sure your Nvidia Jetson is connected to the same Wi-Fi network as the windows PC you want to run Tuner on 
 2.	Open a terminal on the Jetson and run `ifconfig`.
 3.	![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)
-4.	Find the ip listed under wlan0 and next to inet.(**Note: depending on your connection setup the ip you want to use may be next to a different wlan#**).   
+4.	Find the ip listed under wlan0 and next to inet. (**Note: depending on your connection setup the ip you want to use may be next to a different wlan#**).   
 5.	Enter your ip into Phoenix tuner. 
 6.	Click `Install Phoenix Library/Diagnostics`.
-7.	Enter your user name and password when prompted.(To find your user name look at the text before the `@` in the terminal).  
+7.	Enter your username and password when prompted. (To find your username look at the text before the `@` in the terminal).  
 	In this terminal the user is `ctre`.
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
 8.	Tuner will then install and start the diagnostics server on the Jetson.
