@@ -100,6 +100,9 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 ![can0](https://user-images.githubusercontent.com/51933047/63381988-c6733e80-c367-11e9-91fc-7e2f620fea02.png).  
 3. Type `cansend can0 999#DEADBEEF` to send a CAN frame, your talons should now blink orange since a valid CAN message has been seen.
 4. Use `candump can0` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
+5. You should see a constant stream of messages similar to this:![candump](https://user-images.githubusercontent.com/51933047/63384109-2f5cb580-c36c-11e9-8688-d3fa774eab43.png)
+6. To end the stream press `Ctrl+z`.
+
 
 
 ## Set up hot swapping
