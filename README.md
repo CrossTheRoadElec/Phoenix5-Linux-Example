@@ -138,8 +138,8 @@ to confirm the device you are using are not frc locked.
 
 
 # Running Socket Can Example: 
-1.	Run Build.sh `./build.sh`.
-16.	Run program `./bin/example`.
+1.	Run Build.sh with `./build.sh`.
+16.	Run program with `./bin/example`.
 17.	You're now running Phoenix on a Jetson Nano. Confirm there are no error messages being sent to console output.
 19.	You can stop your Program with `Ctrl+z`.
 
