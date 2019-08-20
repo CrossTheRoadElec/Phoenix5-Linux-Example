@@ -140,7 +140,7 @@ to confirm the device you are using is not frc locked.
 # Running Socket Can Example: 
 1.	Run Build.sh with `./build.sh`.
 16.	Run program with `./bin/example`.
-17.	You're now running Phoenix your device. Confirm there are no error messages being sent to console output.
+17.	You're now running Phoenix on your device. Confirm there are no error messages being sent to console output.
 19.	You can stop your Program with `Ctrl+z`.
 
 #### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
