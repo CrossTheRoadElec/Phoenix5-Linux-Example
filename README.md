@@ -133,6 +133,7 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
 8. Tuner will then install and start the diagnostics server on the device.
 9. The diagnostics server is now installed and running on your device.
+10. See https://phoenix-documentation.readthedocs.io/en/latest/ch08_BringUpCAN.html?highlight=field%20upgrade#field-upgrade-devices for information about Field upgrading your devices to the latest version.
 10. Once connected see  https://phoenix-documentation.readthedocs.io/en/latest/ch13_MC.html?highlight=frc%20lock#confirm-frc-unlock
 to confirm the device you are using is not frc locked.
 
