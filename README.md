@@ -138,10 +138,11 @@ Once this is completed continue to the Example setup.
 
 
 ### Connecting to Diagnostics server:
-1.	Make sure your Nvidia Jetson is connected to the same Wi-Fi network as the windows PC you want to run Tuner on 
+1.	Make sure your Nvidia Jetson is connected to the same Wi-Fi network as the windows PC you want to run Tuner on. 
 2.	Open a terminal on the Jetson and run `ifconfig`.
-3.	![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)
 4.	Find the ip listed under wlan0 and next to inet. (**Note: depending on your connection setup the ip you want to use may be under a different wlan#**).   
+![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)  
+
 5.	Enter your ip into Phoenix tuner. 
 6.	Click `Install Phoenix Library/Diagnostics`.
 7.	Enter your username and password when prompted. (To find your username look at the text before the `@` in the terminal).  
