@@ -94,7 +94,8 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 14.	Bring up can 0 `./canableStart.sh` (if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
      
 # Validating SocketCan functionality 
-1. Use `ifconfig` to display status of the CAN socket.
+1. Make sure you have talons or another CTRE CAN device connected for validation of can network.
+2. Use `ifconfig` to display status of the CAN socket.
 2. The first network listed should be can0 and should look like this
 ![can0](https://user-images.githubusercontent.com/51933047/63381988-c6733e80-c367-11e9-91fc-7e2f620fea02.png).  
 3. Type `cansend can0 999#DEADBEEF` to send a CAN frame, your talons should now blink orange since a valid CAN message has been seen.
