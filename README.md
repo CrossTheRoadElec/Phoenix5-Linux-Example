@@ -93,18 +93,18 @@ Future updates will expand compatibility.
 # Jetson Nano setup
 Setup Jetson Nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
-Once you have your nano setup open a terminal and run the following commands to install necessary files.  
-* `sudo apt-get upgrade`  
-* `sudo apt-get update`    
-* `sudo apt-get upgrade`  
+* Once you have your nano setup open a terminal and run the following commands to install necessary files.  
+     -  `sudo apt-get upgrade`  
+     -  `sudo apt-get update`    
+     -  `sudo apt-get upgrade`  
 
 Once this is completed continue to the  Example setup.  
 #### Example setup: 
 1.	Install CAN tools `sudo apt-get install can-utils`.
 2.	Install git `sudo apt-get install git`.  
 3.	Install necessary libs to build example.   
-		`sudo apt-get install cmake`  
-		`sudo apt-get install libsdl2-dev`  
+     -  `sudo apt-get install cmake`  
+     -  `sudo apt-get install libsdl2-dev`  
 4.	adding files for hotswapping compatibility 
 5.	Open a new terminal
 6.	Type `cd /etc/network/.`
@@ -123,9 +123,9 @@ Once this is completed continue to the  Example setup.
 11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
 12.	`git checkout addJetsonTx` 
 13.	Chmod shell scripts to allow you to use them:  
-	`chmod +x build.sh`  
-	`chmod+x clean.sh`  
-	`chmod+x canableStart.sh`  
+     -  `chmod +x build.sh`  
+     -  `chmod +x clean.sh`  
+     -  `chmod +x canableStart.sh`  
 14.	Bring up can 0 `./canableStart.sh`  or `sudo ifconfig can0 up`(if you see the messege `Device or resourse busy` it means the can network is already up and requries no further action)  
 15.	Run Build.sh `./build.sh`
 16.	Run program `./bin/example`
