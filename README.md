@@ -49,7 +49,7 @@ Test robot has a RaspPi + CANable.
 
 Robot also has an FRC roboRIO - however this only necessary to enable actuators if CTRE CAN devices are FRC-Locked.  See Phoenix Tuner to determine/modify FRC Lock state.
 
-## Using Raspbian Buster Raspberry Pi image to control your robot
+# Using Raspbian Buster Raspberry Pi image to control your robot
 
 ### Materials needed:
  - Raspberry Pi (3B+)
@@ -62,64 +62,37 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
 ### Procedure:
  1. Flash SD card with Raspbian Desktop image. (see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
  2. Boot your Pi and connect to a Wi-Fi network (if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network.
- 3. Open a terminal in the Raspberry Pi.
- 4. Install CAN tools `sudo apt-get install can-utils`.
- 5. Install git `sudo apt-get install git`.
- 6. Install necessary libs to build example.  
-     -  `sudo apt-get install cmake`  
-     -  `sudo apt-get install libsdl2-dev `  
- 7. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
- 8. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/`.
- 9. Chmod shell scripts to allow you to use them:
-     -  `chmod +x build.sh`  
-     -  `chmod +x clean.sh`  
-     -  `chmod +x canableStart.sh`  
- 10. Bring up CAN0 `./canableStart.sh` -> `sudo ifconfig can0 up` 
- 11. Run build.sh `./build.sh`
- 12. Run program `./bin/example`
- 13. You're now running Phoenix on a Raspberry Pi.  Confirm there are no error messages being sent to console output.
-
-If your talons do not appear to enable when operating with the gamepad plugged directly into the Pi, it's possible that they are FRC locked.
-Follow the instructions below to clear FRC lock without Phoenix Tuner.   
-1. Remove power from each talon.   
-2. With the talon you'd like to clear unpowered hold the B/C cal button and apply power.  
-3. Once the talon leds flash green you can release the B/C cal button.  
-4. The talon is no longer FRC locked.  
-
-Currently only the Raspberry PI 3 running ubuntu mate supports Phoenix tuner.
-Future updates will expand compatibility.
+ 3. Continue with Socket Can Example Setup.
 
 
 # Jetson Nano setup
-* Setup Jetson Nano using instructions from Nvidia. 
+### Materials needed:
+ - Jetson Nano
+ - Micro SD card
+ - CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
+ - Laptop  
+ 1. Setup Jetson Nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
-* Once you have your nano setup open a terminal and run the following commands to install necessary files.  
+2. Continue with  Socket Can Example Setup
+
+# Socket Can Example Setup: 
+1. Once you have your Device setup open a terminal and run the following commands to install necessary files.  
      -  `sudo apt-get upgrade`  
      -  `sudo apt-get update`    
      -  `sudo apt-get upgrade`  
-
-Once this is completed continue to the Example setup.  
-#### Example setup: 
 1.	Install CAN tools `sudo apt-get install can-utils`.
 2.	Install git `sudo apt-get install git`.  
 3.	Install necessary libs to build example.   
      -  `sudo apt-get install cmake`  
-     -  `sudo apt-get install libsdl2-dev`  
-4.	adding files for hot swapping compatibility 
-5.	Open a new terminal
-6.	Type `cd /etc/network/.`
-7.	Type `sudo gedit interfaces`
-8.	Copy the following lines into the file and click save  
-    `allow-hotplug can0`    
-    `iface can0 can static`     
-    `bitrate 1000000`    
-    `up /sbin/ip link set $IFACE down`    
-    `up /sbin/ip link set $IFACE up type can`    
-    Your file should look like this when finished.
-![sudo](https://user-images.githubusercontent.com/51933047/63291621-e9332380-c291-11e9-8eac-91f53e9e89ce.png)
-9.	When saving you may get a warning in your terminal; this is expected and not an issue.
-10. Type `cd`.
-10.	Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
+     -  `sudo apt-get install libsdl2-dev`    
+     
+# Validating SocketCan functionality 
+1. Type `sudo ifconfig can0 up` to bring up can 0.
+2. Use `ifconfig` to display status of the CAN socket.
+3. type `cansend` to send a CAN frame, your talons LEDs should change to orange since a valid CAN message has been seen.
+4. Use `candump` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.
+# Running Socket Can Example: 
+1. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
 11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
 13.	Chmod shell scripts to allow you to use them:  
      -  `chmod +x build.sh`  
@@ -134,11 +107,25 @@ Once this is completed continue to the Example setup.
 20.	Run the command `sudo ifconfig can0 txqueuelen 1000`.  
 21.	Restart your program with `./bin/example`.
 
+## setting up socketcan hot swapping
+1. adding files for hot swapping compatibility 
+5. Open a new terminal
+6. Type `cd /etc/network/.`
+7. Type `sudo gedit interfaces`
+8. Copy the following lines into the file and click save  
+    `allow-hotplug can0`    
+    `iface can0 can static`     
+    `bitrate 1000000`    
+    `up /sbin/ip link set $IFACE down`    
+    `up /sbin/ip link set $IFACE up type can`    
+    Your file should look like this when finished.
+![sudo](https://user-images.githubusercontent.com/51933047/63291621-e9332380-c291-11e9-8eac-91f53e9e89ce.png)
+9.	When saving you may get a warning in your terminal; this is expected and not an issue.
+10. Type `cd`.
 
-
-### Connecting to Diagnostics server:
-1. Make sure your Nvidia Jetson is connected to the same Wi-Fi network as the windows PC you want to run Tuner on. 
-2. Open a terminal on the Jetson and run `ifconfig`.
+# Connecting to Diagnostics server:
+1. Make sure your device is connected to the same Wi-Fi network as the windows PC you want to run Tuner on. 
+2. Open a terminal on the device and run `ifconfig`.
 4. Find the ip listed under wlan0 and next to inet. (**Note: depending on your connection setup the ip you want to use may be under a different wlan#**).   
 ![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)  
 5. Enter your ip into Phoenix tuner. 
@@ -146,7 +133,15 @@ Once this is completed continue to the Example setup.
 7. Enter your username and password when prompted. (To find your username look at the text before the `@` in the terminal).  
 	In this terminal the user is `ctre`.
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
-8. Tuner will then install and start the diagnostics server on the Jetson.
-9. The diagnostics server is now installed and running on your Jetson.
+8. Tuner will then install and start the diagnostics server on the device.
+9. The diagnostics server is now installed and running on your device.
+# Talons not enabling
+If your talons do not appear to enable when operating with the gamepad plugged directly into the Pi, it's possible that they are FRC locked.
+Follow the instructions below to clear FRC lock without Phoenix Tuner.   
+1. Remove power from each talon.   
+2. With the talon you'd like to clear unpowered hold the B/C cal button and apply power.  
+3. Once the talon leds flash green you can release the B/C cal button.  
+4. The talon is no longer FRC locked.  
+
 #### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
 
