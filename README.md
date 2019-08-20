@@ -91,7 +91,7 @@ Future updates will expand compatibility.
 
 
 # Jetson Nano setup
-Setup Jetson Nano using instructions from Nvidia. 
+* Setup Jetson Nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
 * Once you have your nano setup open a terminal and run the following commands to install necessary files.  
      -  `sudo apt-get upgrade`  
