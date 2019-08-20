@@ -118,7 +118,7 @@ Once this is completed continue to the  Example setup.
     Your file should look like this when finished.
 ![sudo](https://user-images.githubusercontent.com/51933047/63291621-e9332380-c291-11e9-8eac-91f53e9e89ce.png)
 9.	When saving you may get a warning in your terminal; this is expected and not an issue.
-10. 	Type `cd`.
+10. Type `cd`.
 10.	Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`
 11.	Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
 12.	`git checkout addJetsonTx` 
