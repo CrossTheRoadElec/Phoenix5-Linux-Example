@@ -39,3 +39,4 @@ endif()
 
 target_link_libraries(example Threads::Threads)
 target_link_libraries(example ${SDL2_LIBRARIES})
+
