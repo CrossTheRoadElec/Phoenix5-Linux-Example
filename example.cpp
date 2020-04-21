@@ -59,6 +59,7 @@ int main() {
 		while (true) {
 			/* SDL seems somewhat fragile, shut it down and bring it up */
 			SDL_Quit();
+            SDL_SetHint(SDL_HINT_NO_SIGNAL_HANDLERS, "1"); //so Ctrl-C still works
 			SDL_Init(SDL_INIT_JOYSTICK);
 
 			/* poll for gamepad */
