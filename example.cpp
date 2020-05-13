@@ -2,6 +2,7 @@
 #include "ctre/Phoenix.h"
 #include "ctre/phoenix/platform/Platform.h"
 #include "ctre/phoenix/unmanaged/Unmanaged.h"
+#include "ctre/phoenix/cci/Unmanaged_CCI.h"
 #include <string>
 #include <iostream>
 #include <chrono>
@@ -45,6 +46,9 @@ int main() {
 	//std::cin >> interface;
 	interface = "can0";
 	ctre::phoenix::platform::can::SetCANInterface(interface.c_str());
+	
+	// Comment out the call if you would rather use the automatically running diag-server, note this requires uninstalling diagnostics from Tuner. 
+	c_SetPhoenixDiagnosticsStartTime(-1); // disable diag server, instead we will use the diag server stand alone application that Tuner installs
 
 	/* setup drive */
 	initDrive();
