@@ -132,13 +132,14 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 2. Open a terminal on the device and run `ifconfig`.
 3. Find the ip listed under wlan0 and next to inet. (**Note: depending on your connection setup the ip you want to use may be under a different wlan#**).   
 ![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)  
-Your program runs the diagnostics server, so you do not need to install the diagnostics server through Phoenix Tuner.
-You can disable the diagnostics server in your program by adding ``c_SetPhoenixDiagnosticsStartTime(-1);`` to the start
-of your main method. The line is commented out in the example program.
+4. Enter your ip into Phoenix tuner. 
+
+    Your program runs the diagnostics server, so you do not need to install the diagnostics server through Phoenix Tuner.
+    You can disable the diagnostics server in your program by adding ``c_SetPhoenixDiagnosticsStartTime(-1);`` to the start
+    of your main method. The line is commented out in the example program.
 
 <s>
 
-4. Enter your ip into Phoenix tuner. 
 5. Click `Install Phoenix Library/Diagnostics`.
 6. Enter your username and password when prompted. (**Note: The user must have sudo permissions to successfully install Tuner** ).  
 	(To find your username look at the text before the `@` in the terminal for example in this terminal the user is `ctre`. ).  
