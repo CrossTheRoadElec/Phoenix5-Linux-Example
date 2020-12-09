@@ -128,6 +128,7 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 4.	You can stop your Program with `Ctrl+z`.
 
 # Connecting to Diagnostics server:
+Note: SSH must be enabled on the Linux Robot Controller to perform a field upgrade or modify a device's configuration using Phoenix Tuner.
 1. Make sure your device is connected to the same Wi-Fi network as the windows PC you want to run Tuner on. 
 2. Open a terminal on the device and run `ifconfig`.
 3. Find the ip listed under wlan0 and next to inet. (**Note: depending on your connection setup the ip you want to use may be under a different wlan#**).   
