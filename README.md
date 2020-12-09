@@ -71,7 +71,7 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
  - Micro SD card
  - CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
  - Laptop  
- 1. Setup Jetson Nano using instructions from Nvidia. 
+1. Setup Jetson Nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
 2. Continue with Software Setup.
 
@@ -80,37 +80,37 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
      -  `sudo apt-get upgrade`  
      -  `sudo apt-get update`    
      -  `sudo apt-get upgrade`  
-1.	Install CAN tools `sudo apt-get install can-utils`.
-2.	Install git `sudo apt-get install git`.  
-3.	Install necessary libs to build example.   
+2.	Install CAN tools `sudo apt-get install can-utils`.
+3.	Install git `sudo apt-get install git`.  
+4.	Install necessary libs to build example.   
      -  `sudo apt-get install cmake`  
      -  `sudo apt-get install libsdl2-dev`    
-4. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`.  
-5. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
-13.	Chmod shell scripts to allow you to use them:  
+5. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`.  
+6. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
+7.	Chmod shell scripts to allow you to use them:  
      -  `chmod +x build.sh`  
      -  `chmod +x clean.sh`  
      -  `chmod +x canableStart.sh`  
-14.	Bring up can 0 `./canableStart.sh` (if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
+8.	Bring up can 0 `./canableStart.sh` (if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
      
 # Validating SocketCan functionality 
 1. Make sure you have talons or another CTRE CAN device connected for validation of can network.
 2. Use `ifconfig` to display status of the CAN socket.
-2. The first network listed should be can0 and should look like this
+3. The first network listed should be can0 and should look like this
 ![can0](https://user-images.githubusercontent.com/51933047/63381988-c6733e80-c367-11e9-91fc-7e2f620fea02.png).  
-3. Type `cansend can0 999#DEADBEEF` to send a CAN frame, your talons should now blink orange since a valid CAN message has been seen.
-4. Use `candump can0` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
-5. You should see a constant stream of messages similar to this:![candump](https://user-images.githubusercontent.com/51933047/63384109-2f5cb580-c36c-11e9-8688-d3fa774eab43.png)
-6. To end the stream press `Ctrl+z`.
+4. Type `cansend can0 999#DEADBEEF` to send a CAN frame, your talons should now blink orange since a valid CAN message has been seen.
+5. Use `candump can0` to see all incoming CAN traffic, which should display all periodic information being sent by a Talon.  
+6. You should see a constant stream of messages similar to this:![candump](https://user-images.githubusercontent.com/51933047/63384109-2f5cb580-c36c-11e9-8688-d3fa774eab43.png)
+7. To end the stream press `Ctrl+z`.
 
 
 
 ## Set up hot swapping
 1. adding files for hot swapping compatibility 
-5. Open a new terminal
-6. Type `cd /etc/network/.`
-7. Type `sudo gedit interfaces`
-8. Copy the following lines into the file and click save  
+2. Open a new terminal
+3. Type `cd /etc/network/.`
+4. Type `sudo gedit interfaces`
+5. Copy the following lines into the file and click save  
     `allow-hotplug can0`    
     `iface can0 can static`     
     `bitrate 1000000`    
@@ -118,8 +118,8 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
     `up /sbin/ip link set $IFACE up type can`    
     Your file should look like this when finished.
 ![sudo](https://user-images.githubusercontent.com/51933047/63291621-e9332380-c291-11e9-8eac-91f53e9e89ce.png)
-9.	When saving you may get a warning in your terminal; this is expected and not an issue.
-10. Type `cd`.
+6.	When saving you may get a warning in your terminal; this is expected and not an issue.
+7. Type `cd`.
 
 # Running Socket Can Example: 
 1.	Run Build.sh with `./build.sh`.
@@ -137,14 +137,11 @@ Your Program runs the diagnostics server, so you do not need to install the diag
 <s>
 
 4. Enter your ip into Phoenix tuner. 
-
 5. Click `Install Phoenix Library/Diagnostics`.
-
 6. Enter your username and password when prompted. (**Note: The user must have sudo permissions to successfully install Tuner** ).  
 	(To find your username look at the text before the `@` in the terminal for example in this terminal the user is `ctre`. ).  
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
 7. Tuner will then install and start the diagnostics server on the device.
-
 8. The diagnostics server is now installed and running on your device.
 
 </s>
