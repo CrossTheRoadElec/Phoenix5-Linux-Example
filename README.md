@@ -134,7 +134,7 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 ![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)  
 4. Enter your ip into Phoenix tuner. 
 
-    Your program runs the diagnostics server, so you do not need to install the diagnostics server through Phoenix Tuner.
+    Your program runs the diagnostics server, so you should not install the diagnostics server through Phoenix Tuner.
     You can disable the diagnostics server in your program by adding ``c_SetPhoenixDiagnosticsStartTime(-1);`` to the start
     of your main method. The line is commented out in the example program.
 
