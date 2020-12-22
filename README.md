@@ -128,6 +128,7 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 4.	You can stop your Program with `Ctrl+z`.
 
 # Connecting to Diagnostics server:
+## Setting up Phoenix Tuner
 Note: SSH must be enabled on the Linux Robot Controller to perform a field upgrade or modify a device's configuration using Phoenix Tuner.
 1. Make sure your device is connected to the same Wi-Fi network as the windows PC you want to run Tuner on. 
 2. Open a terminal on the device and run `ifconfig`.
@@ -135,23 +136,32 @@ Note: SSH must be enabled on the Linux Robot Controller to perform a field upgra
 ![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)  
 4. Enter your ip into Phoenix tuner. 
 
-    Your program runs the diagnostics server, so you should not install the diagnostics server through Phoenix Tuner.
-    You can disable the diagnostics server in your program by adding ``c_SetPhoenixDiagnosticsStartTime(-1);`` to the start
-    of your main method. The line is commented out in the example program.
+## Setting up the Phoenix Diagnostics Server
+The Phoenix Diagnostics Server is an HTTP server that communicates with the Phoenix Tuner. There are two versions of the server:
+a standalone version installed through Phoenix Tuner (legacy), and a version built into your user program (latest). Only one version of
+the diagnostics server may be running at any given time. We recommend you run the diagnostics server through your user program.
+
+You can disable the diagnostics server in your program by adding ``c_SetPhoenixDiagnosticsStartTime(-1);`` to the start
+of your main method. The line is commented out in the example program.
+
+Warning: The instructions below are available for legacy support. We recommend you instead run the Phoenix Diagnostics Server in your user program.
+
+Warning: The legacy instructions below currently do not work. See: https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example/issues/15
 
 <s>
 
-5. Click `Install Phoenix Library/Diagnostics`.
-6. Enter your username and password when prompted. (**Note: The user must have sudo permissions to successfully install Tuner** ).  
+To install the standalone diagnostics server:
+1. Click `Install Phoenix Library/Diagnostics`.
+2. Enter your username and password when prompted. (**Note: The user must have sudo permissions to successfully install Tuner** ).  
 	(To find your username look at the text before the `@` in the terminal for example in this terminal the user is `ctre`. ).  
 	![image](https://user-images.githubusercontent.com/51933047/63195027-7fbbd680-c03f-11e9-9e5e-c310d0eebff4.PNG)
-7. Tuner will then install and start the diagnostics server on the device.
-8. The diagnostics server is now installed and running on your device.
+3. Tuner will then install and start the diagnostics server on the device.
+4. The diagnostics server is now installed and running on your device.
 
 </s>
 
-9.  See https://phoenix-documentation.readthedocs.io/en/latest/ch08_BringUpCAN.html?highlight=field%20upgrade#field-upgrade-devices for information about field upgrading your devices to the latest version.
-10. Once connected see  https://phoenix-documentation.readthedocs.io/en/latest/ch13_MC.html?highlight=frc%20lock#confirm-frc-unlock
+* See https://phoenix-documentation.readthedocs.io/en/latest/ch08_BringUpCAN.html?highlight=field%20upgrade#field-upgrade-devices for information about field upgrading your devices to the latest version.
+* Once connected see  https://phoenix-documentation.readthedocs.io/en/latest/ch13_MC.html?highlight=frc%20lock#confirm-frc-unlock
 to confirm the device you are using is not frc locked.
 
 
