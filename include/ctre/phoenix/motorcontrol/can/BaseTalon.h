@@ -10,6 +10,7 @@
 #include "ctre/phoenix/CustomParamConfiguration.h"
 #include "ctre/phoenix/motorcontrol/SensorCollection.h"
 #include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
+#include "ctre/phoenix/motorcontrol/TalonSRXSimCollection.h"
 
 /* forward proto's */
 namespace ctre {
@@ -266,9 +267,13 @@ namespace ctre {
 					ctre::phoenix::motorcontrol::SensorCollection* _sensorCollSrx;
 					ctre::phoenix::motorcontrol::TalonFXSensorCollection* _sensorCollFx;
 
+					ctre::phoenix::motorcontrol::TalonSRXSimCollection* _simCollSrx;
+
 				protected:
 					ctre::phoenix::motorcontrol::SensorCollection& GetTalonSRXSensorCollection() { return *_sensorCollSrx; }
 					ctre::phoenix::motorcontrol::TalonFXSensorCollection& GetTalonFXSensorCollection() { return *_sensorCollFx; }
+
+					ctre::phoenix::motorcontrol::TalonSRXSimCollection& GetTalonSRXSimCollection() { return *_simCollSrx; }
 
 					ctre::phoenix::ErrorCode ConfigurePID(const BaseTalonPIDSetConfiguration& pid, int pidIdx, int timeoutMs, bool enableOptimizations);
 
@@ -581,7 +586,7 @@ namespace ctre {
 						LimitSwitchNormal normalOpenOrClose, int deviceID, int timeoutMs = 0);
 
 					//------ Current Limit ----------//
-					virtual ctre::phoenix::ErrorCode ConfigSupplyCurrentLimit(const SupplyCurrentLimitConfiguration& currLimitConfigs, int timeoutMs = 0) = 0;
+					virtual ctre::phoenix::ErrorCode ConfigSupplyCurrentLimit(const SupplyCurrentLimitConfiguration& currLimitConfigs, int timeoutMs = 50);
 
 					//------ RAW Sensor API ----------//
 					/**

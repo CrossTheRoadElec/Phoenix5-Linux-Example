@@ -102,6 +102,11 @@ enum ErrorCode
 	RemoteSensorsNotSupportedYet= 108,
 	MotProfFirmThreshold= 109,
 	MotProfFirmThreshold2 = 110,
+
+	//Simulation
+	SimDeviceNotFound = 200,
+	SimPhysicsTypeNotSupported = 201,
+	SimDeviceAlreadyExists = 202,
 };
 class ErrorCollection {
 public:

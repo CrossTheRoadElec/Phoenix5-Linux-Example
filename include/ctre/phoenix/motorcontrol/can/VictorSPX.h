@@ -293,6 +293,12 @@ public:
 	 */
 	void Set(ctre::phoenix::motorcontrol::VictorSPXControlMode mode, double demand0, ctre::phoenix::motorcontrol::DemandType demand1Type, double demand1);
 
+	//------ Simulation API ----------//
+	/**
+	 * @return object that can set simulation inputs.
+	 */
+	ctre::phoenix::motorcontrol::VictorSPXSimCollection& GetSimCollection();
+
 	//------ All Configs ----------//
     /**
      * Gets all PID set persistant settings.

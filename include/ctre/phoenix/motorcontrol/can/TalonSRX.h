@@ -13,6 +13,7 @@ namespace ctre {
 	namespace phoenix {
 		namespace motorcontrol {
 			class SensorCollection;
+			class TalonSRXSimCollection;
 		}
 	}
 }
@@ -333,6 +334,12 @@ namespace ctre {
 					 * @return object that can get/set individual RAW sensor values.
 					 */
 					ctre::phoenix::motorcontrol::SensorCollection& GetSensorCollection();
+
+					//------ Simulation API ----------//
+					/**
+					 * @return object that can set simulation inputs.
+					 */
+					ctre::phoenix::motorcontrol::TalonSRXSimCollection& GetSimCollection();
 
 					//------ All Configs ----------//
 

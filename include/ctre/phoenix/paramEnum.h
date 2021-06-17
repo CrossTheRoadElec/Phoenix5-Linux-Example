@@ -40,19 +40,6 @@ namespace ctre {
 			eClearPositionOnLimitR = 321,
 			eClearPositionOnQuadIdx = 322,
 
-			/*
-			 *@deprecated use above
-			 */
-			eClearPosOnLimitF = eClearPositionOnLimitF,
-			/*
-			 *@deprecated use above
-			 */
-			eClearPosOnLimitR = eClearPositionOnLimitR,
-			/*
-			 *@deprecated use above
-			 */
-			eClearPositionOnIdx = eClearPositionOnQuadIdx,
-
 			eSampleVelocityPeriod = 325,
 			eSampleVelocityWindow = 326,
 

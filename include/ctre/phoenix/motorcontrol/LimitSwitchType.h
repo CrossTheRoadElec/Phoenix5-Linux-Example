@@ -13,9 +13,13 @@ enum LimitSwitchSource {
 	 */
 	LimitSwitchSource_FeedbackConnector = 0,
 	/**
+	 * Use Limit switch connected to Talon on CAN
+	 */
+	LimitSwitchSource_RemoteTalon = 1,
+	/**
 	 * Use Limit switch connected to TalonSRX on CAN
 	 */
-	LimitSwitchSource_RemoteTalonSRX = 1,
+	LimitSwitchSource_RemoteTalonSRX = LimitSwitchSource_RemoteTalon,
 	/**
 	 * User Limit switch connected to CANifier
 	 */
@@ -33,9 +37,13 @@ enum RemoteLimitSwitchSource {
 	 */
 	RemoteLimitSwitchSource_FactoryDefaultOff = 0,
 	/**
+	 * Use Limit switch connected to Talon on CAN
+	 */
+	RemoteLimitSwitchSource_RemoteTalon = 1,
+	/**
 	 * Use Limit switch connected to TalonSRX on CAN
 	 */
-	RemoteLimitSwitchSource_RemoteTalonSRX = 1,
+	RemoteLimitSwitchSource_RemoteTalonSRX = RemoteLimitSwitchSource_RemoteTalon,
 	/**
 	 * User Limit switch connected to CANifier
 	 */
@@ -101,7 +109,7 @@ public:
     static std::string toString(LimitSwitchSource value) {
         switch(value) {
             case LimitSwitchSource_FeedbackConnector : return "LimitSwitchSource_FeedbackConnector";
-            case LimitSwitchSource_RemoteTalonSRX : return "LimitSwitchSource_RemoteTalonSRX";
+            case LimitSwitchSource_RemoteTalon : return "LimitSwitchSource_RemoteTalon";
             case LimitSwitchSource_RemoteCANifier : return "LimitSwitchSource_RemoteCANifier";
             case LimitSwitchSource_Deactivated : return "LimitSwitchSource_Deactivated";
             default : return "InvalidValue";
@@ -115,7 +123,7 @@ public:
     static std::string toString(RemoteLimitSwitchSource value) {
         switch(value) {
             case RemoteLimitSwitchSource_FactoryDefaultOff: return "None (factory default value)";
-            case RemoteLimitSwitchSource_RemoteTalonSRX : return "RemoteLimitSwitchSource_RemoteTalonSRX";
+            case RemoteLimitSwitchSource_RemoteTalon : return "RemoteLimitSwitchSource_RemoteTalon";
             case RemoteLimitSwitchSource_RemoteCANifier : return "RemoteLimitSwitchSource_RemoteCANifier";
             case RemoteLimitSwitchSource_Deactivated : return "RemoteLimitSwitchSource_Deactivated";
             default : return "InvalidValue";
