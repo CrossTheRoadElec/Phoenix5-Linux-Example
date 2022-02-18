@@ -39,6 +39,9 @@ namespace ctre {
 				 * Get the IntegratedSensor position of the Talon FX, regardless of whether
 				 *   it is actually being used for feedback.  The units are 2048 per rotation.
 				 *	Note : Future versions of software may support scaling features (rotations, radians, degrees, etc) depending on the configuration.
+				 * 
+				 * This method relies on the Status 21 message, which has a default period of 240ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the IntegratedSensor position.
 				 */
@@ -49,6 +52,9 @@ namespace ctre {
 				 *   it is actually being used for feedback.  This will be within one rotation (2048 units).
 				 *   The signage and range will depend on the configuration.
 				 *	Note : Future versions of software may support scaling features (rotations, radians, degrees, etc) depending on the configuration.
+				 * 
+				 * This method relies on the Status 21 message, which has a default period of 240ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the IntegratedSensor absolute position.
 				 */
@@ -60,6 +66,9 @@ namespace ctre {
 				 *   One unit represents one position unit per 100ms (2048 position units per 100ms).
 				 *   The signage and range will depend on the configuration.
 				 *	Note : Future versions of software may support scaling features (rotations, radians, degrees, etc) depending on the configuration.
+				 * 
+				 * This method relies on the Status 21 message, which has a default period of 240ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the IntegratedSensor velocity.
 				 */
@@ -95,6 +104,9 @@ namespace ctre {
 
 				/**
 				 * Is forward limit switch closed.
+			 	 * 
+			 	 * This method relies on the Status 1 message, which has a default period of 10ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  '1' iff forward limit switch is closed, 0 iff switch is open. This function works
 				 *          regardless if limit switch feature is enabled.  Remote limit features do not impact this routine.
@@ -104,6 +116,9 @@ namespace ctre {
 
 				/**
 				 * Is reverse limit switch closed.
+			 	 * 
+			 	 * This method relies on the Status 1 message, which has a default period of 10ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  '1' iff reverse limit switch is closed, 0 iff switch is open. This function works
 				 *          regardless if limit switch feature is enabled.  Remote limit features do not impact this routine.

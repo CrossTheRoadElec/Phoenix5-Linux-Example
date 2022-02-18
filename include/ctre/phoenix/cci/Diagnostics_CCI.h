@@ -1,10 +1,11 @@
 #pragma once
 
 #include <stdint.h>
-#include "ctre/phoenix/cci/CCI.h"
+#include "ctre/phoenix/export.h"
 
 extern "C"{
-    CCIEXPORT void c_Phoenix_Diagnostics_Create();
-    CCIEXPORT void c_Phoenix_Diagnostics_Create1(int port);
-    CCIEXPORT void c_Phoenix_Diagnostics_SetSecondsToStart(int secondsToStart);
+    CTREXPORT void c_Phoenix_Diagnostics_Create();
+    CTREXPORT void c_Phoenix_Diagnostics_Create1(int port);
+    CTREXPORT void c_Phoenix_Diagnostics_SetSecondsToStart(int secondsToStart);
+    CTREXPORT void c_Phoenix_Diagnostics_Dispose();
 }

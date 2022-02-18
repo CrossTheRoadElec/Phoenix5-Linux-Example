@@ -16,6 +16,8 @@
 #include "ctre/phoenix/motion/BufferedTrajectoryPointStream.h"
 #include "ctre/phoenix/CANBusAddressable.h"
 #include "ctre/phoenix/CustomParamConfiguration.h"
+#include "ctre/phoenix/motorcontrol/VictorSPXSimCollection.h"
+#include "ctre/phoenix/sensors/SensorVelocityMeasPeriod.h"
 
 #include <string>
 
@@ -179,12 +181,12 @@ namespace ctre {
 					 * accumulator is automatically cleared. This ensures than integral wind up
 					 * events will stop after the sensor gets far enough from its target.
 					 */
-					int integralZone;
+					double integralZone;
 					/**
 					 * Allowable closed loop error to neutral (in native units)
 					 *
 					 */
-					int allowableClosedloopError;
+					double allowableClosedloopError;
 					/**
 					 * Max integral accumulator (in native units)
 					 */
@@ -203,8 +205,8 @@ namespace ctre {
 						kI(0.0),
 						kD(0.0),
 						kF(0.0),
-						integralZone(0),
-						allowableClosedloopError(0),
+						integralZone(0.0),
+						allowableClosedloopError(0.0),
 						maxIntegralAccumulator(0.0),
 						closedLoopPeakOutput(1.0),
 						closedLoopPeriod(1)
@@ -313,7 +315,7 @@ namespace ctre {
 					/**
 					 * Desired period for velocity measurement
 					 */
-					VelocityMeasPeriod velocityMeasurementPeriod;
+					ctre::phoenix::sensors::SensorVelocityMeasPeriod velocityMeasurementPeriod;
 					/**
 					 * Desired window for velocity measurement
 					 */
@@ -321,11 +323,11 @@ namespace ctre {
 					/**
 					 * Threshold for soft limits in forward direction (in raw sensor units)
 					 */
-					int forwardSoftLimitThreshold;
+					double forwardSoftLimitThreshold;
 					/**
 					 * Threshold for soft limits in reverse direction (in raw sensor units)
 					 */
-					int reverseSoftLimitThreshold;
+					double reverseSoftLimitThreshold;
 					/**
 					 * Enable forward soft limit
 					 */
@@ -373,11 +375,11 @@ namespace ctre {
 					/**
 					 * Motion Magic cruise velocity in raw sensor units per 100 ms.
 					 */
-					int motionCruiseVelocity;
+					double motionCruiseVelocity;
 					/**
 					 * Motion Magic acceleration in (raw sensor units per 100 ms) per second.
 					 */
-					int motionAcceleration;
+					double motionAcceleration;
 					/**
 					 * Zero to use trapezoidal motion during motion magic.  [1,8] for S-Curve, higher value for greater smoothing.
 					 */
@@ -440,15 +442,15 @@ namespace ctre {
 						neutralDeadband(41.0 / 1023.0),
 						voltageCompSaturation(0.0),
 						voltageMeasurementFilter(32),
-						velocityMeasurementPeriod(Period_100Ms),
+						velocityMeasurementPeriod(ctre::phoenix::sensors::SensorVelocityMeasPeriod::Period_100Ms),
 						velocityMeasurementWindow(64),
-						forwardSoftLimitThreshold(0),
-						reverseSoftLimitThreshold(0),
+						forwardSoftLimitThreshold(0.0),
+						reverseSoftLimitThreshold(0.0),
 						forwardSoftLimitEnable(false),
 						reverseSoftLimitEnable(false),
 						auxPIDPolarity(false),
-						motionCruiseVelocity(0),
-						motionAcceleration(0),
+						motionCruiseVelocity(0.0),
+						motionAcceleration(0.0),
 						motionCurveStrength(0),
 						motionProfileTrajectoryPeriod(0),
 						feedbackNotContinuous(false),
@@ -488,7 +490,7 @@ namespace ctre {
 						retstr += prependString + ".neutralDeadband = " + std::to_string(neutralDeadband) + ";\n";
 						retstr += prependString + ".voltageCompSaturation = " + std::to_string(voltageCompSaturation) + ";\n";
 						retstr += prependString + ".voltageMeasurementFilter = " + std::to_string(voltageMeasurementFilter) + ";\n";
-						retstr += prependString + ".velocityMeasurementPeriod = " + VelocityMeasPeriodRoutines::toString(velocityMeasurementPeriod) + ";\n";
+						retstr += prependString + ".velocityMeasurementPeriod = " + ctre::phoenix::sensors::SensorVelocityMeasPeriodRoutines::toString(velocityMeasurementPeriod) + ";\n";
 						retstr += prependString + ".velocityMeasurementWindow = " + std::to_string(velocityMeasurementWindow) + ";\n";
 						retstr += prependString + ".forwardSoftLimitThreshold = " + std::to_string(forwardSoftLimitThreshold) + ";\n";
 						retstr += prependString + ".reverseSoftLimitThreshold = " + std::to_string(reverseSoftLimitThreshold) + ";\n";
@@ -590,7 +592,11 @@ namespace ctre {
 
 					bool _isVcompEn = false;
 
+					ctre::phoenix::motorcontrol::VictorSPXSimCollection* _simCollSpx;
+
 				protected:
+					ctre::phoenix::motorcontrol::VictorSPXSimCollection& GetVictorSPXSimCollection() { return *_simCollSpx; }
+
 					/**
 					 * Configures all base persistant settings.
 					 *
@@ -642,10 +648,12 @@ namespace ctre {
 					 * Constructor for motor controllers.
 					 *
 					 * @param arbId Device ID [0,62]
-					 * @param model String model of device. 
+					 * @param model String model of device.
 					 * Examples: "Talon SRX", "Talon FX", "Victor SPX".
+					 * @param canbus Name of the CANbus; can be a SocketCAN interface (on Linux),
+					 *               or a CANivore device name or serial number
 					 */
-					BaseMotorController(int deviceNumber, const char* model);
+					BaseMotorController(int deviceNumber, const char* model, std::string const &canbus = "");
 					virtual ~BaseMotorController();
 					BaseMotorController() = delete;
 					BaseMotorController(BaseMotorController const&) = delete;
@@ -682,23 +690,6 @@ namespace ctre {
 					 *	_talonRght.set(ControlMode.PercentOutput, rghtJoy);
 					 */
 					virtual void Set(ControlMode mode, double value);
-					/**
-					 * @deprecated use 4 parameter set
-					 * @param mode Sets the appropriate output on the talon, depending on the mode.
-					 * @param demand0 The output value to apply.
-					 * 	such as advanced feed forward and/or auxiliary close-looping in firmware.
-					 * In PercentOutput, the output is between -1.0 and 1.0, with 0.0 as stopped.
-					 * In Current mode, output value is in amperes.
-					 * In Velocity mode, output value is in position change / 100ms.
-					 * In Position mode, output value is in encoder ticks or an analog value,
-					 *   depending on the sensor. See
-					 * In Follower mode, the output value is the integer device ID of the talon to
-					 * duplicate.
-					 *
-					 * @param demand1 Supplemental value.  This will also be control mode specific for future features.
-					 */
-					[[deprecated("Use 4-paremeter Set() instead.")]]
-					virtual void Set(ControlMode mode, double demand0, double demand1);
 					/**
 					 * @param mode Sets the appropriate output on the talon, depending on the mode.
 					 * @param demand0 The output value to apply.
@@ -750,23 +741,6 @@ namespace ctre {
 					 *            throttle is neutral (ie brake/coast)
 					 **/
 					virtual void SetNeutralMode(NeutralMode neutralMode);
-					/**
-					 * Enables a future feature called "Heading Hold".
-					 * For now this simply updates the CAN signal to the motor controller.
-					 * Future firmware updates will use this.
-					 *
-					 *	@param enable true/false enable
-					 * @deprecated This has been replaced with the 4 param Set.
-					 */
-					void EnableHeadingHold(bool enable);
-					/**
-					 * For now this simply updates the CAN signal to the motor controller.
-					 * Future firmware updates will use this to control advanced auxiliary loop behavior.
-					 *
-					 *	@param value
-					 * @deprecated This has been replaced with the 4 param Set.
-					 */
-					void SelectDemandType(bool value);
 					//------ Invert behavior ----------//
 					/**
 					 * Sets the phase of the sensor. Use when controller forward/reverse output
@@ -960,7 +934,7 @@ namespace ctre {
 					virtual void EnableVoltageCompensation(bool enable);
 					/**
 					 * Returns the enable state of Voltage Compensation that the caller has set.
-					 * 
+					 *
 					 * @return TRUE if voltage compensation is enabled.
 					 */
 					virtual bool IsVoltageCompensationEnabled();
@@ -1081,6 +1055,23 @@ namespace ctre {
 					 */
 					virtual ErrorCode ConfigRemoteFeedbackFilter(ctre::phoenix::sensors::CANCoder &canCoderRef, int remoteOrdinal, int timeoutMs = 0);
 					/**
+					 * Select what remote device and signal to assign to Remote Sensor 0 or Remote Sensor 1.
+					 * After binding a remote device and signal to Remote Sensor X, you may select Remote Sensor X
+					 * as a PID source for closed-loop features.
+					 *
+					 * @param talonRef
+					 *            Talon device reference to use.
+					 * @param remoteOrdinal
+					 *            0 for configuring Remote Sensor 0,
+					 *            1 for configuring Remote Sensor 1
+					 * @param timeoutMs
+					 *            Timeout value in ms. If nonzero, function will wait for
+					 *            config success and report an error if it times out.
+					 *            If zero, no blocking or checking is performed.
+					 * @return Error Code generated by function. 0 indicates no error.
+					 */
+					virtual ErrorCode ConfigRemoteFeedbackFilter(ctre::phoenix::motorcontrol::can::BaseTalon &talonRef, int remoteOrdinal, int timeoutMs = 0);
+					/**
 					 * Select what sensor term should be bound to switch feedback device.
 					 * Sensor Sum = Sensor Sum Term 0 - Sensor Sum Term 1
 					 * Sensor Difference = Sensor Diff Term 0 - Sensor Diff Term 1
@@ -1125,7 +1116,7 @@ namespace ctre {
 					 *
 					 * @return Position of selected sensor (in raw sensor units).
 					 */
-					virtual int GetSelectedSensorPosition(int pidIdx = 0);
+					virtual double GetSelectedSensorPosition(int pidIdx = 0);
 					/**
 					 * Get the selected sensor velocity.
 					 *
@@ -1134,7 +1125,7 @@ namespace ctre {
 					 * @return selected sensor (in raw sensor units) per 100ms.
 					 * See Phoenix-Documentation for how to interpret.
 					 */
-					virtual int GetSelectedSensorVelocity(int pidIdx = 0);
+					virtual double GetSelectedSensorVelocity(int pidIdx = 0);
 					/**
 					 * Sets the sensor position to the given value.
 					 *
@@ -1148,7 +1139,7 @@ namespace ctre {
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
-					virtual ctre::phoenix::ErrorCode SetSelectedSensorPosition(int sensorPos, int pidIdx = 0, int timeoutMs = 50);
+					virtual ctre::phoenix::ErrorCode SetSelectedSensorPosition(double sensorPos, int pidIdx = 0, int timeoutMs = 50);
 					//------ status frame period changes ----------//
 					/**
 					 * Sets the period of the given control frame.
@@ -1232,13 +1223,17 @@ namespace ctre {
 					 *
 					 * @param period
 					 *            Desired period for the velocity measurement. @see
-					 *            #VelocityMeasPeriod
+					 *            #SensorVelocityMeasPeriod
 					 * @param timeoutMs
 					 *            Timeout value in ms. If nonzero, function will wait for
 					 *            config success and report an error if it times out.
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
+					virtual ctre::phoenix::ErrorCode ConfigVelocityMeasurementPeriod(ctre::phoenix::sensors::SensorVelocityMeasPeriod period,
+						int timeoutMs = 0);
+
+					[[deprecated("Use the overload with SensorVelocityMeasPeriod instead.")]]
 					virtual ctre::phoenix::ErrorCode ConfigVelocityMeasurementPeriod(VelocityMeasPeriod period,
 						int timeoutMs = 0);
 					/**
@@ -1370,7 +1365,7 @@ namespace ctre {
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
-					virtual ctre::phoenix::ErrorCode ConfigForwardSoftLimitThreshold(int forwardSensorLimit,
+					virtual ctre::phoenix::ErrorCode ConfigForwardSoftLimitThreshold(double forwardSensorLimit,
 						int timeoutMs = 0);
 					/**
 					 * Configures the reverse soft limit threshold.
@@ -1383,7 +1378,7 @@ namespace ctre {
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
-					virtual ctre::phoenix::ErrorCode ConfigReverseSoftLimitThreshold(int reverseSensorLimit,
+					virtual ctre::phoenix::ErrorCode ConfigReverseSoftLimitThreshold(double reverseSensorLimit,
 						int timeoutMs = 0);
 					/**
 					 * Configures the forward soft limit enable.
@@ -1511,7 +1506,7 @@ namespace ctre {
 					 *            blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
-					virtual ctre::phoenix::ErrorCode Config_IntegralZone(int slotIdx, int izone,
+					virtual ctre::phoenix::ErrorCode Config_IntegralZone(int slotIdx, double izone,
 						int timeoutMs = 0);
 					/**
 					 * Sets the allowable closed-loop error in the given parameter slot.
@@ -1527,7 +1522,7 @@ namespace ctre {
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
 					virtual ctre::phoenix::ErrorCode ConfigAllowableClosedloopError(int slotIdx,
-						int allowableCloseLoopError, int timeoutMs = 0);
+						double allowableCloseLoopError, int timeoutMs = 0);
 					/**
 					 * Sets the maximum integral accumulator in the given parameter slot.
 					 *
@@ -1636,7 +1631,7 @@ namespace ctre {
 					 *            0 for Primary closed-loop. 1 for auxiliary closed-loop.
 					 * @return Closed-loop error value.
 					 */
-					virtual int GetClosedLoopError(int pidIdx = 0);
+					virtual double GetClosedLoopError(int pidIdx = 0);
 					/**
 					 * Gets the iaccum value.
 					 *
@@ -1677,14 +1672,14 @@ namespace ctre {
 					 * MotionMagic/MotionProfile control modes.
 					 *
 					 * @return The Active Trajectory Position in sensor units.
-					 */	virtual int GetActiveTrajectoryPosition(int pidIdx = 0);
+					 */	virtual double GetActiveTrajectoryPosition(int pidIdx = 0);
 					 /**
 					  * Gets the active trajectory target velocity using
 					  * MotionMagic/MotionProfile control modes.
 					  *
 					  * @return The Active Trajectory Velocity in sensor units per 100ms.
 					  */
-					virtual int GetActiveTrajectoryVelocity(int pidIdx = 0);	/**
+					virtual double GetActiveTrajectoryVelocity(int pidIdx = 0);	/**
 					 * Gets the active trajectory arbitrary feedforward using
 					 * MotionMagic/MotionProfile control modes.
 					 *
@@ -1692,14 +1687,8 @@ namespace ctre {
 					 *            0 for Primary closed-loop. 1 for auxiliary closed-loop.
 					 * @return The Active Trajectory ArbFeedFwd in units of percent output
 					 * 			(where 0.01 is 1%).
-					 */	virtual double GetActiveTrajectoryArbFeedFwd(int pidIdx = 0);	/**
-					 * Gets the active trajectory target heading using
-					 * MotionMagicArc/MotionProfileArc control modes.
-					 *
-					 * @return The Active Trajectory Heading in degrees.
 					 */
-					[[deprecated("Replaced by GetActiveTrajectoryPosition(1)")]]
-					virtual double GetActiveTrajectoryHeading();
+					virtual double GetActiveTrajectoryArbFeedFwd(int pidIdx = 0);
 
 					//------ Motion Profile Settings used in Motion Magic  ----------//
 					/**
@@ -1714,7 +1703,7 @@ namespace ctre {
 					 *            blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
-					virtual ctre::phoenix::ErrorCode ConfigMotionCruiseVelocity(int sensorUnitsPer100ms,
+					virtual ctre::phoenix::ErrorCode ConfigMotionCruiseVelocity(double sensorUnitsPer100ms,
 						int timeoutMs = 0);
 					/**
 					 * Sets the Motion Magic Acceleration. This is the target acceleration that
@@ -1729,7 +1718,7 @@ namespace ctre {
 					 *            blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
-					virtual ctre::phoenix::ErrorCode ConfigMotionAcceleration(int sensorUnitsPer100msPerSec,
+					virtual ctre::phoenix::ErrorCode ConfigMotionAcceleration(double sensorUnitsPer100msPerSec,
 						int timeoutMs = 0);
 					/**
 					 * Sets the Motion Magic S Curve Strength.

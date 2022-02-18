@@ -58,6 +58,11 @@ enum StatusFrameEnhanced {
 	/**
 	 * Firmware & API status information
 	 */
+	Status_15_FirmwareApiStatus = 0x1780,
+	/**
+	 * Firmware & API status information
+	 * [[deprecated("Use Status_15_FirmwareApiStatus instead.")]]
+	 */
 	Status_15_FirmareApiStatus = 0x1780,
 	/** 
 	 * MotionProfile Targets for Auxiliary PID1. 
@@ -136,6 +141,11 @@ enum StatusFrame {
 	Status_14_Turn_PIDF1_ = 0x1740,
 	/**
 	 * Firmware & API status information
+	 */
+	Status_15_FirmwareApiStatus_ = 0x1780,
+	/**
+	 * Firmware & API status information
+	 * [[deprecated("Use Status_15_FirmwareApiStatus_ instead.")]]
 	 */
 	Status_15_FirmareApiStatus_ = 0x1780,
 	/** 

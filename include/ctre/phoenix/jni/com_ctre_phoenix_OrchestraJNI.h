@@ -65,6 +65,14 @@ JNIEXPORT jboolean JNICALL Java_com_ctre_phoenix_music_OrchestraJNI_JNI_1IsPlayi
 
 /*
  * Class:     com_ctre_phoenix_OrchestraJNI
+ * Method:    JNI_GetCurrentTime
+ * Signature: (J)Z
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix_music_OrchestraJNI_JNI_1GetCurrentTime
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_ctre_phoenix_OrchestraJNI
  * Method:    JNI_ClearInstruments
  * Signature: (J)I
  */

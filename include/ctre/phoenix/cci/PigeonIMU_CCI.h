@@ -31,8 +31,8 @@
  static std::map<void *, bool> pigeonPresent;
  
  extern "C"{
-	CCIEXPORT void *c_PigeonIMU_Create2(int talonDeviceID);
-	CCIEXPORT void *c_PigeonIMU_Create1(int deviceNumber);
+	CCIEXPORT void *c_PigeonIMU_Create2(int talonDeviceID, const char *version);
+	CCIEXPORT void *c_PigeonIMU_Create1(int deviceNumber, const char *version, const char *canbus);
     CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_Destroy(void *handle);
     CCIEXPORT void c_PigeonIMU_DestroyAll();
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetDescription(void *handle, char * toFill, int toFillByteSz, size_t * numBytesFilled);
@@ -55,8 +55,14 @@
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_EnterCalibrationMode(void *handle, int calMode, int timeoutMs);
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetGeneralStatus(void *handle, int *state, int *currentMode, int *calibrationError, int *bCalIsBooting, double *tempC, int *upTimeSec, int *noMotionBiasCount, int *tempCompensationCount, int *lastError);
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetLastError(void *handle);
+	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetLastTimestamp(void* handle, double* timestamp);
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_Get6dQuaternion(void *handle, double wxyz[4]);
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetYawPitchRoll(void *handle, double ypr[3]);
+	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetYawPitchRoll2(void *handle, double ypr[3]);
+	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetYaw(void *handle, double *yaw);
+	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetPitch(void *handle, double *pitch);
+	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetRoll(void *handle, double *roll);
+	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetGravityVector(void *handle, double ypr[3]);
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetAccumGyro(void *handle, double xyz_deg[3]);
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetAbsoluteCompassHeading(void *handle, double *value);
 	CCIEXPORT ctre::phoenix::ErrorCode c_PigeonIMU_GetCompassHeading(void *handle, double *value);

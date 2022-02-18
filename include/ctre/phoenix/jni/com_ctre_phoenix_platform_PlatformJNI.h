@@ -33,19 +33,27 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix_platform_PlatformJNI_JNI_1SimDestro
 
 /*
  * Class:     com_ctre_phoenix_platform_PlatformJNI
- * Method:    JNI_SimConfigGet
- * Signature: (IIIII)I
+ * Method:    JNI_SimSetPhysicsInput
+ * Signature: (IILjava/lang/String;D)I
  */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_platform_PlatformJNI_JNI_1SimConfigGet
-  (JNIEnv *, jclass, jint, jint, jint, jint, jint);
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix_platform_PlatformJNI_JNI_1SimSetPhysicsInput
+  (JNIEnv *, jclass, jint, jint, jstring, jdouble);
 
 /*
  * Class:     com_ctre_phoenix_platform_PlatformJNI
- * Method:    JNI_SimConfigSet
- * Signature: (IIIIII)I
+ * Method:    JNI_SimGetPhysicsValue
+ * Signature: (IILjava/lang/String;)D
  */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_platform_PlatformJNI_JNI_1SimConfigSet
-  (JNIEnv *, jclass, jint, jint, jint, jint, jint, jint);
+JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_platform_PlatformJNI_JNI_1SimGetPhysicsValue
+  (JNIEnv *, jclass, jint, jint, jstring);
+
+/*
+ * Class:     com_ctre_phoenix_platform_PlatformJNI
+ * Method:    JNI_SimGetLastError
+ * Signature: (II)I
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix_platform_PlatformJNI_JNI_1SimGetLastError
+  (JNIEnv *, jclass, jint, jint);
 
 #ifdef __cplusplus
 }

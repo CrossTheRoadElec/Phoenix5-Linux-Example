@@ -18,10 +18,10 @@ JNIEXPORT jlong JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_
 /*
  * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
  * Method:    Create2
- * Signature: (Ijava/lang/String;)J
+ * Signature: (Ijava/lang/String;java/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_Create2
-  (JNIEnv *, jclass, jint, jstring);
+  (JNIEnv *, jclass, jint, jstring, jstring);
 
 /*
  * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI

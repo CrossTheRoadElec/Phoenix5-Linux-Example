@@ -10,7 +10,7 @@
 
 extern "C"{
 	CCIEXPORT void* c_MotController_Create1(int baseArbId);
-	CCIEXPORT void* c_MotController_Create2(int deviceID, const char * model);
+	CCIEXPORT void* c_MotController_Create2(int deviceID, const char * model, const char* canbus);
     CCIEXPORT void c_MotController_DestroyAll();
     CCIEXPORT ctre::phoenix::ErrorCode c_MotController_Destroy(void *handle);
 	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_GetAppliedControlMode(void *handle, int &controlMode);
