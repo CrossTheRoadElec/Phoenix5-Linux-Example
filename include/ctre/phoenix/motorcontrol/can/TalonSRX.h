@@ -150,6 +150,16 @@ namespace ctre {
 					 * @param deviceNumber CAN Device ID of TalonSRX
 					 */
 					TalonSRX(int deviceNumber);
+
+#ifndef __FRC_ROBORIO__
+					/**
+					 * Constructor so non-FRC platforms can specify a CAN 2.0 socketcan bus
+					 * @param deviceNumber CAN Device ID of TalonSRX
+					 * @param canbus String specifying the bus
+					 */
+					TalonSRX(int deviceNumber, std::string const &canbus);
+#endif
+
 					~TalonSRX();
 					TalonSRX() = delete;
 					TalonSRX(TalonSRX const&) = delete;

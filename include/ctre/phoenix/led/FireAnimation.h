@@ -16,8 +16,10 @@ public:
      * @param numLed How many LEDs is the CANdle controlling
      * @param sparking The rate at which the Fire "Sparks" [0, 1]
      * @param cooling The rate at which the Fire "Cools" along the travel [0, 1]
+     * @param reverseDirection True to reverse the animation direction, so instead of fire going "away" from the CANdle, it will go "toward" the CANdle.
+     * @param ledOffset Where to start the animation
      */
-    FireAnimation(double brightness = 1, double speed = 1, int numLed = -1, double sparking = 1, double cooling = 1);
+    FireAnimation(double brightness = 1, double speed = 1, int numLed = -1, double sparking = 1, double cooling = 1, bool reverseDirection = false, int ledOffset = 0);
     /**
      * Sets the sparking value of the FireAnimation
      * @param sparking The rate at which the Fire "Sparks" [0, 1]

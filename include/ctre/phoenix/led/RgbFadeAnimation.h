@@ -14,8 +14,9 @@ public:
      * @param brightness How bright the LEDs are [0, 1]
      * @param speed How fast the LEDs fade between Red, Green, and Blue [0, 1]
      * @param numLed How many LEDs are controlled by the CANdle
+     * @param ledOffset Where to start the animation
      */
-    RgbFadeAnimation(double brightness = 1, double speed = 1, int numLed = -1);
+    RgbFadeAnimation(double brightness = 1, double speed = 1, int numLed = -1, int ledOffset = 0);
 };
 
 } // namespace led

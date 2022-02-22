@@ -36,8 +36,9 @@ public:
      * @param numLed The number of LEDs the CANdle will control
      * @param mode How the pocket of LEDs will behave once it reaches the end of the strip
      * @param size How large the pocket of LEDs are [0, 7]
+     * @param ledOffset Where to start the animation
      */
-    LarsonAnimation(int r, int g, int b, int w = 0, double speed = 1, int numLed = -1, BounceMode mode = BounceMode::Front, int size = 2);
+    LarsonAnimation(int r, int g, int b, int w = 0, double speed = 1, int numLed = -1, BounceMode mode = BounceMode::Front, int size = 2, int ledOffset = 0);
 
     /**
      * Sets the bounce mode of the animation.

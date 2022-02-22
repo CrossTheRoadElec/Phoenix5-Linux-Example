@@ -25,8 +25,9 @@ public:
      * @param numLed The number of LEDs to run the animation on
      * @param direction An animation-specific parameter for its direction
      * @param size An animation-specific parameter for its size
+     * @param ledOffset Where to start the animation
      */
-    BaseTwoSizeAnimation(int idx, int r, int g, int b, int w, double speed, int numLed, int direction, int size);
+    BaseTwoSizeAnimation(int idx, int r, int g, int b, int w, double speed, int numLed, int direction, int size, int ledOffset);
     ~BaseTwoSizeAnimation();
 
     BaseStandardAnimation *GetBaseStandardAnimation();

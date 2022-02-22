@@ -56,8 +56,9 @@ public:
      * @param speed How fast should the color travel the strip [0, 1]
      * @param numLed How many LEDs the CANdle controls
      * @param divider What percentage of LEDs can be on at any point
+     * @param ledOffset Where to start the animation
      */
-    TwinkleAnimation(int r, int g, int b, int w = 0, double speed = 1, int numLed = -1, TwinklePercent divider = TwinklePercent::Percent100);
+    TwinkleAnimation(int r, int g, int b, int w = 0, double speed = 1, int numLed = -1, TwinklePercent divider = TwinklePercent::Percent100, int ledOffset = 0);
     /**
      * Sets the percentage of LEDs that are allowed on
      * @param divider The percentage of LEDs that are allowed on at any point

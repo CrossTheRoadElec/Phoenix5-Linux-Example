@@ -31,6 +31,10 @@ struct CANdleConfiguration : public CustomParamConfiguration {
      * The behavior of VBat output
      */
     VBatOutputMode vBatOutputMode {VBatOutputMode::On};
+    /**
+     * True to turn off the 5V rail. This turns off the on-board LEDs as well.
+     */
+    bool v5Enabled {false};
 
     CANdleConfiguration();
 

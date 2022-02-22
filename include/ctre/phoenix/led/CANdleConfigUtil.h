@@ -18,6 +18,7 @@ public:
 	static bool DisableWhenLOSDifferent (CANdleConfiguration settings);
 	static bool StatusLedOffWhenActiveDifferent (CANdleConfiguration settings);
 	static bool VBatOutputModeDifferent (CANdleConfiguration settings);
+	static bool V5EnabledDifferent (CANdleConfiguration settings);
 };
 
 } // namespace led

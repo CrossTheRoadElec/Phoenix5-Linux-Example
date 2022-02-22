@@ -246,6 +246,16 @@ public:
 	 *            [0,62]
 	 */
 	VictorSPX(int deviceNumber);
+
+#ifndef __FRC_ROBORIO__
+	/**
+	 * Constructor so non-FRC platforms can specify a CAN 2.0 socketcan bus
+	 * @param deviceNumber CAN Device ID of VictorSPX
+	 * @param canbus String specifying the bus
+	 */
+	VictorSPX(int deviceNumber, std::string const &canbus);
+#endif
+
 	virtual ~VictorSPX() {
 	}
 	VictorSPX(VictorSPX const&) = delete;
