@@ -60,6 +60,7 @@ enum ErrorCode
 	GainsAreNotSet = -503,
 	WrongRemoteLimitSwitchSource = -504,
 	DoubleVoltageCompensatingWPI = -505,
+	CANdleAnimSlotOutOfBounds = -506,
 
 	//Higher Level
 	IncompatibleMode = -600,
@@ -72,6 +73,7 @@ enum ErrorCode
     ConfigFactoryDefaultRequiresHigherFirm = -702,
 	ConfigMotionSCurveRequiresHigherFirm = -703,
 	TalonFXFirmwarePreVBatDetect = -704,
+	CANdleAnimationsRequireHigherFirm = -705,
 
 	//Operating system centric
 	LibraryCouldNotBeLoaded = -800,

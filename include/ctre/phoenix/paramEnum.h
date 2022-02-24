@@ -177,6 +177,7 @@ namespace ctre {
 			eBrightnessCoefficient,
 			eStatusLedState,
 			eVBatOutput,
+			eV5Enabled,
 		};
 
 	} // namespace phoenix

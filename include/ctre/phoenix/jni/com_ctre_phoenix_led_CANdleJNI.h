@@ -42,18 +42,26 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix_led_CANdleJNI_BlockSet
 /*
  * Class:     com_ctre_phoenix_led_CANdleJNI
  * Method:    SetStandardAnimation
- * Signature: (JIDDIDD)I
+ * Signature: (JIDDIIDDZI)I
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix_led_CANdleJNI_SetStandardAnimation
-  (JNIEnv *, jclass, jlong, jint, jdouble, jdouble, jint, jdouble, jdouble);
+  (JNIEnv *, jclass, jlong, jint, jdouble, jdouble, jint, jint, jdouble, jdouble, jboolean, jint);
 
 /*
  * Class:     com_ctre_phoenix_led_CANdleJNI
  * Method:    SetTwoSizeAnimation
- * Signature: (JIIIIIDIII)I
+ * Signature: (JIIIIIDIIIII)I
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix_led_CANdleJNI_SetTwoSizeAnimation
-  (JNIEnv *, jclass, jlong, jint, jint, jint, jint, jint, jdouble, jint, jint, jint);
+  (JNIEnv *, jclass, jlong, jint, jint, jint, jint, jint, jdouble, jint, jint, jint, jint, jint);
+
+/*
+ * Class:     com_ctre_phoenix_led_CANdleJNI
+ * Method:    ClearAnimation
+ * Signature: (JI)I
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix_led_CANdleJNI_ClearAnimation
+  (JNIEnv *, jclass, jlong, jint);
 
 /*
  * Class:     com_ctre_phoenix_led_CANdleJNI
@@ -101,6 +109,14 @@ JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_led_CANdleJNI_GetTemperature
  * Signature: (J)D
  */
 JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_led_CANdleJNI_GetVbatModulation
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_ctre_phoenix_led_CANdleJNI
+ * Method:    GetMaxSimultaneousAnimationCount
+ * Signature: (J)I
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix_led_CANdleJNI_GetMaxSimultaneousAnimationCount
   (JNIEnv *, jclass, jlong);
 
 /*

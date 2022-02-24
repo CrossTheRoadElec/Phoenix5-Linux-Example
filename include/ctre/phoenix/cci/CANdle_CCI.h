@@ -28,8 +28,9 @@ extern "C"{
     CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_SetControlFramePeriod(void *handle, int frame,	int periodMs);
 
     CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_BlockSet(void *handle, int r, int g, int b, int w, int startIdx, int count);
-    CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_SetStandardAnimation(void *handle, int idx, double brightness, double speed, int numLed, double param4,  double param5);
-    CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_SetTwoSizeAnimation(void *handle, int idx, int r, int g, int b, int w, double speed, int numLed, int direction, int size);
+    CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_SetStandardAnimation(void *handle, int idx, double brightness, double speed, int numLed, int ledOffset, double param4,  double param5, bool reverseDirection, int animSlot);
+    CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_SetTwoSizeAnimation(void *handle, int idx, int r, int g, int b, int w, double speed, int numLed, int ledOffset, int direction, int size, int animSlot);
+    CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_ClearAnimation(void *handle, int animSlot);
     CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_ModulateVBatOutput(void *handle, double percentModulation);
 
     CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_GetBusVoltage(void *handle, double *voltage);
@@ -37,4 +38,5 @@ extern "C"{
     CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_GetCurrent(void *handle, double *current);
     CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_GetTemperature(void *handle, double *temperature);
     CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_GetVBatModulation(void *handle, double *modulation);
+    CCIEXPORT ctre::phoenix::ErrorCode c_CANdle_GetMaxSimultaneousAnimationCount(void *handle, int *maxAnimationCount);
 }
