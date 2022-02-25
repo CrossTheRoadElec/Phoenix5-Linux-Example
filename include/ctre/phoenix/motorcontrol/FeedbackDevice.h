@@ -29,7 +29,7 @@ namespace ctre {
 				 */
 				Tachometer = 4,
 				/**
-				 * CTRE Mag Encoder in Relative mode or
+				 * CTRE Mag Encoder in Absolute mode or
 				 * any other device that uses PWM to encode its output
 				 */
 				PulseWidthEncodedPosition = 8,
@@ -88,7 +88,7 @@ namespace ctre {
 				 */
 				Tachometer = 4,
 				/**
-				 * CTRE Mag Encoder in Relative mode or
+				 * CTRE Mag Encoder in Absolute mode or
 				 * any other device that uses PWM to encode its output
 				 */
 				PulseWidthEncodedPosition = 8,

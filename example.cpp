@@ -16,8 +16,9 @@ using namespace ctre::phoenix::motorcontrol;
 using namespace ctre::phoenix::motorcontrol::can;
 
 /* make some talons for drive train */
-TalonSRX talLeft(1);
-TalonSRX talRght(0);
+std::string interface = "can0";
+TalonSRX talLeft(1, interface); //Use the specified interface
+TalonSRX talRght(0); //Use the default interface (can0)
 
 void initDrive()
 {
@@ -39,14 +40,7 @@ void sleepApp(int ms)
 	std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
 
-int main() {
-	/* don't bother prompting, just use can0 */
-	//std::cout << "Please input the name of your can interface: ";
-	std::string interface;
-	//std::cin >> interface;
-	interface = "can0";
-	ctre::phoenix::platform::can::SetCANInterface(interface.c_str());
-	
+int main() {	
 	// Comment out the call if you would rather use the automatically running diag-server, note this requires uninstalling diagnostics from Tuner. 
 	// c_SetPhoenixDiagnosticsStartTime(-1); // disable diag server, instead we will use the diag server stand alone application that Tuner installs
 
@@ -122,7 +116,7 @@ int main() {
 
 			/* [SAFETY] only enable drive if top left shoulder button is held down */
 			if (SDL_JoystickGetButton(joy, 4)) {
-				ctre::phoenix::unmanaged::FeedEnable(100);
+				ctre::phoenix::unmanaged::Unmanaged::FeedEnable(100);
 			}
 
 			/* loop yield for a bit */

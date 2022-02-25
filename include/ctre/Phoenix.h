@@ -14,6 +14,7 @@
 #include "ctre/phoenix/paramEnum.h"
 #include "ctre/phoenix/HsvToRgb.h"
 #include "ctre/phoenix/LinearInterpolation.h"
+#include "ctre/phoenix/led/CANdle.h"
 #include "ctre/phoenix/motion/BufferedTrajectoryPointStream.h"
 #include "ctre/phoenix/motion/MotionProfileStatus.h"
 #include "ctre/phoenix/motion/TrajectoryPoint.h"
@@ -30,6 +31,7 @@
 #include "ctre/phoenix/music/Orchestra.h"
 #include "ctre/phoenix/sensors/CANCoder.h"
 #include "ctre/phoenix/sensors/PigeonIMU.h"
+#include "ctre/phoenix/sensors/Pigeon2.h"
 #include "ctre/phoenix/signals/MovingAverage.h"
 #include "ctre/phoenix/tasking/Schedulers/ConcurrentScheduler.h"
 #include "ctre/phoenix/tasking/ILoopable.h"
@@ -40,6 +42,9 @@
 #include "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h"
 #include "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h"
 #include "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h"
+#include "ctre/phoenix/sensors/WPI_CANCoder.h"
+#include "ctre/phoenix/sensors/WPI_PigeonIMU.h"
+#include "ctre/phoenix/sensors/WPI_Pigeon2.h"
 #include "ctre/phoenix/tasking/ButtonMonitor.h"
 #endif
 
@@ -56,6 +61,7 @@
  */
 using namespace ctre;
 using namespace ctre::phoenix;
+using namespace ctre::phoenix::led;
 using namespace ctre::phoenix::motion;
 using namespace ctre::phoenix::motorcontrol;
 using namespace ctre::phoenix::motorcontrol::can;

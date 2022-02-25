@@ -40,19 +40,6 @@ namespace ctre {
 			eClearPositionOnLimitR = 321,
 			eClearPositionOnQuadIdx = 322,
 
-			/*
-			 *@deprecated use above
-			 */
-			eClearPosOnLimitF = eClearPositionOnLimitF,
-			/*
-			 *@deprecated use above
-			 */
-			eClearPosOnLimitR = eClearPositionOnLimitR,
-			/*
-			 *@deprecated use above
-			 */
-			eClearPositionOnIdx = eClearPositionOnQuadIdx,
-
 			eSampleVelocityPeriod = 325,
 			eSampleVelocityWindow = 326,
 
@@ -148,6 +135,49 @@ namespace ctre {
 			eMagnetOffset,
 			eSensorSync,
 			eAbsSensorRange,
+
+			/* Pigeon2 */
+			eChangeCompassUse = 800,
+			eRestartKalman,
+			eAccNoiseAmplificationGain,
+			eMagNoiseAmplificationGain,
+			eGyrNoiseAmplificationGain,
+			eMaxAccKg,
+			eMaxMagKg,
+			eGyroBias,
+			eAccelOffsets,
+			eMagCal,
+			eMagCalSlot,
+			eMagCalRunning,
+			eGyrResolution,
+			eAccelKalmanBiasGain,
+			eMagKalmanBiasGain,
+			eTempCalRunning,
+			eApplyTempCal,
+			eClearTempCal,
+			eDontRunThermComp,
+			eChangeHeatOutput,
+			eSetNoMotionCalDisable,
+			eClearMagCal,
+			eSetGyrSensitivity,
+			eSetVsenseScalar,
+			eConfigMountPoseYaw,
+			eConfigMountPosePitch,
+			eConfigMountPoseRoll,
+			eConfigAccelScalar,
+			eConfigGyroScalarX,
+			eConfigGyroScalarY,
+			eConfigGyroScalarZ,
+			eCustomParam0,
+			eCustomParam1,
+
+			/* CANdle */
+			eLEDStripType = 900,
+			eLossOfSignalBehavior,
+			eBrightnessCoefficient,
+			eStatusLedState,
+			eVBatOutput,
+			eV5Enabled,
 		};
 
 	} // namespace phoenix

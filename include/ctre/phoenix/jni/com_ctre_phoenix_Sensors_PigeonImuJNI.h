@@ -10,18 +10,18 @@ extern "C" {
 /*
  * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
  * Method:    JNI_new_PigeonImu_Talon
- * Signature: (I)J
+ * Signature: (ILjava/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1new_1PigeonImu_1Talon
-  (JNIEnv *, jclass, jint);
+  (JNIEnv *, jclass, jint, jstring);
 
 /*
  * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
  * Method:    JNI_new_PigeonImu
- * Signature: (I)J
+ * Signature: (ILjava/lang/String;Ljava/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1new_1PigeonImu
-  (JNIEnv *, jclass, jint);
+  (JNIEnv *, jclass, jint, jstring, jstring);
 
 /*
  * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
@@ -30,14 +30,6 @@ JNIEXPORT jlong JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1new_1Pig
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1destroy_1PigeonImu
   (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
- * Method:    JNI_destroy_AllPigeonImus
- * Signature: ()V
- */
-//JNIEXPORT void JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1destroy_1AllPigeonImus
-//  (JNIEnv *, jclass);
 
 /*
  * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
@@ -201,6 +193,46 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetYawPit
 
 /*
  * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
+ * Method:    JNI_GetYawPitchRoll2
+ * Signature: (J[D)I
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetYawPitchRoll2
+  (JNIEnv *, jclass, jlong, jdoubleArray);
+
+/*
+ * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
+ * Method:    JNI_GetYaw
+ * Signature: (J)D
+ */
+JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetYaw
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
+ * Method:    JNI_GetPitch
+ * Signature: (J)D
+ */
+JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetPitch
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
+ * Method:    JNI_GetRoll
+ * Signature: (J)D
+ */
+JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetRoll
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
+ * Method:    JNI_GetGravityVector
+ * Signature: (J[D)I
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetGravityVector
+  (JNIEnv *, jclass, jlong, jdoubleArray);
+
+/*
+ * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
  * Method:    JNI_GetAccumGyro
  * Signature: (J[D)I
  */
@@ -333,6 +365,14 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetFirmwa
  * Signature: (J)I
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetLastError
+  (JNIEnv *, jclass, jlong);
+
+/*
+ * Class:     com_ctre_phoenix_sensors_PigeonImuJNI
+ * Method:    JNI_GetLastTimestamp
+ * Signature: (J)D
+ */
+JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_sensors_PigeonImuJNI_JNI_1GetLastTimestamp
   (JNIEnv *, jclass, jlong);
 
 /*

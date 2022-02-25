@@ -15,7 +15,7 @@
 
 
 extern "C" {
-	CCIEXPORT void* c_CANCoder_Create1(int deviceNumber);
+	CCIEXPORT void* c_CANCoder_Create1(int deviceNumber, const char* canbus);
 	CCIEXPORT void c_CANCoder_DestroyAll();
 	CCIEXPORT ctre::phoenix::ErrorCode c_CANCoder_Destroy(void* handle);
 	CCIEXPORT ctre::phoenix::ErrorCode c_CANCoder_GetDescription(void* handle, char* toFill, int toFillByteSz, size_t* numBytesFilled);

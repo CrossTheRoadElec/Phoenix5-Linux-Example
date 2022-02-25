@@ -65,22 +65,6 @@
 	#define CTRE_REGISTER_SHUTDOWN_HANDLER(shutdown_handler) \
 		do{ (void)SetConsoleCtrlHandler(CTRE_Global_ConsoleHandlerRoutine, TRUE); } while(0)
 
-#elif defined(__GNUC__)
-
-	#include <sys/signal.h>		
-
-	#define CTRE_IMPLEMENT_SHUTDOWN_HANDLER(shutdown_handler)	\
-		static void shutdown_handler(int signo)	
-
-	#define CTRE_REGISTER_SHUTDOWN_HANDLER(shutdown_handler) \
-										{	\
-											struct sigaction sigact;	\
-											sigact.sa_handler = shutdown_handler;	\
-											sigemptyset(&sigact.sa_mask);	\
-											sigact.sa_flags = 0;	\
-											sigaction(SIGINT, &sigact, NULL);	\
-											sigaction(SIGTERM, &sigact, NULL);	\
-										}
 #else
 
 	#define CTRE_IMPLEMENT_SHUTDOWN_HANDLER(shutdown_handler) static void shutdown_handler(int signo)	

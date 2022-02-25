@@ -38,6 +38,9 @@ namespace ctre {
 				/**
 				 * Get the position of whatever is in the analog pin of the Talon, regardless of
 				 *   whether it is actually being used for feedback.
+				 * 
+				 * This method relies on the Status 4 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the 24bit analog value.  The bottom ten bits is the ADC (0 - 1023)
 				 *          on the analog pin of the Talon. The upper 14 bits tracks the overflows and underflows
@@ -63,6 +66,9 @@ namespace ctre {
 				/**
 				 * Get the position of whatever is in the analog pin of the Talon, regardless of whether
 				 *   it is actually being used for feedback.
+				 * 
+				 * This method relies on the Status 4 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the ADC (0 - 1023) on analog pin of the Talon.
 				 */
@@ -72,6 +78,9 @@ namespace ctre {
 				/**
 				 * Get the velocity of whatever is in the analog pin of the Talon, regardless of
 				 *   whether it is actually being used for feedback.
+				 * 
+				 * This method relies on the Status 4 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the speed in units per 100ms where 1024 units is one rotation.
 				 */
@@ -81,6 +90,9 @@ namespace ctre {
 				/**
 				 * Get the quadrature position of the Talon, regardless of whether
 				 *   it is actually being used for feedback.
+				 * 
+				 * This method relies on the Status 3 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the quadrature position.
 				 */
@@ -128,6 +140,9 @@ namespace ctre {
 				/**
 				 * Get the quadrature velocity, regardless of whether
 				 *   it is actually being used for feedback.
+				 * 
+				 * This method relies on the Status 3 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the quadrature velocity in units per 100ms.
 				 */
@@ -137,6 +152,9 @@ namespace ctre {
 				/**
 				 * Gets pulse width position, regardless of whether
 				 *   it is actually being used for feedback.
+				 * 
+				 * This method relies on the Status 8 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the pulse width position.
 				 */
@@ -159,6 +177,9 @@ namespace ctre {
 				/**
 				 * Gets pulse width velocity, regardless of whether
 				 *   it is actually being used for feedback.
+				 * 
+				 * This method relies on the Status 8 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the pulse width velocity in units per 100ms (where 4096 units is 1 rotation).
 				 */
@@ -167,6 +188,9 @@ namespace ctre {
 
 				/**
 				 * Gets pulse width rise to fall time.
+				 * 
+				 * This method relies on the Status 8 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the pulse width rise to fall time in microseconds.
 				 */
@@ -175,6 +199,9 @@ namespace ctre {
 
 				/**
 				 * Gets pulse width rise to rise time.
+				 * 
+				 * This method relies on the Status 8 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the pulse width rise to rise time in microseconds.
 				 */
@@ -183,6 +210,9 @@ namespace ctre {
 
 				/**
 				 * Gets pin state quad a.
+				 * 
+				 * This method relies on the Status 3 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  the pin state of quad a (1 if asserted, 0 if not asserted).
 				 */
@@ -191,6 +221,9 @@ namespace ctre {
 
 				/**
 				 * Gets pin state quad b.
+				 * 
+				 * This method relies on the Status 3 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  Digital level of QUADB pin (1 if asserted, 0 if not asserted).
 				 */
@@ -199,6 +232,9 @@ namespace ctre {
 
 				/**
 				 * Gets pin state quad index.
+				 * 
+				 * This method relies on the Status 3 message, which has a default period of 150ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  Digital level of QUAD Index pin (1 if asserted, 0 if not asserted).
 				 */
@@ -207,6 +243,9 @@ namespace ctre {
 
 				/**
 				 * Is forward limit switch closed.
+				 * 
+				 * This method relies on the Status 1 message, which has a default period of 10ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  '1' iff forward limit switch is closed, 0 iff switch is open. This function works
 				 *          regardless if limit switch feature is enabled.  Remote limit features do not impact this routine.
@@ -216,6 +255,9 @@ namespace ctre {
 
 				/**
 				 * Is reverse limit switch closed.
+				 * 
+				 * This method relies on the Status 1 message, which has a default period of 10ms. For more
+				 * information, see: https://phoenix-documentation.readthedocs.io/en/latest/ch18_CommonAPI.html
 				 *
 				 * @return  '1' iff reverse limit switch is closed, 0 iff switch is open. This function works
 				 *          regardless if limit switch feature is enabled.  Remote limit features do not impact this routine.

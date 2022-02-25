@@ -10,6 +10,8 @@
 #include "ctre/phoenix/CustomParamConfiguration.h"
 #include "ctre/phoenix/motorcontrol/SensorCollection.h"
 #include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
+#include "ctre/phoenix/motorcontrol/TalonSRXSimCollection.h"
+#include "ctre/phoenix/motorcontrol/TalonFXSimCollection.h"
 
 /* forward proto's */
 namespace ctre {
@@ -33,9 +35,9 @@ namespace ctre {
 					 * Feedback device for a particular PID loop.
 					 * Note the FeedbackDevice enum holds all possible sensor types.  Consult product documentation to confirm what is available.
 					 * Alternatively the product specific enum can be used instead.
-					 *	@code 
-					 *	configs.primaryPID.selectedFeedbackSensor = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder; 
-					 *	configs.primaryPID.selectedFeedbackSensor = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor; 
+					 *	@code
+					 *	configs.primaryPID.selectedFeedbackSensor = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
+					 *	configs.primaryPID.selectedFeedbackSensor = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice selectedFeedbackSensor;
@@ -135,9 +137,9 @@ namespace ctre {
 					 * Feedback Device for Sum 0 Term
 					 * Note the FeedbackDevice enum holds all possible sensor types.  Consult product documentation to confirm what is available.
 					 * Alternatively the product specific enum can be used instead.
-					 *	@code 
-					 *	configs.sum0Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder; 
-					 *	configs.sum0Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor; 
+					 *	@code
+					 *	configs.sum0Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
+					 *	configs.sum0Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice sum0Term;
@@ -145,9 +147,9 @@ namespace ctre {
 					 * Feedback Device for Sum 1 Term
 					 * Note the FeedbackDevice enum holds all possible sensor types.  Consult product documentation to confirm what is available.
 					 * Alternatively the product specific enum can be used instead.
-					 *	@code 
-					 *	configs.sum1Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder; 
-					 *	configs.sum1Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor; 
+					 *	@code
+					 *	configs.sum1Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
+					 *	configs.sum1Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice sum1Term;
@@ -155,9 +157,9 @@ namespace ctre {
 					 * Feedback Device for Diff 0 Term
 					 * Note the FeedbackDevice enum holds all possible sensor types.  Consult product documentation to confirm what is available.
 					 * Alternatively the product specific enum can be used instead.
-					 *	@code 
-					 *	configs.diff0Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder; 
-					 *	configs.diff0Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor; 
+					 *	@code
+					 *	configs.diff0Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
+					 *	configs.diff0Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice diff0Term;
@@ -165,9 +167,9 @@ namespace ctre {
 					 * Feedback Device for Diff 1 Term
 					 * Note the FeedbackDevice enum holds all possible sensor types.  Consult product documentation to confirm what is available.
 					 * Alternatively the product specific enum can be used instead.
-					 *	@code 
-					 *	configs.diff1Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder; 
-					 *	configs.diff1Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor; 
+					 *	@code
+					 *	configs.diff1Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
+					 *	configs.diff1Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice diff1Term;
@@ -266,9 +268,15 @@ namespace ctre {
 					ctre::phoenix::motorcontrol::SensorCollection* _sensorCollSrx;
 					ctre::phoenix::motorcontrol::TalonFXSensorCollection* _sensorCollFx;
 
+					ctre::phoenix::motorcontrol::TalonSRXSimCollection* _simCollSrx;
+					ctre::phoenix::motorcontrol::TalonFXSimCollection* _simCollFx;
+
 				protected:
 					ctre::phoenix::motorcontrol::SensorCollection& GetTalonSRXSensorCollection() { return *_sensorCollSrx; }
 					ctre::phoenix::motorcontrol::TalonFXSensorCollection& GetTalonFXSensorCollection() { return *_sensorCollFx; }
+
+					ctre::phoenix::motorcontrol::TalonSRXSimCollection& GetTalonSRXSimCollection() { return *_simCollSrx; }
+					ctre::phoenix::motorcontrol::TalonFXSimCollection& GetTalonFXSimCollection() { return *_simCollFx; }
 
 					ctre::phoenix::ErrorCode ConfigurePID(const BaseTalonPIDSetConfiguration& pid, int pidIdx, int timeoutMs, bool enableOptimizations);
 
@@ -311,8 +319,10 @@ namespace ctre {
 					/**
 					 * Constructor for a Talon
 					 * @param deviceNumber CAN Device ID of BaseTalon
+					 * @param canbus Name of the CANbus; can be a SocketCAN interface (on Linux),
+					 *               or a CANivore device name or serial number
 					 */
-					BaseTalon(int deviceNumber, const char* model);
+					BaseTalon(int deviceNumber, const char* model, std::string const &canbus = "");
 					virtual ~BaseTalon();
 					BaseTalon() = delete;
 					BaseTalon(BaseTalon const&) = delete;
@@ -450,13 +460,17 @@ namespace ctre {
 					 *
 					 * @param period
 					 *            Desired period for the velocity measurement. @see
-					 *            #VelocityMeasPeriod
+					 *            #SensorVelocityMeasPeriod
 					 * @param timeoutMs
 					 *            Timeout value in ms. If nonzero, function will wait for
 					 *            config success and report an error if it times out.
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
+					virtual ctre::phoenix::ErrorCode ConfigVelocityMeasurementPeriod(ctre::phoenix::sensors::SensorVelocityMeasPeriod period,
+						int timeoutMs = 0);
+
+					[[deprecated("Use the overload with SensorVelocityMeasPeriod instead.")]]
 					virtual ctre::phoenix::ErrorCode ConfigVelocityMeasurementPeriod(VelocityMeasPeriod period,
 						int timeoutMs = 0);
 					/**
@@ -581,7 +595,7 @@ namespace ctre {
 						LimitSwitchNormal normalOpenOrClose, int deviceID, int timeoutMs = 0);
 
 					//------ Current Limit ----------//
-					virtual ctre::phoenix::ErrorCode ConfigSupplyCurrentLimit(const SupplyCurrentLimitConfiguration& currLimitConfigs, int timeoutMs = 0) = 0;
+					virtual ctre::phoenix::ErrorCode ConfigSupplyCurrentLimit(const SupplyCurrentLimitConfiguration& currLimitConfigs, int timeoutMs = 50);
 
 					//------ RAW Sensor API ----------//
 					/**

@@ -10,10 +10,10 @@ extern "C" {
 /*
  * Class:     com_ctre_phoenix_sensors_CANCoderJNI
  * Method:    Create
- * Signature: (I)J
+ * Signature: (Ijava/lang/String;)J
  */
 JNIEXPORT jlong JNICALL Java_com_ctre_phoenix_sensors_CANCoderJNI_Create
-  (JNIEnv *, jclass, jint);
+  (JNIEnv *, jclass, jint, jstring);
 
 /*
  * Class:     com_ctre_phoenix_sensors_CANCoderJNI

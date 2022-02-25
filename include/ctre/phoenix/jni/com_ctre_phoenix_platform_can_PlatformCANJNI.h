@@ -9,10 +9,10 @@ extern "C" {
 #endif
 /*
  * Class:     com_ctre_phoenix_platform_can_PlatformCANJNI
- * Method:    JNI_SetCANInterface
+ * Method:    JNI_RegisterCANbus
  * Signature: ([C)I
  */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_platform_can_PlatformCANJNI_JNI_1SetCANInterface
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix_platform_can_PlatformCANJNI_JNI_1RegisterCANbus
   (JNIEnv *, jclass, jcharArray);
 
 /*

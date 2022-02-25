@@ -1,13 +1,16 @@
 #pragma once
+
 #include <stdint.h>
 
 namespace ctre {
 namespace phoenix {
 
 enum ErrorCode
-: int32_t
+#ifdef __cplusplus
+	: int32_t
+#endif
 {
-	OK = 0, 
+	OK = 0,
 	OKAY = 0,		//!< No Error - Function executed as expected
 
 	//CAN-Related
@@ -29,7 +32,6 @@ enum ErrorCode
 	CouldNotChangePeriod = -9,
 	BufferFailure = -10,
 	FirwmwareNonFRC = -11,
-
 
 	//General
 	GeneralError = -100,		//!< User Specified General Error
@@ -58,11 +60,12 @@ enum ErrorCode
 	GainsAreNotSet = -503,
 	WrongRemoteLimitSwitchSource = -504,
 	DoubleVoltageCompensatingWPI = -505,
+	CANdleAnimSlotOutOfBounds = -506,
 
 	//Higher Level
 	IncompatibleMode = -600,
 	InvalidHandle = -601,		//!< Handle does not match stored map of handles
-	
+
 	//Firmware Versions
 	FeatureRequiresHigherFirm = -700,
     MotorControllerFeatureRequiresHigherFirm = -701,
@@ -70,12 +73,13 @@ enum ErrorCode
     ConfigFactoryDefaultRequiresHigherFirm = -702,
 	ConfigMotionSCurveRequiresHigherFirm = -703,
 	TalonFXFirmwarePreVBatDetect = -704,
+	CANdleAnimationsRequireHigherFirm = -705,
 
 	//Operating system centric
 	LibraryCouldNotBeLoaded = -800,
 	MissingRoutineInLibrary = -801,
 	ResourceNotAvailable = -802,
-	
+
 	//MIDI and Orchestra centric
 	MusicFileNotFound = -900,
 	MusicFileWrongSize = -901,
@@ -85,7 +89,24 @@ enum ErrorCode
 	MusicFileTooOld = -905,
 	MusicInterrupted = -906,
 	MusicNotSupported = -907,
-	
+
+	kInvalidInterface = -1000,
+	kInvalidGuid = -1001,
+	kInvalidClass = -1002,
+	kInvalidProtocol = -1003,
+	kInvalidPath = -1004,
+	kGeneralWinUsbError = -1005,
+	kFailedSetup = -1006,
+	kListenFailed = -1007,
+	kSendFailed = -1008,
+	kReceiveFailed = -1009,
+	kInvalidRespFormat = -1010,
+	kWinUsbInitFailed = -1011,
+	kWinUsbQueryFailed = -1012,
+	kWinUsbGeneralError = -1013,
+	kAccessDenied = -1014,
+	kFirmwareInvalidResponse = -1015,
+
 	//CAN Related
 	PulseWidthSensorNotPresent = +10,	//!< Special Code for "isSensorPresent"
 
@@ -97,11 +118,16 @@ enum ErrorCode
 	FeaturesNotAvailableYet = 104, // feature will be release in an upcoming release
 	ControlModeNotValid = 105, // Current control mode of motor controller not valid for this call
 	ControlModeNotSupportedYet = 106,
-	CascadedPIDNotSupporteYet= 107,
-	AuxiliaryPIDNotSupportedYet= 107,
-	RemoteSensorsNotSupportedYet= 108,
-	MotProfFirmThreshold= 109,
+	CascadedPIDNotSupporteYet = 107,
+	AuxiliaryPIDNotSupportedYet = 107,
+	RemoteSensorsNotSupportedYet = 108,
+	MotProfFirmThreshold = 109,
 	MotProfFirmThreshold2 = 110,
+
+	//Simulation
+	SimDeviceNotFound = 200,
+	SimPhysicsTypeNotSupported = 201,
+	SimDeviceAlreadyExists = 202,
 };
 class ErrorCollection {
 public:
@@ -112,7 +138,7 @@ public:
         _firstError = FirstOne(_firstError, err);
     }
     void NewError(int err) {
-        _firstError = FirstOne(_firstError, (ErrorCode) err); 
+        _firstError = FirstOne(_firstError, (ErrorCode) err);
     }
 	ErrorCode GetFirstNonZeroError()
 	{
