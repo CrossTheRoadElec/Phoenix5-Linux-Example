@@ -123,7 +123,7 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 
 # Running Socket Can Example: 
 1.	Run Build.sh with `./build.sh`.
-2.	Run program with `./bin/example`.
+2.	Run program with `./run.sh`.
 3.	You're now running Phoenix on your device. Confirm there are no error messages being sent to console output.
 4.	You can stop your Program with `Ctrl+z`.
 
