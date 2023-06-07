@@ -5,7 +5,7 @@ PROJECT ( example C CXX )
 
 cmake_minimum_required(VERSION 3.1)
 
-add_definitions(-std=c++11)
+add_definitions(-std=c++17)
 
 # Set the output folder where your program will be created
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)
@@ -22,15 +22,16 @@ include_directories("${PROJECT_SOURCE_DIR}/include")
 add_executable(example ${PROJECT_SOURCE_DIR}/example.cpp)
 
 if (${CMAKE_LIBRARY_ARCHITECTURE} STREQUAL "arm-linux-gnueabihf") # Jetson TK1 / Pi
-    set(PHOENIX_LIBS_DIR ${CMAKE_SOURCE_DIR}/lib/raspberry)
+    set(PHOENIX_LIBS_DIR ${CMAKE_SOURCE_DIR}/lib/arm32)
 elseif (${CMAKE_LIBRARY_ARCHITECTURE} STREQUAL "aarch64-linux-gnu") # Jetson TX2
-    set(PHOENIX_LIBS_DIR ${CMAKE_SOURCE_DIR}/lib/jetsontx)
+    set(PHOENIX_LIBS_DIR ${CMAKE_SOURCE_DIR}/lib/arm64)
 else()
     set(PHOENIX_LIBS_DIR ${CMAKE_SOURCE_DIR}/lib/x86-64)
 endif()
 
 target_link_libraries(example ${PHOENIX_LIBS_DIR}/libCTRE_Phoenix.so)
 target_link_libraries(example ${PHOENIX_LIBS_DIR}/libCTRE_PhoenixCCI.so)
+target_link_libraries(example ${PHOENIX_LIBS_DIR}/libCTRE_PhoenixTools.so)
 
 target_link_libraries(example Threads::Threads)
 target_link_libraries(example ${SDL2_LIBRARIES})

@@ -86,6 +86,10 @@ enum StatusFrameEnhanced {
 	 * Includes Stator and Supply Current for Talon FX.
 	 */
 	Status_Brushless_Current = 0x1240,
+	/**
+	 * FX Integrated sensor
+	 */
+	Status_21_FeedbackIntegrated = 0x2500,
 };
 
 /**

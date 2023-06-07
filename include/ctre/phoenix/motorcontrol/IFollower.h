@@ -15,8 +15,8 @@ public:
 	virtual ~IFollower(){}
 	/**
 	 * Set the control mode and output value so that this motor controller will
-	 * follow another motor controller. Currently supports following Victor SPX
-	 * and Talon SRX.
+	 * follow another motor controller. Currently supports following Victor SPX,
+	 * Talon SRX, and Talon FX.
 	 *
 	 * @param masterToFollow
 	 *						Motor Controller object to follow.

@@ -3,7 +3,7 @@
 #include "ctre/phoenix/led/BaseTwoSizeAnimation.h"
 
 namespace ctre {namespace phoenix {namespace led {
-    
+
 /**
  * Animation that gradually lights the entire LED strip one LED at a time.
  */
