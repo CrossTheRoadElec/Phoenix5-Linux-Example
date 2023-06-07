@@ -610,7 +610,7 @@ namespace ctre
              */
             static constexpr int InvalidNetwork = -10001;
             /**
-             * \brief  MultiSignalNotSupported
+             * \brief  The CAN bus does not support multi-signal synchronization.
              */
             static constexpr int MultiSignalNotSupported = -10002;
             /**
@@ -710,6 +710,17 @@ namespace ctre
              *         ID of master are correct.
              */
             static constexpr int InvalidIDToFollow = -10024;
+            /**
+             * \brief  Using a Pro only feature on an unlicensed device. The device may not
+             *         behave as expected if it continues to operate while unlicensed.
+             */
+            static constexpr int UsingProFeatureOnUnlicensedDevice = -10025;
+            /**
+             * \brief  Firmware Too New.  Use Phoenix Tuner to field upgrade your CTRE CAN
+             *         device firmware(CRF) to a compatible version.  Then restart your
+             *         robot application to clear this error.
+             */
+            static constexpr int FirmwareTooNew = -10026;
 
             operator int() const { return this->value; }
 
@@ -902,6 +913,8 @@ namespace ctre
                 case -10022: return "CouldNotRetrieveProFirmware";
                 case -10023: return "CouldNotDecodeDeviceFirmware";
                 case -10024: return "InvalidIDToFollow";
+                case -10025: return "UsingProFeatureOnUnlicensedDevice";
+                case -10026: return "FirmwareTooNew";
                 default:
                     return "Could not find name";
                 }
@@ -1053,7 +1066,7 @@ namespace ctre
                 case 10000: return "WarningNotInitialized";
                 case 10001: return "The timestamp reported by CANivore is at least 10ms older than the timestamp reported by the system, indicating it's fallen out of sync. This does not impact the data of this message, only the timing.";
                 case -10001: return "InvalidNetwork";
-                case -10002: return "MultiSignalNotSupported";
+                case -10002: return "The CAN bus does not support multi-signal synchronization.";
                 case -10003: return "Could not cast from base value to this particular signal's type";
                 case -10004: return "Could not find this value when searching for it";
                 case -10005: return "This is not supported";
@@ -1076,6 +1089,8 @@ namespace ctre
                 case -10022: return "Device firmware could not be retrieved. Check that the device is running Pro firmware, that the device ID is correct, that the specified CAN bus is correct, and that the device is powered.";
                 case -10023: return "Device firmware could not be decoded. Check that the device is running Pro firmware, that the device ID is correct, that the specified CAN bus is correct, and that the device is powered.";
                 case -10024: return "The values specified for master are in valid.  Make sure the Device ID of master are correct.";
+                case -10025: return "Using a Pro only feature on an unlicensed device. The device may not behave as expected if it continues to operate while unlicensed.";
+                case -10026: return "Firmware Too New.  Use Phoenix Tuner to field upgrade your CTRE CAN device firmware(CRF) to a compatible version.  Then restart your robot application to clear this error.";
                 default:
                     return "Could not find description";
                 }
@@ -1687,7 +1702,7 @@ typedef enum _StatusCode_t
      */
     InvalidNetwork = -10001,
     /**
-     * \brief  MultiSignalNotSupported
+     * \brief  The CAN bus does not support multi-signal synchronization.
      */
     MultiSignalNotSupported = -10002,
     /**
@@ -1787,6 +1802,17 @@ typedef enum _StatusCode_t
      *         ID of master are correct.
      */
     InvalidIDToFollow = -10024,
+    /**
+     * \brief  Using a Pro only feature on an unlicensed device. The device may not
+     *         behave as expected if it continues to operate while unlicensed.
+     */
+    UsingProFeatureOnUnlicensedDevice = -10025,
+    /**
+     * \brief  Firmware Too New.  Use Phoenix Tuner to field upgrade your CTRE CAN
+     *         device firmware(CRF) to a compatible version.  Then restart your
+     *         robot application to clear this error.
+     */
+    FirmwareTooNew = -10026,
 } StatusCode_t;
 
 /**
