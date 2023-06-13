@@ -8,10 +8,10 @@
 namespace ctre{ namespace phoenix{ namespace led{
 
 /**
- * Configurables available to CANifier
+ * Configurables available to CANdle
  */
 struct CANdleConfiguration : public CustomParamConfiguration {
-    /** 
+    /**
      * What type of LEDs the CANdle controls
      */
     LEDStripType stripType {LEDStripType::RGB};

@@ -7,7 +7,7 @@
 
 namespace ctre {
 	namespace phoenix {
-		namespace string_util {
+		namespace legacy_string_util {
 			CTREXPORT std::deque<std::string> string_split(const std::string& input, char delimiter);
 			CTREXPORT std::string toLower(const std::string& input);
 			CTREXPORT int strcmp_nocase(char const* a, char const* b);
@@ -18,6 +18,6 @@ namespace ctre {
 			CTREXPORT uint32_t safe_strlen(const char* s, int32_t maxsize);
 			CTREXPORT void safe_strcopy(std::string& dest, const char* src);
 			CTREXPORT char *strtok_next(char **str_ptr, char const *delimiters);
-		} // namespace string_util
+		} // namespace legacy_string_util
 	} // namespace phoenix
 } // namespace ctre

@@ -1,14 +1,13 @@
 #define Phoenix_No_WPI // remove WPI dependencies
 #include "ctre/Phoenix.h"
-#include "ctre/phoenix/platform/Platform.h"
+#include "ctre/phoenix/platform/Platform.hpp"
 #include "ctre/phoenix/unmanaged/Unmanaged.h"
-#include "ctre/phoenix/cci/Unmanaged_CCI.h"
-#include <string>
-#include <iostream>
 #include <chrono>
+#include <iostream>
+#include <string>
 #include <thread>
-#include <SDL2/SDL.h>
 #include <unistd.h>
+#include <SDL2/SDL.h>
 
 using namespace ctre::phoenix;
 using namespace ctre::phoenix::platform;
@@ -57,7 +56,7 @@ int main() {
 		while (true) {
 			/* SDL seems somewhat fragile, shut it down and bring it up */
 			SDL_Quit();
-            SDL_SetHint(SDL_HINT_NO_SIGNAL_HANDLERS, "1"); //so Ctrl-C still works
+			SDL_SetHint(SDL_HINT_NO_SIGNAL_HANDLERS, "1"); //so Ctrl-C still works
 			SDL_Init(SDL_INIT_JOYSTICK);
 
 			/* poll for gamepad */
