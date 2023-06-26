@@ -49,7 +49,7 @@ Test robot has a RaspPi + CANable.
 
 Robot also has an FRC roboRIO - however this only necessary to enable actuators if CTRE CAN devices are FRC-Locked.  See Phoenix Tuner to determine/modify FRC Lock state.
 
-# Using Raspbian Buster Raspberry Pi image to control your robot
+# Using Raspbian Bullseye Raspberry Pi image to control your robot
 
 ### Materials needed:
  - Raspberry Pi (3B+)
@@ -60,7 +60,8 @@ Robot also has an FRC roboRIO - however this only necessary to enable actuators 
 
 
 ### Procedure:
- 1. Flash SD card with Raspbian Desktop image. (see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
+ 1. Flash SD card with Raspbian Desktop image. (see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)  
+    NOTE: Phoenix libraries require Debian **Bullseye** or later.
  2. Boot your Pi and connect to a Wi-Fi network (if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network.
  3. Continue with Software Setup.
 
