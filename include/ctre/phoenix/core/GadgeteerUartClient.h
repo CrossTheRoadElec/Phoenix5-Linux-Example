@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 #ifndef GadgeteerUartClient_h_
 #define GadgeteerUartClient_h_
 #include <stdint.h>

@@ -24,18 +24,18 @@ JNIEXPORT jstring JNICALL Java_com_ctre_phoenix6_jni_StatusSignalJNI_JNI_1GetUni
 /*
  * Class:     com_ctre_phoenix6_jni_StatusSignalJNI
  * Method:    JNI_RefreshSignal
- * Signature: (Ljava/lang/String;D)I
+ * Signature: (D)I
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_jni_StatusSignalJNI_JNI_1RefreshSignal
-  (JNIEnv *, jobject, jstring, jdouble);
+  (JNIEnv *, jobject, jdouble);
 
 /*
  * Class:     com_ctre_phoenix6_jni_StatusSignalJNI
  * Method:    JNI_WaitForSignal
- * Signature: (Ljava/lang/String;D)I
+ * Signature: (D)I
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_jni_StatusSignalJNI_JNI_1WaitForSignal
-  (JNIEnv *, jobject, jstring, jdouble);
+  (JNIEnv *, jobject, jdouble);
 
 /*
  * Class:     com_ctre_phoenix6_jni_StatusSignalJNI
@@ -48,10 +48,34 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_jni_StatusSignalJNI_JNI_1WaitForAl
 /*
  * Class:     com_ctre_phoenix6_jni_StatusSignalJNI
  * Method:    JNI_SetUpdateFrequency
- * Signature: (Ljava/lang/String;DD)I
+ * Signature: (DD)I
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_jni_StatusSignalJNI_JNI_1SetUpdateFrequency
-  (JNIEnv *, jobject, jstring, jdouble, jdouble);
+  (JNIEnv *, jobject, jdouble, jdouble);
+
+/*
+ * Class:     com_ctre_phoenix6_jni_StatusSignalJNI
+ * Method:    JNI_SetUpdateFrequencyForAll
+ * Signature: (D[Lcom/ctre/phoenix6/jni/StatusSignalJNI;D)I
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_jni_StatusSignalJNI_JNI_1SetUpdateFrequencyForAll
+  (JNIEnv *, jclass, jdouble, jobjectArray, jdouble);
+
+/*
+ * Class:     com_ctre_phoenix6_jni_StatusSignalJNI
+ * Method:    JNI_GetAppliedUpdateFrequency
+ * Signature: ()D
+ */
+JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix6_jni_StatusSignalJNI_JNI_1GetAppliedUpdateFrequency
+  (JNIEnv *, jobject);
+
+/*
+ * Class:     com_ctre_phoenix6_jni_StatusSignalJNI
+ * Method:    JNI_OptimizeUpdateFrequencies
+ * Signature: (Ljava/lang/String;IDD)I
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_jni_StatusSignalJNI_JNI_1OptimizeUpdateFrequencies
+  (JNIEnv *, jclass, jstring, jint, jdouble, jdouble);
 
 #ifdef __cplusplus
 }

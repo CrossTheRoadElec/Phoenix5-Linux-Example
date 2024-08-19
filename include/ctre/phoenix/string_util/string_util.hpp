@@ -7,6 +7,7 @@
 #pragma once
 
 #include "ctre/phoenix/export.h"
+#include <sstream>
 #include <stdint.h>
 #include <string>
 #include <vector>
@@ -27,10 +28,9 @@ namespace string_util {
 	CTREXPORT void makeUpper(std::string &input);
 	/** Case-insensitive strcmp */
 	CTREXPORT int strcmp_nocase(char const *a, char const *b);
-	/**
-	 * \returns number of doubles copied
-	 */
+	/** \returns number of doubles copied */
 	CTREXPORT uint32_t safe_copyDoubles(double *dest, double const *src, int32_t numDoubles, int32_t capacityDoubles);
+	/** \returns number of doubles copied */
 	CTREXPORT uint32_t safe_copyDoubles(double *dest, std::vector<double> const &src, int32_t capacityDoubles);
 	/** Safely copies data from the source to the destination. At most capacity bytes will be copied. */
 	CTREXPORT size_t safe_memcpy(void *dest, void const *src, size_t numBytesToCopy, size_t capacity);
@@ -87,6 +87,22 @@ namespace string_util {
 		/* count the letters, if max or null terminator is reached leave */
 		for (; len < capacity && s[len]; ++len);
 		return len;
+	}
+
+	/**
+	 * \brief Converts string to number while informing caller if operation was successful.
+	 *
+	 * \tparam T    Type of number to convert to
+	 * \param str   String to convert from
+	 * \param value Value of Type T to capture numeric value
+	 * \returns true iff operation was successful
+	 */
+	template <typename T>
+	bool toNumber(std::string const &str, T &value)
+	{
+		std::istringstream iss{str};
+		iss >> std::ws >> value >> std::ws;
+		return iss.eof();
 	}
 
 } // namespace string_util

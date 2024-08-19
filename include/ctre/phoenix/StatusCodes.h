@@ -8,719 +8,772 @@
 
 #ifdef __cplusplus
 
+/* Make sure this is still compiled with C++ linkage
+ * when included from an `extern "C"` block */
+extern "C++" {
+
+#include <ostream>
+
 namespace ctre
 {
     namespace phoenix
     {
 
+        /**
+         * \brief Status codes reported by APIs, including OK,
+         * warnings, and errors.
+         */
         class StatusCode
         {
             int value;
 
         public:
             /**
-             * \brief  No Error
+             * \brief No Error
              */
             static constexpr int OK = 0;
             /**
-             * \brief  InvalidDeviceSpec
+             * \brief Diagnostic Server is busy with another command.
+             */
+            static constexpr int TaskIsBusy = -100;
+            /**
+             * \brief InvalidDeviceSpec
              */
             static constexpr int InvalidDeviceSpec = -101;
             /**
-             * \brief  EcuIsNotPresent
+             * \brief Device is not present. Verify the device is connected and powered, and
+             *        that the CAN bus is terminated.
              */
             static constexpr int EcuIsNotPresent = -102;
             /**
-             * \brief  CouldNotEnterBl
+             * \brief Could not put the device into bootloader mode.
              */
             static constexpr int CouldNotEnterBl = -103;
             /**
-             * \brief  CouldNotConfirmBl
+             * \brief Could not confirm the device has entered the bootloader.
              */
             static constexpr int CouldNotConfirmBl = -104;
             /**
-             * \brief  CouldNotErase
+             * \brief Could not erase flash.
              */
             static constexpr int CouldNotErase = -105;
             /**
-             * \brief  CouldNotSendFlash
+             * \brief Could not field upgrade the device.
              */
             static constexpr int CouldNotSendFlash = -106;
             /**
-             * \brief  CouldNotValidate
+             * \brief Bootloader could not verify integrity of the flashed application.
              */
             static constexpr int CouldNotValidate = -107;
             /**
-             * \brief  CouldNotRunApp
+             * \brief Could not run the device firmware application.
              */
             static constexpr int CouldNotRunApp = -108;
             /**
-             * \brief  CouldNotReqSetId
+             * \brief Unable to set ID to this device.
              */
             static constexpr int CouldNotReqSetId = -109;
             /**
-             * \brief  CouldNotConfirmId
+             * \brief Could not verify that the changed ID took effect.
              */
             static constexpr int CouldNotConfirmId = -110;
             /**
-             * \brief  FlashWasGood
+             * \brief Device field upgrade was successful.
              */
             static constexpr int FlashWasGood = -111;
             /**
-             * \brief  AppTooOld
+             * \brief Device firmware application is too old.
              */
             static constexpr int AppTooOld = -112;
             /**
-             * \brief  CouldNotReqSetDesc
+             * \brief Unable to set name to this device.
              */
             static constexpr int CouldNotReqSetDesc = -113;
             /**
-             * \brief  CompileSzIsWrong
+             * \brief CompileSzIsWrong
              */
             static constexpr int CompileSzIsWrong = -114;
             /**
-             * \brief  GadgeteerDeviceNoSetId
+             * \brief Cannot set the ID of a gadgeteer device.
              */
             static constexpr int GadgeteerDeviceNoSetId = -115;
             /**
-             * \brief  InvalidTask
+             * \brief This diagnostic action is not supported.
              */
             static constexpr int InvalidTask = -116;
             /**
-             * \brief  Not Implemented, check latest installer.
+             * \brief Not Implemented, check latest installer.
              */
             static constexpr int NotImplemented = -117;
             /**
-             * \brief  NoDevicesOnBus
+             * \brief NoDevicesOnBus
              */
             static constexpr int NoDevicesOnBus = -118;
             /**
-             * \brief  MoreThanOneFile
+             * \brief MoreThanOneFile
              */
             static constexpr int MoreThanOneFile = -119;
             /**
-             * \brief  NodeIsInvalid
+             * \brief Specified device was not found. Verify the device is connected and
+             *        powered, and that the CAN bus is terminated.
              */
             static constexpr int NodeIsInvalid = -120;
             /**
-             * \brief  InvalidDeviceDescriptor
+             * \brief InvalidDeviceDescriptor
              */
             static constexpr int InvalidDeviceDescriptor = -121;
             /**
-             * \brief  CouldNotSendCanFrame
+             * \brief CouldNotSendCanFrame
              */
             static constexpr int CouldNotSendCanFrame = -123;
             /**
-             * \brief  NormalModeMsgNotPresent
+             * \brief NormalModeMsgNotPresent
              */
             static constexpr int NormalModeMsgNotPresent = -124;
             /**
-             * \brief  This feature is not supported.
+             * \brief This feature is not supported.
              */
             static constexpr int FeatureNotSupported = -125;
             /**
-             * \brief  NotUpdating
+             * \brief The diagnostic server is not field upgrading any devices.
              */
             static constexpr int NotUpdating = -126;
             /**
-             * \brief  CorruptedPOST
+             * \brief CorruptedPOST
              */
             static constexpr int CorruptedPOST = -127;
             /**
-             * \brief  NoConfigs
+             * \brief This device did not report any available configs. Verify firmware and
+             *        diagnostics are up-to-date.
              */
             static constexpr int NoConfigs = -128;
             /**
-             * \brief  ConfigFailed
+             * \brief ConfigFailed
              */
             static constexpr int ConfigFailed = -129;
             /**
-             * \brief  CouldNotReqFactoryDefault
+             * \brief Unable to factory default this device.
              */
             static constexpr int CouldNotReqFactoryDefault = -130;
             /**
-             * \brief  CustomNameNotSupported
+             * \brief CustomNameNotSupported
              */
             static constexpr int CustomNameNotSupported = -131;
             /**
-             * \brief  ConfigReadWriteMismatch
+             * \brief The configs read from the device do not match the configs that were
+             *        written.
              */
             static constexpr int ConfigReadWriteMismatch = -132;
             /**
-             * \brief  CouldNotReqSetConfigs
+             * \brief Could not apply the device configs.
              */
             static constexpr int CouldNotReqSetConfigs = -133;
             /**
-             * \brief  InsufficientSz
+             * \brief InsufficientSz
              */
             static constexpr int InsufficientSz = -134;
             /**
-             * \brief  InvalidModel
+             * \brief This feature is not supported for this device model.
              */
             static constexpr int InvalidModel = -135;
             /**
-             * \brief  CouldNotReqDevInfo
+             * \brief CouldNotReqDevInfo
              */
             static constexpr int CouldNotReqDevInfo = -140;
             /**
-             * \brief  NoControls
+             * \brief This device does not support new controls.
              */
             static constexpr int NoControls = -141;
             /**
-             * \brief  DeviceIsNull
+             * \brief DeviceIsNull
              */
             static constexpr int DeviceIsNull = -142;
             /**
-             * \brief  DeviceDidNotRespondToDiagReq
+             * \brief DeviceDidNotRespondToDiagReq
              */
             static constexpr int DeviceDidNotRespondToDiagReq = -143;
             /**
-             * \brief  OnlySupportedInTunerX
+             * \brief This feature requires Tuner X.
              */
             static constexpr int OnlySupportedInTunerX = -144;
             /**
-             * \brief  CanivCliError
+             * \brief Command-line issue with caniv.
              */
             static constexpr int CanivCliError = -145;
             /**
-             * \brief  InvalidCrfBadHeader
+             * \brief InvalidCrfBadHeader
              */
             static constexpr int InvalidCrfBadHeader = -200;
             /**
-             * \brief  InvalidCrfFileSzInvald
+             * \brief InvalidCrfFileSzInvald
              */
             static constexpr int InvalidCrfFileSzInvald = -201;
             /**
-             * \brief  InvalidCrfWrongProduct
+             * \brief Specified CRF is for the wrong product.
              */
             static constexpr int InvalidCrfWrongProduct = -202;
             /**
-             * \brief  InvalidCrfNoSects
+             * \brief InvalidCrfNoSects
              */
             static constexpr int InvalidCrfNoSects = -203;
             /**
-             * \brief  InvalidCrfBadSectHeader
+             * \brief InvalidCrfBadSectHeader
              */
             static constexpr int InvalidCrfBadSectHeader = -204;
             /**
-             * \brief  InvalidCrfBadSectSize
+             * \brief InvalidCrfBadSectSize
              */
             static constexpr int InvalidCrfBadSectSize = -205;
             /**
-             * \brief  NoCrfFile
+             * \brief Specified CRF file could not be found.
              */
             static constexpr int NoCrfFile = -206;
             /**
-             * \brief  CouldNotFindDynamicId
+             * \brief CouldNotFindDynamicId
              */
             static constexpr int CouldNotFindDynamicId = -300;
             /**
-             * \brief  DidNotGetDhcp
+             * \brief DidNotGetDhcp
              */
             static constexpr int DidNotGetDhcp = -301;
             /**
-             * \brief  DidNotGetFullDhcp
+             * \brief DidNotGetFullDhcp
              */
             static constexpr int DidNotGetFullDhcp = -302;
             /**
-             * \brief  InvalidLicenseResp
+             * \brief InvalidLicenseResp
              */
             static constexpr int InvalidLicenseResp = -350;
             /**
-             * \brief  InvalidCanivCache
+             * \brief InvalidCanivCache
              */
             static constexpr int InvalidCanivCache = -351;
             /**
-             * \brief  CannotOpenSerialPort
+             * \brief CannotOpenSerialPort
              */
             static constexpr int CannotOpenSerialPort = -500;
             /**
-             * \brief  CannotWriteSerialPort
+             * \brief CannotWriteSerialPort
              */
             static constexpr int CannotWriteSerialPort = -501;
             /**
-             * \brief  CannotReadSerialPort
+             * \brief CannotReadSerialPort
              */
             static constexpr int CannotReadSerialPort = -502;
             /**
-             * \brief  CannotSerialToDevice
+             * \brief CannotSerialToDevice
              */
             static constexpr int CannotSerialToDevice = -503;
             /**
-             * \brief  NoSerialControlFrameResp
+             * \brief NoSerialControlFrameResp
              */
             static constexpr int NoSerialControlFrameResp = -504;
             /**
-             * \brief  CannotOpenUdpPort
+             * \brief CannotOpenUdpPort
              */
             static constexpr int CannotOpenUdpPort = -600;
             /**
-             * \brief  CannotWriteUdpPort
+             * \brief CannotWriteUdpPort
              */
             static constexpr int CannotWriteUdpPort = -601;
             /**
-             * \brief  CannotReadUdpPort
+             * \brief CannotReadUdpPort
              */
             static constexpr int CannotReadUdpPort = -602;
             /**
-             * \brief  CannotUdpToDevice
+             * \brief CannotUdpToDevice
              */
             static constexpr int CannotUdpToDevice = -603;
             /**
-             * \brief  NoUdpControlFrameResp
+             * \brief NoUdpControlFrameResp
              */
             static constexpr int NoUdpControlFrameResp = -604;
             /**
-             * \brief  TimeoutIso15Response
+             * \brief TimeoutIso15Response
              */
             static constexpr int TimeoutIso15Response = -605;
             /**
-             * \brief  InvalidJson
+             * \brief InvalidJson
              */
             static constexpr int InvalidJson = -700;
             /**
-             * \brief  AppIsTerminating
+             * \brief The user application is shutting down.
              */
             static constexpr int AppIsTerminating = -800;
             /**
-             * \brief  CAN Message is stale.
+             * \brief CAN Message is stale.
              */
             static constexpr int CanMessageStale = 1000;
             /**
-             * \brief  Buffer is full, cannot insert more data.
+             * \brief Buffer is full, cannot insert more data.
              */
             static constexpr int BufferFull = 1006;
             /**
-             * \brief  PulseWidthSensorNotPresent
+             * \brief PulseWidthSensorNotPresent
              */
             static constexpr int PulseWidthSensorNotPresent = 1010;
             /**
-             * \brief  General Warning Occurred.
+             * \brief General Warning Occurred.
              */
             static constexpr int GeneralWarning = 1100;
             /**
-             * \brief  Firm Vers could not be retrieved. Use Phoenix Tuner to check ID and
-             *         firmware(CRF) version.
+             * \brief Firm Vers could not be retrieved. Use Phoenix Tuner X to check ID and
+             *        firmware(CRF) version.
              */
             static constexpr int FirmVersionCouldNotBeRetrieved = 1103;
             /**
-             * \brief  This feature will be supported in a future update.
+             * \brief This feature will be supported in a future update.
              */
             static constexpr int FeaturesNotAvailableYet = 1104;
             /**
-             * \brief  The control mode is not valid for this function.
+             * \brief The control mode is not valid for this function.
              */
             static constexpr int ControlModeNotValid = 1105;
             /**
-             * \brief  This control mode is not supported yet.  A future release will
-             *         supported this soon.
+             * \brief This control mode is not supported yet.  A future release will
+             *        supported this soon.
              */
             static constexpr int ControlModeNotSupportedYet = 1106;
             /**
-             * \brief  Motor Controller must have &gt;= 3.2 firmware for motion profile control
-             *         mode.
+             * \brief Motor Controller must have >= 3.2 firmware for motion profile control
+             *        mode.
              */
             static constexpr int MotProfFirmThreshold = 1109;
             /**
-             * \brief  Motor Controller must have &gt;= 3.4 firmware for advanced PID0/PID1
-             *         features.
+             * \brief Motor Controller must have >= 3.4 firmware for advanced PID0/PID1
+             *        features.
              */
             static constexpr int MotProfFirmThreshold2 = 1110;
             /**
-             * \brief  SimDeviceNotFound
+             * \brief SimDeviceNotFound
              */
             static constexpr int SimDeviceNotFound = 1200;
             /**
-             * \brief  SimPhysicsTypeNotSupported
+             * \brief SimPhysicsTypeNotSupported
              */
             static constexpr int SimPhysicsTypeNotSupported = 1201;
             /**
-             * \brief  SimDeviceAlreadyExists
+             * \brief SimDeviceAlreadyExists
              */
             static constexpr int SimDeviceAlreadyExists = 1202;
             /**
-             * \brief  Could not transmit CAN Frame.
+             * \brief Could not transmit CAN Frame.
              */
             static constexpr int TxFailed = -1001;
             /**
-             * \brief  Incorrect argument passed into function/VI.
+             * \brief An invalid argument was passed into the function/VI, such as a null
+             *        pointer.
              */
             static constexpr int InvalidParamValue = -1002;
             /**
-             * \brief  CAN frame not received/too-stale.
+             * \brief CAN frame not received/too-stale. Check the CAN bus wiring, CAN bus
+             *        utilization, and power to the device.
              */
             static constexpr int RxTimeout = -1003;
             /**
-             * \brief  CAN Transmit timed out.
+             * \brief CAN Transmit timed out.
              */
             static constexpr int TxTimeout = -1004;
             /**
-             * \brief  ArbID is incorrect.
+             * \brief ArbID is incorrect.
              */
             static constexpr int UnexpectedArbId = -1005;
             /**
-             * \brief  CanOverflowed
+             * \brief CanOverflowed
              */
             static constexpr int CanOverflowed = -1006;
             /**
-             * \brief  Sensor Not Present.
+             * \brief Sensor Not Present.
              */
             static constexpr int SensorNotPresent = -1007;
             /**
-             * \brief  Firmware Too Old.  Use Phoenix Tuner to field upgrade your CTRE CAN
-             *         device firmware(CRF).  Then restart your robot application to clear
-             *         this error.
+             * \brief Firmware Too Old.  Use Phoenix Tuner X to field upgrade your CTRE CAN
+             *        device firmware(CRF).  Then restart your robot application to clear
+             *        this error.
              */
             static constexpr int FirmwareTooOld = -1008;
             /**
-             * \brief  Control Frame Period could not be changed.  Most likely it is not
-             *         being transmitted.
+             * \brief Control Frame Period could not be changed.  Most likely it is not
+             *        being transmitted.
              */
             static constexpr int CouldNotChangePeriod = -1009;
             /**
-             * \brief  BufferFailure
+             * \brief BufferFailure
              */
             static constexpr int BufferFailure = -1010;
             /**
-             * \brief  Firmware is legacy non-FRC version.  Use Phoenix Tuner to field
-             *         upgrade your CTRE CAN device firmware(CRF).  Firmware greater than
-             *         20.0 required.
+             * \brief Firmware is legacy non-FRC version.  Use Phoenix Tuner X to field
+             *        upgrade your CTRE CAN device firmware(CRF).  Firmware greater than
+             *        20.0 required.
              */
             static constexpr int FirmwareNonFRC = -1011;
             /**
-             * \brief  General Error Occurred.
+             * \brief General Error Occurred.
              */
             static constexpr int GeneralError = -1100;
             /**
-             * \brief  No new response to update signal.
+             * \brief No new response to update signal.
              */
             static constexpr int SigNotUpdated = -1200;
             /**
-             * \brief  NotAllPIDValuesUpdated
+             * \brief NotAllPIDValuesUpdated
              */
             static constexpr int NotAllPIDValuesUpdated = -1201;
             /**
-             * \brief  GEN_PORT_ERROR
+             * \brief GEN_PORT_ERROR
              */
             static constexpr int GEN_PORT_ERROR = -1300;
             /**
-             * \brief  PORT_MODULE_TYPE_MISMATCH
+             * \brief PORT_MODULE_TYPE_MISMATCH
              */
             static constexpr int PORT_MODULE_TYPE_MISMATCH = -1301;
             /**
-             * \brief  GEN_MODULE_ERROR
+             * \brief GEN_MODULE_ERROR
              */
             static constexpr int GEN_MODULE_ERROR = -1400;
             /**
-             * \brief  MODULE_NOT_INIT_SET_ERROR
+             * \brief MODULE_NOT_INIT_SET_ERROR
              */
             static constexpr int MODULE_NOT_INIT_SET_ERROR = -1401;
             /**
-             * \brief  MODULE_NOT_INIT_GET_ERROR
+             * \brief MODULE_NOT_INIT_GET_ERROR
              */
             static constexpr int MODULE_NOT_INIT_GET_ERROR = -1402;
             /**
-             * \brief  Wheel Radius is too small, cannot get distance traveled.
+             * \brief Wheel Radius is too small, cannot get distance traveled.
              */
             static constexpr int WheelRadiusTooSmall = -1500;
             /**
-             * \brief  Ticks per revolution is 0, cannot get heading.
+             * \brief Ticks per revolution is 0, cannot get heading.
              */
             static constexpr int TicksPerRevZero = -1501;
             /**
-             * \brief  Distance between wheels is too small, cannot get heading.
+             * \brief Distance between wheels is too small, cannot get heading.
              */
             static constexpr int DistanceBetweenWheelsTooSmall = -1502;
             /**
-             * \brief  GainsAreNotSet
+             * \brief GainsAreNotSet
              */
             static constexpr int GainsAreNotSet = -1503;
             /**
-             * \brief  Use RemoteLimitSwitchSource instead of LimitSwitchSource.
+             * \brief Use RemoteLimitSwitchSource instead of LimitSwitchSource.
              */
             static constexpr int WrongRemoteLimitSwitchSource = -1504;
             /**
-             * \brief  Motor Controller Voltage Compensation should not be used with
-             *         setVoltage().  This causes compensation to happen twice.  Disable
-             *         Voltage Compensation by calling enableVoltageCompensation(false) in
-             *         order to use setVoltage().
+             * \brief Motor Controller Voltage Compensation should not be used with
+             *        setVoltage().  This causes compensation to happen twice.  Disable
+             *        Voltage Compensation by calling enableVoltageCompensation(false) in
+             *        order to use setVoltage().
              */
             static constexpr int DoubleVoltageCompensatingWPI = -1505;
             /**
-             * \brief  CANdleAnimSlotOutOfBounds
+             * \brief CANdleAnimSlotOutOfBounds
              */
             static constexpr int CANdleAnimSlotOutOfBounds = -1506;
             /**
-             * \brief  IncompatibleMode
+             * \brief IncompatibleMode
              */
             static constexpr int IncompatibleMode = -1600;
             /**
-             * \brief  Handle passed into function is incorrect.
+             * \brief Handle passed into function is incorrect.
              */
             static constexpr int InvalidHandle = -1601;
             /**
-             * \brief  Features requires newer firmware version.
+             * \brief Features requires newer firmware version.
              */
             static constexpr int FeatureRequiresHigherFirm = -1700;
             /**
-             * \brief  Config factory default features require firmware &gt;=3.10.
+             * \brief Config factory default features require firmware >=3.10.
              */
             static constexpr int ConfigFactoryDefaultRequiresHigherFirm = -1702;
             /**
-             * \brief  Config Motion S Curve Strength features require firmware &gt;=4.16.
+             * \brief Config Motion S Curve Strength features require firmware >=4.16.
              */
             static constexpr int ConfigMotionSCurveRequiresHigherFirm = -1703;
             /**
-             * \brief  Talon FX(Falcon 500) Firmware Too Old.  Use Phoenix Tuner to field
-             *         upgrade your CTRE CAN device firmware(CRF) to &gt;=20.3. Then restart
-             *         your robot application to clear this error.
+             * \brief Talon FX(Falcon 500) Firmware Too Old.  Use Phoenix Tuner to field
+             *        upgrade your CTRE CAN device firmware(CRF) to >=20.3. Then restart
+             *        your robot application to clear this error.
              */
             static constexpr int TalonFXFirmwarePreVBatDetect = -1704;
             /**
-             * \brief  CANdleAnimationsRequireHigherFirm
+             * \brief CANdleAnimationsRequireHigherFirm
              */
             static constexpr int CANdleAnimationsRequireHigherFirm = -1705;
             /**
-             * \brief  LibraryCouldNotBeLoaded
+             * \brief LibraryCouldNotBeLoaded
              */
             static constexpr int LibraryCouldNotBeLoaded = -1800;
             /**
-             * \brief  MissingRoutineInLibrary
+             * \brief MissingRoutineInLibrary
              */
             static constexpr int MissingRoutineInLibrary = -1801;
             /**
-             * \brief  ResourceNotAvailable
+             * \brief ResourceNotAvailable
              */
             static constexpr int ResourceNotAvailable = -1802;
             /**
-             * \brief  Could not find music file specified, try specifying an absolute path.
+             * \brief Could not find music file specified, try specifying an absolute path.
              */
             static constexpr int MusicFileNotFound = -1900;
             /**
-             * \brief  Music file size is incorrect, could not parse correctly. Ensure
-             *         you're using Tuner to generate file.
+             * \brief Music file size is incorrect, could not parse correctly. Ensure you're
+             *        using Tuner to generate file.
              */
             static constexpr int MusicFileWrongSize = -1901;
             /**
-             * \brief  Music file version is too new, update Phoenix to utilize this file.
+             * \brief Music file version is too new, update Phoenix to utilize this file.
              */
             static constexpr int MusicFileTooNew = -1902;
             /**
-             * \brief  Music file is invalid. Ensure you're using Tuner to generate file.
+             * \brief Music file is invalid. Ensure you're using Tuner to generate file.
              */
             static constexpr int MusicFileInvalid = -1903;
             /**
-             * \brief  An invalid orchestra action occurred. Ensure a music file is loaded.
+             * \brief An invalid orchestra action occurred. Ensure a music file is loaded.
              */
             static constexpr int InvalidOrchestraAction = -1904;
             /**
-             * \brief  This music file version is too old. Regenerate file using Tuner.
+             * \brief This music file version is too old. Regenerate file using Tuner.
              */
             static constexpr int MusicFileTooOld = -1905;
             /**
-             * \brief  Music interrupted due to one of the instruments being commanded a
-             *         different control mode. Press Play to resume music.
+             * \brief Music interrupted due to one of the instruments being commanded a
+             *        different control mode. Press Play to resume music.
              */
             static constexpr int MusicInterrupted = -1906;
             /**
-             * \brief  This device doesn't support MusicTone control mode.
+             * \brief This device doesn't support MusicTone control mode.
              */
             static constexpr int MusicNotSupported = -1907;
             /**
-             * \brief  kInvalidInterface
+             * \brief kInvalidInterface
              */
             static constexpr int kInvalidInterface = -2000;
             /**
-             * \brief  kInvalidGuid
+             * \brief kInvalidGuid
              */
             static constexpr int kInvalidGuid = -2001;
             /**
-             * \brief  kInvalidClass
+             * \brief kInvalidClass
              */
             static constexpr int kInvalidClass = -2002;
             /**
-             * \brief  kInvalidProtocol
+             * \brief kInvalidProtocol
              */
             static constexpr int kInvalidProtocol = -2003;
             /**
-             * \brief  kInvalidPath
+             * \brief kInvalidPath
              */
             static constexpr int kInvalidPath = -2004;
             /**
-             * \brief  kGeneralWinUsbError
+             * \brief kGeneralWinUsbError
              */
             static constexpr int kGeneralWinUsbError = -2005;
             /**
-             * \brief  kFailedSetup
+             * \brief kFailedSetup
              */
             static constexpr int kFailedSetup = -2006;
             /**
-             * \brief  kListenFailed
+             * \brief kListenFailed
              */
             static constexpr int kListenFailed = -2007;
             /**
-             * \brief  kSendFailed
+             * \brief kSendFailed
              */
             static constexpr int kSendFailed = -2008;
             /**
-             * \brief  kReceiveFailed
+             * \brief kReceiveFailed
              */
             static constexpr int kReceiveFailed = -2009;
             /**
-             * \brief  kInvalidRespFormat
+             * \brief kInvalidRespFormat
              */
             static constexpr int kInvalidRespFormat = -2010;
             /**
-             * \brief  kWinUsbInitFailed
+             * \brief kWinUsbInitFailed
              */
             static constexpr int kWinUsbInitFailed = -2011;
             /**
-             * \brief  kWinUsbQueryFailed
+             * \brief kWinUsbQueryFailed
              */
             static constexpr int kWinUsbQueryFailed = -2012;
             /**
-             * \brief  kWinUsbGeneralError
+             * \brief kWinUsbGeneralError
              */
             static constexpr int kWinUsbGeneralError = -2013;
             /**
-             * \brief  kAccessDenied
+             * \brief kAccessDenied
              */
             static constexpr int kAccessDenied = -2014;
             /**
-             * \brief  kFirmwareInvalidResponse
+             * \brief kFirmwareInvalidResponse
              */
             static constexpr int kFirmwareInvalidResponse = -2015;
             /**
-             * \brief  This StatusCode has not been initialized. Make sure the StatusCode is
-             *         getting assigned to the return of a method.
+             * \brief This StatusCode has not been initialized. Make sure the StatusCode is
+             *        getting assigned to the return of a method.
              */
             static constexpr int StatusCodeNotInitialized = -10000;
             /**
-             * \brief  WarningNotInitialized
+             * \brief WarningNotInitialized
              */
             static constexpr int WarningNotInitialized = 10000;
             /**
-             * \brief  The timestamp reported by CANivore is at least 10ms older than the
-             *         timestamp reported by the system, indicating it's fallen out of sync.
-             *         This does not impact the data of this message, only the timing.
+             * \brief The timestamp reported by CANivore is at least 10ms older than the
+             *        timestamp reported by the system, indicating it's fallen out of sync.
+             *        This does not impact the data of this message, only the timing.
              */
             static constexpr int HwTimestampOutOfSync = 10001;
             /**
-             * \brief  InvalidNetwork
+             * \brief InvalidNetwork
              */
             static constexpr int InvalidNetwork = -10001;
             /**
-             * \brief  The CAN bus does not support multi-signal synchronization.
+             * \brief The CAN bus does not support multi-signal synchronization.
              */
             static constexpr int MultiSignalNotSupported = -10002;
             /**
-             * \brief  Could not cast from base value to this particular signal's type
+             * \brief Could not cast from base value to this particular signal's type
              */
             static constexpr int CouldNotCast = -10003;
             /**
-             * \brief  Could not find this value when searching for it
+             * \brief Could not find this value when searching for it
              */
             static constexpr int NotFound = -10004;
             /**
-             * \brief  This is not supported
+             * \brief This is not supported
              */
             static constexpr int NotSupported = -10005;
             /**
-             * \brief  Could not determine context from this device hash
+             * \brief Could not determine context from this device hash
              */
             static constexpr int MissingContext = -10006;
             /**
-             * \brief  Model name in license file does not match model name of selected
-             *         device.
+             * \brief Model name in license file does not match model name of selected
+             *        device.
              */
             static constexpr int ModelMismatch = -10007;
             /**
-             * \brief  Serial Number in license file does not match model name of selected
-             *         device.
+             * \brief Serial Number in license file does not match model name of selected
+             *        device.
              */
             static constexpr int SerialMismatch = -10008;
             /**
-             * \brief  Could not find specified file.
+             * \brief Could not find specified file.
              */
             static constexpr int NoFile = -10009;
             /**
-             * \brief  License did not successfully download to Device.
+             * \brief License did not successfully download to Device.
              */
             static constexpr int LicenseDownloadFailed = -10010;
             /**
-             * \brief  Self Test report does not have any values, is the firmware up to
-             *         date?
+             * \brief Self Test report does not have any values, is the firmware up to date?
              */
             static constexpr int SelfTestIsEmpty = -10011;
             /**
-             * \brief  Failed to lookup signal properties.  This can happen if the fimware
-             *         is too new and supports signals that older APIs do not support.
+             * \brief Failed to lookup signal properties.  This can happen if the fimware is
+             *        too new and supports signals that older APIs do not support.
              */
             static constexpr int SignalLookupFailed = -10012;
             /**
-             * \brief  The current mode of the device is invalid for getting this signal.
+             * \brief The current mode of the device is invalid for getting this signal.
              */
             static constexpr int InvalidModeToGetSignal = -10013;
             /**
-             * \brief  Device is not licensed. Cannot get any data from it.
+             * \brief Device is not licensed. Cannot get any data from it.
              */
             static constexpr int UnlicensedDevice = -10014;
             /**
-             * \brief  Size is invalid.
+             * \brief Size is invalid.
              */
             static constexpr int InvalidSize = -10015;
             /**
-             * \brief  InvalidLicenseResponse
+             * \brief InvalidLicenseResponse
              */
             static constexpr int InvalidLicenseResponse = -10016;
             /**
-             * \brief  InvalidContext
+             * \brief InvalidContext
              */
             static constexpr int InvalidContext = -10017;
             /**
-             * \brief  InternalError
+             * \brief InternalError
              */
             static constexpr int InternalError = -10018;
             /**
-             * \brief  TaskIsBusy
+             * \brief kDeviceResponseIncorrect
              */
-            static constexpr int TaskIsBusy = -10019;
+            static constexpr int kDeviceResponseIncorrect = -10019;
             /**
-             * \brief  kDeviceResponseIncorrect
+             * \brief kErrorPollingForDevices
              */
-            static constexpr int kDeviceResponseIncorrect = -10020;
+            static constexpr int kErrorPollingForDevices = -10020;
             /**
-             * \brief  kErrorPollingForDevices
+             * \brief Device firmware could not be retrieved. Check that the device is
+             *        running v6 firmware, the device ID is correct, the specified CAN bus
+             *        is correct, and the device is powered.
              */
-            static constexpr int kErrorPollingForDevices = -10021;
+            static constexpr int CouldNotRetrieveV6Firmware = -10021;
             /**
-             * \brief  Device firmware could not be retrieved. Check that the device is
-             *         running Pro firmware, that the device ID is correct, that the
-             *         specified CAN bus is correct, and that the device is powered.
+             * \brief Device firmware could not be decoded. Check that the device is running
+             *        v6 firmware, the device ID is correct, the specified CAN bus is
+             *        correct, and the device is powered.
              */
-            static constexpr int CouldNotRetrieveProFirmware = -10022;
+            static constexpr int CouldNotDecodeDeviceFirmware = -10022;
             /**
-             * \brief  Device firmware could not be decoded. Check that the device is
-             *         running Pro firmware, that the device ID is correct, that the
-             *         specified CAN bus is correct, and that the device is powered.
+             * \brief The values specified for master are in valid.  Make sure the Device ID
+             *        of master are correct.
              */
-            static constexpr int CouldNotDecodeDeviceFirmware = -10023;
+            static constexpr int InvalidIDToFollow = -10023;
             /**
-             * \brief  The values specified for master are in valid.  Make sure the Device
-             *         ID of master are correct.
+             * \brief Using a Pro only feature on an unlicensed device. The device may not
+             *        behave as expected if it continues to operate while unlicensed.
              */
-            static constexpr int InvalidIDToFollow = -10024;
+            static constexpr int UsingProFeatureOnUnlicensedDevice = -10024;
             /**
-             * \brief  Using a Pro only feature on an unlicensed device. The device may not
-             *         behave as expected if it continues to operate while unlicensed.
+             * \brief Firmware Too New.  Use Phoenix Tuner X to field upgrade your CTRE CAN
+             *        device firmware(CRF) to a compatible version.  Then restart your robot
+             *        application to clear this error.
              */
-            static constexpr int UsingProFeatureOnUnlicensedDevice = -10025;
+            static constexpr int FirmwareTooNew = -10025;
             /**
-             * \brief  Firmware Too New.  Use Phoenix Tuner to field upgrade your CTRE CAN
-             *         device firmware(CRF) to a compatible version.  Then restart your
-             *         robot application to clear this error.
+             * \brief The data frame could not be serialized for transmit.
              */
-            static constexpr int FirmwareTooNew = -10026;
+            static constexpr int CouldNotSerialize = -10026;
+            /**
+             * \brief The mechanism is disabled due to a fault in one of the devices.
+             */
+            static constexpr int MechanismFaulted = -10027;
+            /**
+             * \brief Firmware version is not compatible with this version of Phoenix. Make
+             *        sure your firmware and API major versions match.
+             */
+            static constexpr int FirmwareVersNotCompatible = -10028;
+            /**
+             * \brief Could not find specified directory.
+             */
+            static constexpr int DirectoryMissing = -10029;
+            /**
+             * \brief This API version is too old for the firmware on the device. Either
+             *        upgrade the API to a newer version or downgrade the device firmware to
+             *        an older version for correct behavior.
+             */
+            static constexpr int ApiTooOld = -10030;
+            /**
+             * \brief The signal logger is not running. Start the signal logger before
+             *        writing any signals.
+             */
+            static constexpr int LoggerNotRunning = -10031;
+            /**
+             * \brief Blocking operations, such as configs, cannot have a timeout of 0. Pass
+             *        in a non-zero timeout (typically 0.050+ seconds) for normal operation.
+             */
+            static constexpr int TimeoutCannotBeZero = -10032;
+            /**
+             * \brief Device cannot be licensed while it is control enabled. Disable and
+             *        neutral the device to apply the licenses.
+             */
+            static constexpr int CannotLicenseWhileEnabled = -10033;
 
             operator int() const { return this->value; }
 
@@ -748,6 +801,7 @@ namespace ctre
                 switch (value)
                 {
                 case 0: return "OK";
+                case -100: return "TaskIsBusy";
                 case -101: return "InvalidDeviceSpec";
                 case -102: return "EcuIsNotPresent";
                 case -103: return "CouldNotEnterBl";
@@ -907,16 +961,25 @@ namespace ctre
                 case -10016: return "InvalidLicenseResponse";
                 case -10017: return "InvalidContext";
                 case -10018: return "InternalError";
-                case -10019: return "TaskIsBusy";
-                case -10020: return "kDeviceResponseIncorrect";
-                case -10021: return "kErrorPollingForDevices";
-                case -10022: return "CouldNotRetrieveProFirmware";
-                case -10023: return "CouldNotDecodeDeviceFirmware";
-                case -10024: return "InvalidIDToFollow";
-                case -10025: return "UsingProFeatureOnUnlicensedDevice";
-                case -10026: return "FirmwareTooNew";
+                case -10019: return "kDeviceResponseIncorrect";
+                case -10020: return "kErrorPollingForDevices";
+                case -10021: return "CouldNotRetrieveV6Firmware";
+                case -10022: return "CouldNotDecodeDeviceFirmware";
+                case -10023: return "InvalidIDToFollow";
+                case -10024: return "UsingProFeatureOnUnlicensedDevice";
+                case -10025: return "FirmwareTooNew";
+                case -10026: return "CouldNotSerialize";
+                case -10027: return "MechanismFaulted";
+                case -10028: return "FirmwareVersNotCompatible";
+                case -10029: return "DirectoryMissing";
+                case -10030: return "ApiTooOld";
+                case -10031: return "LoggerNotRunning";
+                case -10032: return "TimeoutCannotBeZero";
+                case -10033: return "CannotLicenseWhileEnabled";
                 default:
-                    return "Could not find name";
+                    /* because we return const char*, we cannot create
+                     * a string with the status error code */
+                    return "Could not find name for StatusCode";
                 }
             }
             const char *GetDescription() const
@@ -924,53 +987,54 @@ namespace ctre
                 switch (value)
                 {
                 case 0: return "No Error";
+                case -100: return "Diagnostic Server is busy with another command.";
                 case -101: return "InvalidDeviceSpec";
-                case -102: return "EcuIsNotPresent";
-                case -103: return "CouldNotEnterBl";
-                case -104: return "CouldNotConfirmBl";
-                case -105: return "CouldNotErase";
-                case -106: return "CouldNotSendFlash";
-                case -107: return "CouldNotValidate";
-                case -108: return "CouldNotRunApp";
-                case -109: return "CouldNotReqSetId";
-                case -110: return "CouldNotConfirmId";
-                case -111: return "FlashWasGood";
-                case -112: return "AppTooOld";
-                case -113: return "CouldNotReqSetDesc";
+                case -102: return "Device is not present. Verify the device is connected and powered, and that the CAN bus is terminated.";
+                case -103: return "Could not put the device into bootloader mode.";
+                case -104: return "Could not confirm the device has entered the bootloader.";
+                case -105: return "Could not erase flash.";
+                case -106: return "Could not field upgrade the device.";
+                case -107: return "Bootloader could not verify integrity of the flashed application.";
+                case -108: return "Could not run the device firmware application.";
+                case -109: return "Unable to set ID to this device.";
+                case -110: return "Could not verify that the changed ID took effect.";
+                case -111: return "Device field upgrade was successful.";
+                case -112: return "Device firmware application is too old.";
+                case -113: return "Unable to set name to this device.";
                 case -114: return "CompileSzIsWrong";
-                case -115: return "GadgeteerDeviceNoSetId";
-                case -116: return "InvalidTask";
+                case -115: return "Cannot set the ID of a gadgeteer device.";
+                case -116: return "This diagnostic action is not supported.";
                 case -117: return "Not Implemented, check latest installer.";
                 case -118: return "NoDevicesOnBus";
                 case -119: return "MoreThanOneFile";
-                case -120: return "NodeIsInvalid";
+                case -120: return "Specified device was not found. Verify the device is connected and powered, and that the CAN bus is terminated.";
                 case -121: return "InvalidDeviceDescriptor";
                 case -123: return "CouldNotSendCanFrame";
                 case -124: return "NormalModeMsgNotPresent";
                 case -125: return "This feature is not supported.";
-                case -126: return "NotUpdating";
+                case -126: return "The diagnostic server is not field upgrading any devices.";
                 case -127: return "CorruptedPOST";
-                case -128: return "NoConfigs";
+                case -128: return "This device did not report any available configs. Verify firmware and diagnostics are up-to-date.";
                 case -129: return "ConfigFailed";
-                case -130: return "CouldNotReqFactoryDefault";
+                case -130: return "Unable to factory default this device.";
                 case -131: return "CustomNameNotSupported";
-                case -132: return "ConfigReadWriteMismatch";
-                case -133: return "CouldNotReqSetConfigs";
+                case -132: return "The configs read from the device do not match the configs that were written.";
+                case -133: return "Could not apply the device configs.";
                 case -134: return "InsufficientSz";
-                case -135: return "InvalidModel";
+                case -135: return "This feature is not supported for this device model.";
                 case -140: return "CouldNotReqDevInfo";
-                case -141: return "NoControls";
+                case -141: return "This device does not support new controls.";
                 case -142: return "DeviceIsNull";
                 case -143: return "DeviceDidNotRespondToDiagReq";
-                case -144: return "OnlySupportedInTunerX";
-                case -145: return "CanivCliError";
+                case -144: return "This feature requires Tuner X.";
+                case -145: return "Command-line issue with caniv.";
                 case -200: return "InvalidCrfBadHeader";
                 case -201: return "InvalidCrfFileSzInvald";
-                case -202: return "InvalidCrfWrongProduct";
+                case -202: return "Specified CRF is for the wrong product.";
                 case -203: return "InvalidCrfNoSects";
                 case -204: return "InvalidCrfBadSectHeader";
                 case -205: return "InvalidCrfBadSectSize";
-                case -206: return "NoCrfFile";
+                case -206: return "Specified CRF file could not be found.";
                 case -300: return "CouldNotFindDynamicId";
                 case -301: return "DidNotGetDhcp";
                 case -302: return "DidNotGetFullDhcp";
@@ -988,12 +1052,12 @@ namespace ctre
                 case -604: return "NoUdpControlFrameResp";
                 case -605: return "TimeoutIso15Response";
                 case -700: return "InvalidJson";
-                case -800: return "AppIsTerminating";
+                case -800: return "The user application is shutting down.";
                 case 1000: return "CAN Message is stale.";
                 case 1006: return "Buffer is full, cannot insert more data.";
                 case 1010: return "PulseWidthSensorNotPresent";
                 case 1100: return "General Warning Occurred.";
-                case 1103: return "Firm Vers could not be retrieved. Use Phoenix Tuner to check ID and firmware(CRF) version.";
+                case 1103: return "Firm Vers could not be retrieved. Use Phoenix Tuner X to check ID and firmware(CRF) version.";
                 case 1104: return "This feature will be supported in a future update.";
                 case 1105: return "The control mode is not valid for this function.";
                 case 1106: return "This control mode is not supported yet.  A future release will supported this soon.";
@@ -1003,16 +1067,16 @@ namespace ctre
                 case 1201: return "SimPhysicsTypeNotSupported";
                 case 1202: return "SimDeviceAlreadyExists";
                 case -1001: return "Could not transmit CAN Frame.";
-                case -1002: return "Incorrect argument passed into function/VI.";
-                case -1003: return "CAN frame not received/too-stale.";
+                case -1002: return "An invalid argument was passed into the function/VI, such as a null pointer.";
+                case -1003: return "CAN frame not received/too-stale. Check the CAN bus wiring, CAN bus utilization, and power to the device.";
                 case -1004: return "CAN Transmit timed out.";
                 case -1005: return "ArbID is incorrect.";
                 case -1006: return "CanOverflowed";
                 case -1007: return "Sensor Not Present.";
-                case -1008: return "Firmware Too Old.  Use Phoenix Tuner to field upgrade your CTRE CAN device firmware(CRF).  Then restart your robot application to clear this error.";
+                case -1008: return "Firmware Too Old.  Use Phoenix Tuner X to field upgrade your CTRE CAN device firmware(CRF).  Then restart your robot application to clear this error.";
                 case -1009: return "Control Frame Period could not be changed.  Most likely it is not being transmitted.";
                 case -1010: return "BufferFailure";
-                case -1011: return "Firmware is legacy non-FRC version.  Use Phoenix Tuner to field upgrade your CTRE CAN device firmware(CRF).  Firmware greater than 20.0 required.";
+                case -1011: return "Firmware is legacy non-FRC version.  Use Phoenix Tuner X to field upgrade your CTRE CAN device firmware(CRF).  Firmware greater than 20.0 required.";
                 case -1100: return "General Error Occurred.";
                 case -1200: return "No new response to update signal.";
                 case -1201: return "NotAllPIDValuesUpdated";
@@ -1083,17 +1147,31 @@ namespace ctre
                 case -10016: return "InvalidLicenseResponse";
                 case -10017: return "InvalidContext";
                 case -10018: return "InternalError";
-                case -10019: return "TaskIsBusy";
-                case -10020: return "kDeviceResponseIncorrect";
-                case -10021: return "kErrorPollingForDevices";
-                case -10022: return "Device firmware could not be retrieved. Check that the device is running Pro firmware, that the device ID is correct, that the specified CAN bus is correct, and that the device is powered.";
-                case -10023: return "Device firmware could not be decoded. Check that the device is running Pro firmware, that the device ID is correct, that the specified CAN bus is correct, and that the device is powered.";
-                case -10024: return "The values specified for master are in valid.  Make sure the Device ID of master are correct.";
-                case -10025: return "Using a Pro only feature on an unlicensed device. The device may not behave as expected if it continues to operate while unlicensed.";
-                case -10026: return "Firmware Too New.  Use Phoenix Tuner to field upgrade your CTRE CAN device firmware(CRF) to a compatible version.  Then restart your robot application to clear this error.";
+                case -10019: return "kDeviceResponseIncorrect";
+                case -10020: return "kErrorPollingForDevices";
+                case -10021: return "Device firmware could not be retrieved. Check that the device is running v6 firmware, the device ID is correct, the specified CAN bus is correct, and the device is powered.";
+                case -10022: return "Device firmware could not be decoded. Check that the device is running v6 firmware, the device ID is correct, the specified CAN bus is correct, and the device is powered.";
+                case -10023: return "The values specified for master are in valid.  Make sure the Device ID of master are correct.";
+                case -10024: return "Using a Pro only feature on an unlicensed device. The device may not behave as expected if it continues to operate while unlicensed.";
+                case -10025: return "Firmware Too New.  Use Phoenix Tuner X to field upgrade your CTRE CAN device firmware(CRF) to a compatible version.  Then restart your robot application to clear this error.";
+                case -10026: return "The data frame could not be serialized for transmit.";
+                case -10027: return "The mechanism is disabled due to a fault in one of the devices.";
+                case -10028: return "Firmware version is not compatible with this version of Phoenix. Make sure your firmware and API major versions match.";
+                case -10029: return "Could not find specified directory.";
+                case -10030: return "This API version is too old for the firmware on the device. Either upgrade the API to a newer version or downgrade the device firmware to an older version for correct behavior.";
+                case -10031: return "The signal logger is not running. Start the signal logger before writing any signals.";
+                case -10032: return "Blocking operations, such as configs, cannot have a timeout of 0. Pass in a non-zero timeout (typically 0.050+ seconds) for normal operation.";
+                case -10033: return "Device cannot be licensed while it is control enabled. Disable and neutral the device to apply the licenses.";
                 default:
-                    return "Could not find description";
+                    /* because we return const char*, we cannot create
+                     * a string with the status error code */
+                    return "Could not find description for StatusCode";
                 }
+            }
+            friend std::ostream &operator<<(std::ostream &os, StatusCode status)
+            {
+                os << status.GetName() << ": " << status.GetDescription();
+                return os;
             }
             bool IsError() const { return value < 0; }
             bool IsWarning() const { return value > 0; }
@@ -1103,6 +1181,8 @@ namespace ctre
     }
 }
 
+} // extern "C++"
+
 #else // This is straight-C, so just create a typedef enum to use
 
 /**
@@ -1111,708 +1191,751 @@ namespace ctre
 typedef enum _StatusCode_t
 {
     /**
-     * \brief  No Error
+     * \brief No Error
      */
     OK = 0,
     /**
-     * \brief  InvalidDeviceSpec
+     * \brief Diagnostic Server is busy with another command.
+     */
+    TaskIsBusy = -100,
+    /**
+     * \brief InvalidDeviceSpec
      */
     InvalidDeviceSpec = -101,
     /**
-     * \brief  EcuIsNotPresent
+     * \brief Device is not present. Verify the device is connected and powered, and
+     *        that the CAN bus is terminated.
      */
     EcuIsNotPresent = -102,
     /**
-     * \brief  CouldNotEnterBl
+     * \brief Could not put the device into bootloader mode.
      */
     CouldNotEnterBl = -103,
     /**
-     * \brief  CouldNotConfirmBl
+     * \brief Could not confirm the device has entered the bootloader.
      */
     CouldNotConfirmBl = -104,
     /**
-     * \brief  CouldNotErase
+     * \brief Could not erase flash.
      */
     CouldNotErase = -105,
     /**
-     * \brief  CouldNotSendFlash
+     * \brief Could not field upgrade the device.
      */
     CouldNotSendFlash = -106,
     /**
-     * \brief  CouldNotValidate
+     * \brief Bootloader could not verify integrity of the flashed application.
      */
     CouldNotValidate = -107,
     /**
-     * \brief  CouldNotRunApp
+     * \brief Could not run the device firmware application.
      */
     CouldNotRunApp = -108,
     /**
-     * \brief  CouldNotReqSetId
+     * \brief Unable to set ID to this device.
      */
     CouldNotReqSetId = -109,
     /**
-     * \brief  CouldNotConfirmId
+     * \brief Could not verify that the changed ID took effect.
      */
     CouldNotConfirmId = -110,
     /**
-     * \brief  FlashWasGood
+     * \brief Device field upgrade was successful.
      */
     FlashWasGood = -111,
     /**
-     * \brief  AppTooOld
+     * \brief Device firmware application is too old.
      */
     AppTooOld = -112,
     /**
-     * \brief  CouldNotReqSetDesc
+     * \brief Unable to set name to this device.
      */
     CouldNotReqSetDesc = -113,
     /**
-     * \brief  CompileSzIsWrong
+     * \brief CompileSzIsWrong
      */
     CompileSzIsWrong = -114,
     /**
-     * \brief  GadgeteerDeviceNoSetId
+     * \brief Cannot set the ID of a gadgeteer device.
      */
     GadgeteerDeviceNoSetId = -115,
     /**
-     * \brief  InvalidTask
+     * \brief This diagnostic action is not supported.
      */
     InvalidTask = -116,
     /**
-     * \brief  Not Implemented, check latest installer.
+     * \brief Not Implemented, check latest installer.
      */
     NotImplemented = -117,
     /**
-     * \brief  NoDevicesOnBus
+     * \brief NoDevicesOnBus
      */
     NoDevicesOnBus = -118,
     /**
-     * \brief  MoreThanOneFile
+     * \brief MoreThanOneFile
      */
     MoreThanOneFile = -119,
     /**
-     * \brief  NodeIsInvalid
+     * \brief Specified device was not found. Verify the device is connected and
+     *        powered, and that the CAN bus is terminated.
      */
     NodeIsInvalid = -120,
     /**
-     * \brief  InvalidDeviceDescriptor
+     * \brief InvalidDeviceDescriptor
      */
     InvalidDeviceDescriptor = -121,
     /**
-     * \brief  CouldNotSendCanFrame
+     * \brief CouldNotSendCanFrame
      */
     CouldNotSendCanFrame = -123,
     /**
-     * \brief  NormalModeMsgNotPresent
+     * \brief NormalModeMsgNotPresent
      */
     NormalModeMsgNotPresent = -124,
     /**
-     * \brief  This feature is not supported.
+     * \brief This feature is not supported.
      */
     FeatureNotSupported = -125,
     /**
-     * \brief  NotUpdating
+     * \brief The diagnostic server is not field upgrading any devices.
      */
     NotUpdating = -126,
     /**
-     * \brief  CorruptedPOST
+     * \brief CorruptedPOST
      */
     CorruptedPOST = -127,
     /**
-     * \brief  NoConfigs
+     * \brief This device did not report any available configs. Verify firmware and
+     *        diagnostics are up-to-date.
      */
     NoConfigs = -128,
     /**
-     * \brief  ConfigFailed
+     * \brief ConfigFailed
      */
     ConfigFailed = -129,
     /**
-     * \brief  CouldNotReqFactoryDefault
+     * \brief Unable to factory default this device.
      */
     CouldNotReqFactoryDefault = -130,
     /**
-     * \brief  CustomNameNotSupported
+     * \brief CustomNameNotSupported
      */
     CustomNameNotSupported = -131,
     /**
-     * \brief  ConfigReadWriteMismatch
+     * \brief The configs read from the device do not match the configs that were
+     *        written.
      */
     ConfigReadWriteMismatch = -132,
     /**
-     * \brief  CouldNotReqSetConfigs
+     * \brief Could not apply the device configs.
      */
     CouldNotReqSetConfigs = -133,
     /**
-     * \brief  InsufficientSz
+     * \brief InsufficientSz
      */
     InsufficientSz = -134,
     /**
-     * \brief  InvalidModel
+     * \brief This feature is not supported for this device model.
      */
     InvalidModel = -135,
     /**
-     * \brief  CouldNotReqDevInfo
+     * \brief CouldNotReqDevInfo
      */
     CouldNotReqDevInfo = -140,
     /**
-     * \brief  NoControls
+     * \brief This device does not support new controls.
      */
     NoControls = -141,
     /**
-     * \brief  DeviceIsNull
+     * \brief DeviceIsNull
      */
     DeviceIsNull = -142,
     /**
-     * \brief  DeviceDidNotRespondToDiagReq
+     * \brief DeviceDidNotRespondToDiagReq
      */
     DeviceDidNotRespondToDiagReq = -143,
     /**
-     * \brief  OnlySupportedInTunerX
+     * \brief This feature requires Tuner X.
      */
     OnlySupportedInTunerX = -144,
     /**
-     * \brief  CanivCliError
+     * \brief Command-line issue with caniv.
      */
     CanivCliError = -145,
     /**
-     * \brief  InvalidCrfBadHeader
+     * \brief InvalidCrfBadHeader
      */
     InvalidCrfBadHeader = -200,
     /**
-     * \brief  InvalidCrfFileSzInvald
+     * \brief InvalidCrfFileSzInvald
      */
     InvalidCrfFileSzInvald = -201,
     /**
-     * \brief  InvalidCrfWrongProduct
+     * \brief Specified CRF is for the wrong product.
      */
     InvalidCrfWrongProduct = -202,
     /**
-     * \brief  InvalidCrfNoSects
+     * \brief InvalidCrfNoSects
      */
     InvalidCrfNoSects = -203,
     /**
-     * \brief  InvalidCrfBadSectHeader
+     * \brief InvalidCrfBadSectHeader
      */
     InvalidCrfBadSectHeader = -204,
     /**
-     * \brief  InvalidCrfBadSectSize
+     * \brief InvalidCrfBadSectSize
      */
     InvalidCrfBadSectSize = -205,
     /**
-     * \brief  NoCrfFile
+     * \brief Specified CRF file could not be found.
      */
     NoCrfFile = -206,
     /**
-     * \brief  CouldNotFindDynamicId
+     * \brief CouldNotFindDynamicId
      */
     CouldNotFindDynamicId = -300,
     /**
-     * \brief  DidNotGetDhcp
+     * \brief DidNotGetDhcp
      */
     DidNotGetDhcp = -301,
     /**
-     * \brief  DidNotGetFullDhcp
+     * \brief DidNotGetFullDhcp
      */
     DidNotGetFullDhcp = -302,
     /**
-     * \brief  InvalidLicenseResp
+     * \brief InvalidLicenseResp
      */
     InvalidLicenseResp = -350,
     /**
-     * \brief  InvalidCanivCache
+     * \brief InvalidCanivCache
      */
     InvalidCanivCache = -351,
     /**
-     * \brief  CannotOpenSerialPort
+     * \brief CannotOpenSerialPort
      */
     CannotOpenSerialPort = -500,
     /**
-     * \brief  CannotWriteSerialPort
+     * \brief CannotWriteSerialPort
      */
     CannotWriteSerialPort = -501,
     /**
-     * \brief  CannotReadSerialPort
+     * \brief CannotReadSerialPort
      */
     CannotReadSerialPort = -502,
     /**
-     * \brief  CannotSerialToDevice
+     * \brief CannotSerialToDevice
      */
     CannotSerialToDevice = -503,
     /**
-     * \brief  NoSerialControlFrameResp
+     * \brief NoSerialControlFrameResp
      */
     NoSerialControlFrameResp = -504,
     /**
-     * \brief  CannotOpenUdpPort
+     * \brief CannotOpenUdpPort
      */
     CannotOpenUdpPort = -600,
     /**
-     * \brief  CannotWriteUdpPort
+     * \brief CannotWriteUdpPort
      */
     CannotWriteUdpPort = -601,
     /**
-     * \brief  CannotReadUdpPort
+     * \brief CannotReadUdpPort
      */
     CannotReadUdpPort = -602,
     /**
-     * \brief  CannotUdpToDevice
+     * \brief CannotUdpToDevice
      */
     CannotUdpToDevice = -603,
     /**
-     * \brief  NoUdpControlFrameResp
+     * \brief NoUdpControlFrameResp
      */
     NoUdpControlFrameResp = -604,
     /**
-     * \brief  TimeoutIso15Response
+     * \brief TimeoutIso15Response
      */
     TimeoutIso15Response = -605,
     /**
-     * \brief  InvalidJson
+     * \brief InvalidJson
      */
     InvalidJson = -700,
     /**
-     * \brief  AppIsTerminating
+     * \brief The user application is shutting down.
      */
     AppIsTerminating = -800,
     /**
-     * \brief  CAN Message is stale.
+     * \brief CAN Message is stale.
      */
     CanMessageStale = 1000,
     /**
-     * \brief  Buffer is full, cannot insert more data.
+     * \brief Buffer is full, cannot insert more data.
      */
     BufferFull = 1006,
     /**
-     * \brief  PulseWidthSensorNotPresent
+     * \brief PulseWidthSensorNotPresent
      */
     PulseWidthSensorNotPresent = 1010,
     /**
-     * \brief  General Warning Occurred.
+     * \brief General Warning Occurred.
      */
     GeneralWarning = 1100,
     /**
-     * \brief  Firm Vers could not be retrieved. Use Phoenix Tuner to check ID and
-     *         firmware(CRF) version.
+     * \brief Firm Vers could not be retrieved. Use Phoenix Tuner X to check ID and
+     *        firmware(CRF) version.
      */
     FirmVersionCouldNotBeRetrieved = 1103,
     /**
-     * \brief  This feature will be supported in a future update.
+     * \brief This feature will be supported in a future update.
      */
     FeaturesNotAvailableYet = 1104,
     /**
-     * \brief  The control mode is not valid for this function.
+     * \brief The control mode is not valid for this function.
      */
     ControlModeNotValid = 1105,
     /**
-     * \brief  This control mode is not supported yet.  A future release will
-     *         supported this soon.
+     * \brief This control mode is not supported yet.  A future release will
+     *        supported this soon.
      */
     ControlModeNotSupportedYet = 1106,
     /**
-     * \brief  Motor Controller must have &gt;= 3.2 firmware for motion profile control
-     *         mode.
+     * \brief Motor Controller must have &gt;= 3.2 firmware for motion profile
+     *        control mode.
      */
     MotProfFirmThreshold = 1109,
     /**
-     * \brief  Motor Controller must have &gt;= 3.4 firmware for advanced PID0/PID1
-     *         features.
+     * \brief Motor Controller must have &gt;= 3.4 firmware for advanced PID0/PID1
+     *        features.
      */
     MotProfFirmThreshold2 = 1110,
     /**
-     * \brief  SimDeviceNotFound
+     * \brief SimDeviceNotFound
      */
     SimDeviceNotFound = 1200,
     /**
-     * \brief  SimPhysicsTypeNotSupported
+     * \brief SimPhysicsTypeNotSupported
      */
     SimPhysicsTypeNotSupported = 1201,
     /**
-     * \brief  SimDeviceAlreadyExists
+     * \brief SimDeviceAlreadyExists
      */
     SimDeviceAlreadyExists = 1202,
     /**
-     * \brief  Could not transmit CAN Frame.
+     * \brief Could not transmit CAN Frame.
      */
     TxFailed = -1001,
     /**
-     * \brief  Incorrect argument passed into function/VI.
+     * \brief An invalid argument was passed into the function/VI, such as a null
+     *        pointer.
      */
     InvalidParamValue = -1002,
     /**
-     * \brief  CAN frame not received/too-stale.
+     * \brief CAN frame not received/too-stale. Check the CAN bus wiring, CAN bus
+     *        utilization, and power to the device.
      */
     RxTimeout = -1003,
     /**
-     * \brief  CAN Transmit timed out.
+     * \brief CAN Transmit timed out.
      */
     TxTimeout = -1004,
     /**
-     * \brief  ArbID is incorrect.
+     * \brief ArbID is incorrect.
      */
     UnexpectedArbId = -1005,
     /**
-     * \brief  CanOverflowed
+     * \brief CanOverflowed
      */
     CanOverflowed = -1006,
     /**
-     * \brief  Sensor Not Present.
+     * \brief Sensor Not Present.
      */
     SensorNotPresent = -1007,
     /**
-     * \brief  Firmware Too Old.  Use Phoenix Tuner to field upgrade your CTRE CAN
-     *         device firmware(CRF).  Then restart your robot application to clear
-     *         this error.
+     * \brief Firmware Too Old.  Use Phoenix Tuner X to field upgrade your CTRE CAN
+     *        device firmware(CRF).  Then restart your robot application to clear
+     *        this error.
      */
     FirmwareTooOld = -1008,
     /**
-     * \brief  Control Frame Period could not be changed.  Most likely it is not
-     *         being transmitted.
+     * \brief Control Frame Period could not be changed.  Most likely it is not
+     *        being transmitted.
      */
     CouldNotChangePeriod = -1009,
     /**
-     * \brief  BufferFailure
+     * \brief BufferFailure
      */
     BufferFailure = -1010,
     /**
-     * \brief  Firmware is legacy non-FRC version.  Use Phoenix Tuner to field
-     *         upgrade your CTRE CAN device firmware(CRF).  Firmware greater than
-     *         20.0 required.
+     * \brief Firmware is legacy non-FRC version.  Use Phoenix Tuner X to field
+     *        upgrade your CTRE CAN device firmware(CRF).  Firmware greater than
+     *        20.0 required.
      */
     FirmwareNonFRC = -1011,
     /**
-     * \brief  General Error Occurred.
+     * \brief General Error Occurred.
      */
     GeneralError = -1100,
     /**
-     * \brief  No new response to update signal.
+     * \brief No new response to update signal.
      */
     SigNotUpdated = -1200,
     /**
-     * \brief  NotAllPIDValuesUpdated
+     * \brief NotAllPIDValuesUpdated
      */
     NotAllPIDValuesUpdated = -1201,
     /**
-     * \brief  GEN_PORT_ERROR
+     * \brief GEN_PORT_ERROR
      */
     GEN_PORT_ERROR = -1300,
     /**
-     * \brief  PORT_MODULE_TYPE_MISMATCH
+     * \brief PORT_MODULE_TYPE_MISMATCH
      */
     PORT_MODULE_TYPE_MISMATCH = -1301,
     /**
-     * \brief  GEN_MODULE_ERROR
+     * \brief GEN_MODULE_ERROR
      */
     GEN_MODULE_ERROR = -1400,
     /**
-     * \brief  MODULE_NOT_INIT_SET_ERROR
+     * \brief MODULE_NOT_INIT_SET_ERROR
      */
     MODULE_NOT_INIT_SET_ERROR = -1401,
     /**
-     * \brief  MODULE_NOT_INIT_GET_ERROR
+     * \brief MODULE_NOT_INIT_GET_ERROR
      */
     MODULE_NOT_INIT_GET_ERROR = -1402,
     /**
-     * \brief  Wheel Radius is too small, cannot get distance traveled.
+     * \brief Wheel Radius is too small, cannot get distance traveled.
      */
     WheelRadiusTooSmall = -1500,
     /**
-     * \brief  Ticks per revolution is 0, cannot get heading.
+     * \brief Ticks per revolution is 0, cannot get heading.
      */
     TicksPerRevZero = -1501,
     /**
-     * \brief  Distance between wheels is too small, cannot get heading.
+     * \brief Distance between wheels is too small, cannot get heading.
      */
     DistanceBetweenWheelsTooSmall = -1502,
     /**
-     * \brief  GainsAreNotSet
+     * \brief GainsAreNotSet
      */
     GainsAreNotSet = -1503,
     /**
-     * \brief  Use RemoteLimitSwitchSource instead of LimitSwitchSource.
+     * \brief Use RemoteLimitSwitchSource instead of LimitSwitchSource.
      */
     WrongRemoteLimitSwitchSource = -1504,
     /**
-     * \brief  Motor Controller Voltage Compensation should not be used with
-     *         setVoltage().  This causes compensation to happen twice.  Disable
-     *         Voltage Compensation by calling enableVoltageCompensation(false) in
-     *         order to use setVoltage().
+     * \brief Motor Controller Voltage Compensation should not be used with
+     *        setVoltage().  This causes compensation to happen twice.  Disable
+     *        Voltage Compensation by calling enableVoltageCompensation(false) in
+     *        order to use setVoltage().
      */
     DoubleVoltageCompensatingWPI = -1505,
     /**
-     * \brief  CANdleAnimSlotOutOfBounds
+     * \brief CANdleAnimSlotOutOfBounds
      */
     CANdleAnimSlotOutOfBounds = -1506,
     /**
-     * \brief  IncompatibleMode
+     * \brief IncompatibleMode
      */
     IncompatibleMode = -1600,
     /**
-     * \brief  Handle passed into function is incorrect.
+     * \brief Handle passed into function is incorrect.
      */
     InvalidHandle = -1601,
     /**
-     * \brief  Features requires newer firmware version.
+     * \brief Features requires newer firmware version.
      */
     FeatureRequiresHigherFirm = -1700,
     /**
-     * \brief  Config factory default features require firmware &gt;=3.10.
+     * \brief Config factory default features require firmware &gt;=3.10.
      */
     ConfigFactoryDefaultRequiresHigherFirm = -1702,
     /**
-     * \brief  Config Motion S Curve Strength features require firmware &gt;=4.16.
+     * \brief Config Motion S Curve Strength features require firmware &gt;=4.16.
      */
     ConfigMotionSCurveRequiresHigherFirm = -1703,
     /**
-     * \brief  Talon FX(Falcon 500) Firmware Too Old.  Use Phoenix Tuner to field
-     *         upgrade your CTRE CAN device firmware(CRF) to &gt;=20.3. Then restart
-     *         your robot application to clear this error.
+     * \brief Talon FX(Falcon 500) Firmware Too Old.  Use Phoenix Tuner to field
+     *        upgrade your CTRE CAN device firmware(CRF) to &gt;=20.3. Then restart
+     *        your robot application to clear this error.
      */
     TalonFXFirmwarePreVBatDetect = -1704,
     /**
-     * \brief  CANdleAnimationsRequireHigherFirm
+     * \brief CANdleAnimationsRequireHigherFirm
      */
     CANdleAnimationsRequireHigherFirm = -1705,
     /**
-     * \brief  LibraryCouldNotBeLoaded
+     * \brief LibraryCouldNotBeLoaded
      */
     LibraryCouldNotBeLoaded = -1800,
     /**
-     * \brief  MissingRoutineInLibrary
+     * \brief MissingRoutineInLibrary
      */
     MissingRoutineInLibrary = -1801,
     /**
-     * \brief  ResourceNotAvailable
+     * \brief ResourceNotAvailable
      */
     ResourceNotAvailable = -1802,
     /**
-     * \brief  Could not find music file specified, try specifying an absolute path.
+     * \brief Could not find music file specified, try specifying an absolute path.
      */
     MusicFileNotFound = -1900,
     /**
-     * \brief  Music file size is incorrect, could not parse correctly. Ensure
-     *         you're using Tuner to generate file.
+     * \brief Music file size is incorrect, could not parse correctly. Ensure you're
+     *        using Tuner to generate file.
      */
     MusicFileWrongSize = -1901,
     /**
-     * \brief  Music file version is too new, update Phoenix to utilize this file.
+     * \brief Music file version is too new, update Phoenix to utilize this file.
      */
     MusicFileTooNew = -1902,
     /**
-     * \brief  Music file is invalid. Ensure you're using Tuner to generate file.
+     * \brief Music file is invalid. Ensure you're using Tuner to generate file.
      */
     MusicFileInvalid = -1903,
     /**
-     * \brief  An invalid orchestra action occurred. Ensure a music file is loaded.
+     * \brief An invalid orchestra action occurred. Ensure a music file is loaded.
      */
     InvalidOrchestraAction = -1904,
     /**
-     * \brief  This music file version is too old. Regenerate file using Tuner.
+     * \brief This music file version is too old. Regenerate file using Tuner.
      */
     MusicFileTooOld = -1905,
     /**
-     * \brief  Music interrupted due to one of the instruments being commanded a
-     *         different control mode. Press Play to resume music.
+     * \brief Music interrupted due to one of the instruments being commanded a
+     *        different control mode. Press Play to resume music.
      */
     MusicInterrupted = -1906,
     /**
-     * \brief  This device doesn't support MusicTone control mode.
+     * \brief This device doesn't support MusicTone control mode.
      */
     MusicNotSupported = -1907,
     /**
-     * \brief  kInvalidInterface
+     * \brief kInvalidInterface
      */
     kInvalidInterface = -2000,
     /**
-     * \brief  kInvalidGuid
+     * \brief kInvalidGuid
      */
     kInvalidGuid = -2001,
     /**
-     * \brief  kInvalidClass
+     * \brief kInvalidClass
      */
     kInvalidClass = -2002,
     /**
-     * \brief  kInvalidProtocol
+     * \brief kInvalidProtocol
      */
     kInvalidProtocol = -2003,
     /**
-     * \brief  kInvalidPath
+     * \brief kInvalidPath
      */
     kInvalidPath = -2004,
     /**
-     * \brief  kGeneralWinUsbError
+     * \brief kGeneralWinUsbError
      */
     kGeneralWinUsbError = -2005,
     /**
-     * \brief  kFailedSetup
+     * \brief kFailedSetup
      */
     kFailedSetup = -2006,
     /**
-     * \brief  kListenFailed
+     * \brief kListenFailed
      */
     kListenFailed = -2007,
     /**
-     * \brief  kSendFailed
+     * \brief kSendFailed
      */
     kSendFailed = -2008,
     /**
-     * \brief  kReceiveFailed
+     * \brief kReceiveFailed
      */
     kReceiveFailed = -2009,
     /**
-     * \brief  kInvalidRespFormat
+     * \brief kInvalidRespFormat
      */
     kInvalidRespFormat = -2010,
     /**
-     * \brief  kWinUsbInitFailed
+     * \brief kWinUsbInitFailed
      */
     kWinUsbInitFailed = -2011,
     /**
-     * \brief  kWinUsbQueryFailed
+     * \brief kWinUsbQueryFailed
      */
     kWinUsbQueryFailed = -2012,
     /**
-     * \brief  kWinUsbGeneralError
+     * \brief kWinUsbGeneralError
      */
     kWinUsbGeneralError = -2013,
     /**
-     * \brief  kAccessDenied
+     * \brief kAccessDenied
      */
     kAccessDenied = -2014,
     /**
-     * \brief  kFirmwareInvalidResponse
+     * \brief kFirmwareInvalidResponse
      */
     kFirmwareInvalidResponse = -2015,
     /**
-     * \brief  This StatusCode has not been initialized. Make sure the StatusCode is
-     *         getting assigned to the return of a method.
+     * \brief This StatusCode has not been initialized. Make sure the StatusCode is
+     *        getting assigned to the return of a method.
      */
     StatusCodeNotInitialized = -10000,
     /**
-     * \brief  WarningNotInitialized
+     * \brief WarningNotInitialized
      */
     WarningNotInitialized = 10000,
     /**
-     * \brief  The timestamp reported by CANivore is at least 10ms older than the
-     *         timestamp reported by the system, indicating it's fallen out of sync.
-     *         This does not impact the data of this message, only the timing.
+     * \brief The timestamp reported by CANivore is at least 10ms older than the
+     *        timestamp reported by the system, indicating it's fallen out of sync.
+     *        This does not impact the data of this message, only the timing.
      */
     HwTimestampOutOfSync = 10001,
     /**
-     * \brief  InvalidNetwork
+     * \brief InvalidNetwork
      */
     InvalidNetwork = -10001,
     /**
-     * \brief  The CAN bus does not support multi-signal synchronization.
+     * \brief The CAN bus does not support multi-signal synchronization.
      */
     MultiSignalNotSupported = -10002,
     /**
-     * \brief  Could not cast from base value to this particular signal's type
+     * \brief Could not cast from base value to this particular signal's type
      */
     CouldNotCast = -10003,
     /**
-     * \brief  Could not find this value when searching for it
+     * \brief Could not find this value when searching for it
      */
     NotFound = -10004,
     /**
-     * \brief  This is not supported
+     * \brief This is not supported
      */
     NotSupported = -10005,
     /**
-     * \brief  Could not determine context from this device hash
+     * \brief Could not determine context from this device hash
      */
     MissingContext = -10006,
     /**
-     * \brief  Model name in license file does not match model name of selected
-     *         device.
+     * \brief Model name in license file does not match model name of selected
+     *        device.
      */
     ModelMismatch = -10007,
     /**
-     * \brief  Serial Number in license file does not match model name of selected
-     *         device.
+     * \brief Serial Number in license file does not match model name of selected
+     *        device.
      */
     SerialMismatch = -10008,
     /**
-     * \brief  Could not find specified file.
+     * \brief Could not find specified file.
      */
     NoFile = -10009,
     /**
-     * \brief  License did not successfully download to Device.
+     * \brief License did not successfully download to Device.
      */
     LicenseDownloadFailed = -10010,
     /**
-     * \brief  Self Test report does not have any values, is the firmware up to
-     *         date?
+     * \brief Self Test report does not have any values, is the firmware up to date?
      */
     SelfTestIsEmpty = -10011,
     /**
-     * \brief  Failed to lookup signal properties.  This can happen if the fimware
-     *         is too new and supports signals that older APIs do not support.
+     * \brief Failed to lookup signal properties.  This can happen if the fimware is
+     *        too new and supports signals that older APIs do not support.
      */
     SignalLookupFailed = -10012,
     /**
-     * \brief  The current mode of the device is invalid for getting this signal.
+     * \brief The current mode of the device is invalid for getting this signal.
      */
     InvalidModeToGetSignal = -10013,
     /**
-     * \brief  Device is not licensed. Cannot get any data from it.
+     * \brief Device is not licensed. Cannot get any data from it.
      */
     UnlicensedDevice = -10014,
     /**
-     * \brief  Size is invalid.
+     * \brief Size is invalid.
      */
     InvalidSize = -10015,
     /**
-     * \brief  InvalidLicenseResponse
+     * \brief InvalidLicenseResponse
      */
     InvalidLicenseResponse = -10016,
     /**
-     * \brief  InvalidContext
+     * \brief InvalidContext
      */
     InvalidContext = -10017,
     /**
-     * \brief  InternalError
+     * \brief InternalError
      */
     InternalError = -10018,
     /**
-     * \brief  TaskIsBusy
+     * \brief kDeviceResponseIncorrect
      */
-    TaskIsBusy = -10019,
+    kDeviceResponseIncorrect = -10019,
     /**
-     * \brief  kDeviceResponseIncorrect
+     * \brief kErrorPollingForDevices
      */
-    kDeviceResponseIncorrect = -10020,
+    kErrorPollingForDevices = -10020,
     /**
-     * \brief  kErrorPollingForDevices
+     * \brief Device firmware could not be retrieved. Check that the device is
+     *        running v6 firmware, the device ID is correct, the specified CAN bus
+     *        is correct, and the device is powered.
      */
-    kErrorPollingForDevices = -10021,
+    CouldNotRetrieveV6Firmware = -10021,
     /**
-     * \brief  Device firmware could not be retrieved. Check that the device is
-     *         running Pro firmware, that the device ID is correct, that the
-     *         specified CAN bus is correct, and that the device is powered.
+     * \brief Device firmware could not be decoded. Check that the device is running
+     *        v6 firmware, the device ID is correct, the specified CAN bus is
+     *        correct, and the device is powered.
      */
-    CouldNotRetrieveProFirmware = -10022,
+    CouldNotDecodeDeviceFirmware = -10022,
     /**
-     * \brief  Device firmware could not be decoded. Check that the device is
-     *         running Pro firmware, that the device ID is correct, that the
-     *         specified CAN bus is correct, and that the device is powered.
+     * \brief The values specified for master are in valid.  Make sure the Device ID
+     *        of master are correct.
      */
-    CouldNotDecodeDeviceFirmware = -10023,
+    InvalidIDToFollow = -10023,
     /**
-     * \brief  The values specified for master are in valid.  Make sure the Device
-     *         ID of master are correct.
+     * \brief Using a Pro only feature on an unlicensed device. The device may not
+     *        behave as expected if it continues to operate while unlicensed.
      */
-    InvalidIDToFollow = -10024,
+    UsingProFeatureOnUnlicensedDevice = -10024,
     /**
-     * \brief  Using a Pro only feature on an unlicensed device. The device may not
-     *         behave as expected if it continues to operate while unlicensed.
+     * \brief Firmware Too New.  Use Phoenix Tuner X to field upgrade your CTRE CAN
+     *        device firmware(CRF) to a compatible version.  Then restart your robot
+     *        application to clear this error.
      */
-    UsingProFeatureOnUnlicensedDevice = -10025,
+    FirmwareTooNew = -10025,
     /**
-     * \brief  Firmware Too New.  Use Phoenix Tuner to field upgrade your CTRE CAN
-     *         device firmware(CRF) to a compatible version.  Then restart your
-     *         robot application to clear this error.
+     * \brief The data frame could not be serialized for transmit.
      */
-    FirmwareTooNew = -10026,
+    CouldNotSerialize = -10026,
+    /**
+     * \brief The mechanism is disabled due to a fault in one of the devices.
+     */
+    MechanismFaulted = -10027,
+    /**
+     * \brief Firmware version is not compatible with this version of Phoenix. Make
+     *        sure your firmware and API major versions match.
+     */
+    FirmwareVersNotCompatible = -10028,
+    /**
+     * \brief Could not find specified directory.
+     */
+    DirectoryMissing = -10029,
+    /**
+     * \brief This API version is too old for the firmware on the device. Either
+     *        upgrade the API to a newer version or downgrade the device firmware to
+     *        an older version for correct behavior.
+     */
+    ApiTooOld = -10030,
+    /**
+     * \brief The signal logger is not running. Start the signal logger before
+     *        writing any signals.
+     */
+    LoggerNotRunning = -10031,
+    /**
+     * \brief Blocking operations, such as configs, cannot have a timeout of 0. Pass
+     *        in a non-zero timeout (typically 0.050+ seconds) for normal operation.
+     */
+    TimeoutCannotBeZero = -10032,
+    /**
+     * \brief Device cannot be licensed while it is control enabled. Disable and
+     *        neutral the device to apply the licenses.
+     */
+    CannotLicenseWhileEnabled = -10033,
 } StatusCode_t;
 
 /**

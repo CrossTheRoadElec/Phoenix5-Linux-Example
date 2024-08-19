@@ -21,7 +21,6 @@ namespace can {
 		uint32_t arbID; //!< ArbID of the CAN frame.
 		uint64_t hwTimestampUs; //!< Hardware timestamp if receive event. Zero otherwise.
 		uint64_t swTimestampUs; //!< Software timestamp if receive event. Zero otherwise.
-		uint64_t ecuTimestampUs; //!< ECU timestamp if receive event. Zero otherwise.
 		uint8_t data[64]; //!< Data bytes
 		uint32_t flags; //!< CAN flags, such as FD and BRS
 		uint8_t len; //!< Number of bytes in payload

@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 #pragma once
 #if defined(WIN32) || defined(_WIN32) || defined(_WIN64)
 #pragma warning (push)
@@ -19,11 +20,32 @@ namespace ctre {
 
 				/**
 				 * Configurables available to TalonFX's PID
+				 *
+				 * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+				 * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+				 * Phoenix 6 API. A migration guide is available at
+				 * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+				 *
+				 * If the Phoenix 5 API must be used for this device, the device must have 22.X
+				 * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+				 * the firmware year dropdown.
 				 */
-				struct TalonFXPIDSetConfiguration : BaseTalonPIDSetConfiguration { };
+				struct [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+								"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+								"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+				TalonFXPIDSetConfiguration : BaseTalonPIDSetConfiguration { };
 
 				/**
 				 * Configurables available to TalonFX
+				 *
+				 * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+				 * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+				 * Phoenix 6 API. A migration guide is available at
+				 * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+				 *
+				 * If the Phoenix 5 API must be used for this device, the device must have 22.X
+				 * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+				 * the firmware year dropdown.
 				 */
 				struct TalonFXConfiguration : BaseTalonConfiguration {
 
@@ -65,7 +87,9 @@ namespace ctre {
 					 */
 					ctre::phoenix::sensors::SensorInitializationStrategy initializationStrategy = ctre::phoenix::sensors::SensorInitializationStrategy::BootToZero;
 
-
+                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+								"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+								"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					TalonFXConfiguration() : BaseTalonConfiguration(FeedbackDevice::IntegratedSensor)
 					{
 					}
@@ -99,8 +123,20 @@ namespace ctre {
 
 				/**
 				 * Util class to help with talon configs
+				 *
+				 * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+				 * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+				 * Phoenix 6 API. A migration guide is available at
+				 * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+				 *
+				 * If the Phoenix 5 API must be used for this device, the device must have 22.X
+				 * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+				 * the firmware year dropdown.
 				 */
-				class TalonFXConfigUtil : BaseTalonConfigUtil { 
+				class [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+								"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+								"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+				TalonFXConfigUtil : BaseTalonConfigUtil { 
 				private:
 					static struct TalonFXConfiguration _default;
 				public:
@@ -110,11 +146,29 @@ namespace ctre {
 					 * @return if specified value is different from default
 					 * @{
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					static bool SupplyCurrentLimitDifferent(const TalonFXConfiguration& settings) { return (!settings.supplyCurrLimit.Equals(_default.supplyCurrLimit)) || !settings.enableOptimizations; }
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					static bool StatorCurrentDurationDifferent(const TalonFXConfiguration& settings) { return (!settings.statorCurrLimit.Equals(_default.statorCurrLimit)) || !settings.enableOptimizations; }
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					static bool MotorCommutationDifferent(const TalonFXConfiguration& settings) { return (settings.motorCommutation != _default.motorCommutation) || !settings.enableOptimizations; }
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					static bool AbsoluteSensorRangeDifferent(const TalonFXConfiguration& settings) { return (settings.absoluteSensorRange != _default.absoluteSensorRange) || !settings.enableOptimizations; }
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					static bool IntegratedSensorOffsetDegreesDifferent(const TalonFXConfiguration& settings) { return (settings.integratedSensorOffsetDegrees != _default.integratedSensorOffsetDegrees) || !settings.enableOptimizations; }
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					static bool InitializationStrategyDifferent(const TalonFXConfiguration& settings) { return (settings.initializationStrategy != _default.initializationStrategy) || !settings.enableOptimizations; }
 					/** @} */
 				};
@@ -148,8 +202,20 @@ namespace ctre {
 				 * motor.SetStatusFramePeriod(StatusFrameEnhanced::Status_2_Feedback0, 10); // changes the period of the Status 2 frame (GetSelectedSensor*()) to 10ms
 				 * }
 				 * </pre>
+				 *
+				 * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+				 * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+				 * Phoenix 6 API. A migration guide is available at
+				 * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+				 *
+				 * If the Phoenix 5 API must be used for this device, the device must have 22.X
+				 * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+				 * the firmware year dropdown.
 				 */
-				class TalonFX : public virtual BaseTalon
+				class [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+								"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+								"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+				TalonFX : public virtual BaseTalon
 				{
 				private:
 
@@ -184,6 +250,9 @@ namespace ctre {
 					 *	_talonLeft.set(ControlMode.PercentOutput, leftJoy);
 					 *	_talonRght.set(ControlMode.PercentOutput, rghtJoy);
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					void Set(TalonFXControlMode mode, double value);
 					/**
 					 * @param mode Sets the appropriate output on the talon, depending on the mode.
@@ -223,6 +292,9 @@ namespace ctre {
 					 *		_talonLeft.follow(_talonRght, FollwerType.AuxOutput1);
 					 *		_talonRght.set(ControlMode.MotionMagic, targetDistance, DemandType.AuxPID, desiredRobotHeading);
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					void Set(TalonFXControlMode mode, double demand0, DemandType demand1Type, double demand1);
 					//------ Invert behavior ----------//
 					/**
@@ -239,6 +311,9 @@ namespace ctre {
 					 * @param invertType
 					 *            Invert state to set.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					void SetInverted(TalonFXInvertType invertType);
 					//------ sensor selection ----------//
 					/**
@@ -254,6 +329,9 @@ namespace ctre {
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigSelectedFeedbackSensor(TalonFXFeedbackDevice feedbackDevice, int pidIdx = 0, int timeoutMs = 0);
 					//------ Current Limit ----------//
 					/**
@@ -265,6 +343,9 @@ namespace ctre {
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigSupplyCurrentLimit(const ctre::phoenix::motorcontrol::SupplyCurrentLimitConfiguration& currLimitConfigs, int timeoutMs = 50);
 					/**
 					 * Configures the stator (output) current limit.
@@ -275,6 +356,9 @@ namespace ctre {
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigStatorCurrentLimit(const ctre::phoenix::motorcontrol::StatorCurrentLimitConfiguration& currLimitConfigs, int timeoutMs = 50);
 					/**
 					 * Gets the supply current limit configuration.
@@ -283,7 +367,10 @@ namespace ctre {
 					 *            Timeout value in ms. If nonzero, function will wait for
 					 *            config success and report an error if it times out.
 					 * @return Error Code generated by function. 0 indicates no error.
-					 */				
+					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigGetSupplyCurrentLimit(ctre::phoenix::motorcontrol::SupplyCurrentLimitConfiguration& currLimitConfigsToFill, int timeoutMs = 50);
 					/**
 					 * Gets the stator (output) current limit configuration.
@@ -293,18 +380,27 @@ namespace ctre {
 					 *            config success and report an error if it times out.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigGetStatorCurrentLimit(ctre::phoenix::motorcontrol::StatorCurrentLimitConfiguration& currLimitConfigsToFill, int timeoutMs = 50);
 
 					//------ RAW Sensor API ----------//
 					/**
 					 * @return object that can get/set individual RAW sensor values.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::motorcontrol::TalonFXSensorCollection& GetSensorCollection();
 
 					//------ Simulation API ----------//
 					/**
 					 * @return object that can set simulation inputs.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::motorcontrol::TalonFXSimCollection& GetSimCollection();
 
 					//------ All Configs ----------//
@@ -319,6 +415,9 @@ namespace ctre {
 					 *              config success and report an error if it times out.
 					 *              If zero, no blocking or checking is performed.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigurePID(const TalonFXPIDSetConfiguration& pid, int pidIdx = 0, int timeoutMs = 50);
 					/**
 					* Gets all PID set persistant settings.
@@ -330,6 +429,9 @@ namespace ctre {
 					*              config success and report an error if it times out.
 					*              If zero, no blocking or checking is performed.
 					*/
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					void GetPIDConfigs(TalonFXPIDSetConfiguration& pid, int pidIdx = 0, int timeoutMs = 50);
 
 					/**
@@ -343,6 +445,9 @@ namespace ctre {
 					 *
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigAllSettings(const TalonFXConfiguration& allConfigs, int timeoutMs = 50);
 					/**
 					 * Gets all persistant settings.
@@ -353,6 +458,9 @@ namespace ctre {
 					 *              config success and report an error if it times out.
 					 *              If zero, no blocking or checking is performed.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					void GetAllConfigs(TalonFXConfiguration& allConfigs, int timeoutMs = 50);
 					/**
 					 * Configure the motor commutation type.
@@ -364,6 +472,9 @@ namespace ctre {
 					 *            success and report an error if it times out. If zero, no
 					 *            blocking or checking is performed.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigMotorCommutation(ctre::phoenix::motorcontrol::MotorCommutation motorCommutation, int timeoutMs = 0);
 					/**
 					 * @param timeoutMs
@@ -371,6 +482,9 @@ namespace ctre {
 					 *            success and report an error if it times out.
 					 * @return  The motor commutation type.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::ErrorCode ConfigGetMotorCommutation(ctre::phoenix::motorcontrol::MotorCommutation & motorCommutation, int timeoutMs = 0);
 
 					/**
@@ -385,6 +499,9 @@ namespace ctre {
 				 *            If zero, no blocking or checking is performed.
 				 * @return Error Code generated by function. 0 indicates no error.
 				 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ErrorCode ConfigIntegratedSensorAbsoluteRange(ctre::phoenix::sensors::AbsoluteSensorRange absoluteSensorRange, int timeoutMs = 0);
 					/**
 					 * Adjusts the zero point for the absolute position register.
@@ -415,6 +532,9 @@ namespace ctre {
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ErrorCode ConfigIntegratedSensorInitializationStrategy(ctre::phoenix::sensors::SensorInitializationStrategy initializationStrategy, int timeoutMs = 0);
 
 					/* ----- virtual re-directs ------- */
@@ -422,7 +542,13 @@ namespace ctre {
 					virtual void Set(ControlMode mode, double demand0, DemandType demand1Type, double demand1);
 					virtual void SetInverted(InvertType invertType);
 					virtual void SetInverted(bool bInvert);
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					virtual ctre::phoenix::ErrorCode ConfigSelectedFeedbackSensor(FeedbackDevice feedbackDevice, int pidIdx = 0, int timeoutMs = 0);
+					[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					virtual ctre::phoenix::ErrorCode ConfigSelectedFeedbackSensor(RemoteFeedbackDevice feedbackDevice, int pidIdx = 0, int timeoutMs = 0);
 
 				};// class TalonFX

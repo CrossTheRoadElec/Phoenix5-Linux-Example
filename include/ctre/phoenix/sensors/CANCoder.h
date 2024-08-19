@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 #pragma once
 
 #include <cstdint>
@@ -21,6 +22,15 @@ namespace ctre {
 
 			/**
 			 * Configurables available to CANCoder
+			 *
+			 * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+			 * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+			 * Phoenix 6 API. A migration guide is available at
+			 * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+			 *
+			 * If the Phoenix 5 API must be used for this device, the device must have 22.X
+			 * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+			 * the firmware year dropdown.
 			 */
 			struct CANCoderConfiguration : CustomParamConfiguration {
 				/**
@@ -81,6 +91,9 @@ namespace ctre {
 				/**
 				 * Constructor
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				CANCoderConfiguration() { }
 
 				/**
@@ -116,8 +129,20 @@ namespace ctre {
 
 			/**
 			 * Util class to help with configuring CANCoder
+			 *
+			 * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+			 * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+			 * Phoenix 6 API. A migration guide is available at
+			 * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+			 *
+			 * If the Phoenix 5 API must be used for this device, the device must have 22.X
+			 * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+			 * the firmware year dropdown.
 			 */
-			struct CANCoderConfigUtils : CustomParamConfigUtil {
+			struct [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+			CANCoderConfigUtils : CustomParamConfigUtil {
 			private:
 				static CANCoderConfiguration _default;
 			public:
@@ -127,14 +152,41 @@ namespace ctre {
 				 * @return if specified value is different from default
 				 * @{
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool VelocityMeasurementPeriodDifferent(const CANCoderConfiguration& settings) { return (!(settings.velocityMeasurementPeriod == _default.velocityMeasurementPeriod)) || !settings.enableOptimizations; }
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool VelocityMeasurementWindowDifferent(const CANCoderConfiguration& settings) { return (!(settings.velocityMeasurementWindow == _default.velocityMeasurementWindow)) || !settings.enableOptimizations; }
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool AbsoluteSensorRangeDifferent(const CANCoderConfiguration& settings) { return (!(settings.absoluteSensorRange == _default.absoluteSensorRange)) || !settings.enableOptimizations; }
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool MagnetOffsetDegreesDifferent(const CANCoderConfiguration& settings) { return (!(settings.magnetOffsetDegrees == _default.magnetOffsetDegrees)) || !settings.enableOptimizations; }
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool SensorDirectionDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorDirection == _default.sensorDirection)) || !settings.enableOptimizations; }
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool InitializationStrategyDifferent(const CANCoderConfiguration& settings) { return (!(settings.initializationStrategy == _default.initializationStrategy)) || !settings.enableOptimizations; }
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool SensorCoefficientDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorCoefficient == _default.sensorCoefficient)) || !settings.enableOptimizations; }
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool UnitStringDifferent(const CANCoderConfiguration& settings) { return (!(settings.unitString == _default.unitString)) || !settings.enableOptimizations; }
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				static bool SensorTimeBaseDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorTimeBase == _default.sensorTimeBase)) || !settings.enableOptimizations; }
 				/** @} */
 			};
@@ -165,8 +217,20 @@ namespace ctre {
 			 * cancoder.SetStatusFramePeriod(CANCoderStatusFrame_SensorData, 10); // changes the period of the sensor data frame to 10ms
 			 * }
 			 * </pre>
+			 *
+			 * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+			 * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+			 * Phoenix 6 API. A migration guide is available at
+			 * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+			 *
+			 * If the Phoenix 5 API must be used for this device, the device must have 22.X
+			 * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+			 * the firmware year dropdown.
 			 */
-			class CANCoder : public CANBusAddressable {
+			class [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+			CANCoder : public CANBusAddressable {
 			public:
 				/**
 				 * Constructor.
@@ -307,6 +371,9 @@ namespace ctre {
 				 *            If zero, no blocking or checking is performed.
 				 * @return Error Code generated by function. 0 indicates no error.
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				ErrorCode ConfigFeedbackCoefficient(double sensorCoefficient, const std::string& unitString, ctre::phoenix::sensors::SensorTimeBase sensortimeBase, int timeoutMs = 0);
 
 				/**
@@ -320,6 +387,9 @@ namespace ctre {
 				 *
 				 * @return The magnet health code (red/orange/green).
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				ctre::phoenix::sensors::MagnetFieldStrength GetMagnetFieldStrength();
 
 				/**
@@ -457,6 +527,9 @@ namespace ctre {
 				 *            If zero, no blocking or checking is performed.
 				 * @return Error Code generated by function. 0 indicates no error.
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				ErrorCode SetStatusFramePeriod(CANCoderStatusFrame statusFrame,
 					uint8_t periodMs, int timeoutMs = 0);
 				/**
@@ -468,6 +541,9 @@ namespace ctre {
 				 *            If zero, no blocking or checking is performed.
 				 * @return Period of the given status frame.
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				int GetStatusFramePeriod(CANCoderStatusFrame frame, int timeoutMs = 0);
 				/**
 				 * Gets the firmware version of the device.
@@ -488,6 +564,9 @@ namespace ctre {
 				 *            Container for fault statuses.
 				 * @return Error Code generated by function. 0 indicates no error.
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				ErrorCode GetFaults(CANCoderFaults& toFill);
 				/**
 				 * Gets the CANCoder sticky fault status
@@ -496,6 +575,9 @@ namespace ctre {
 				 *            Container for sticky fault statuses.
 				 * @return Error Code generated by function. 0 indicates no error.
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				ErrorCode GetStickyFaults(CANCoderStickyFaults& toFill);
 				/**
 				 * Clears the Sticky Faults
@@ -519,6 +601,9 @@ namespace ctre {
 				 *
 				 * @return Error Code generated by function. 0 indicates no error.
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				ctre::phoenix::ErrorCode ConfigAllSettings(const CANCoderConfiguration& allConfigs, int timeoutMs = 50);
 				/**
 				 * Gets all persistant settings.
@@ -529,6 +614,9 @@ namespace ctre {
 				 *              If zero, no blocking or checking is performed.
 				 * @return Error Code generated by function. 0 indicates no error.
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				ErrorCode GetAllConfigs(CANCoderConfiguration& allConfigs, int timeoutMs = 50);
 				/**
 				 * Configures all persistent settings to defaults (overloaded so timeoutMs is 50 ms).
@@ -544,6 +632,9 @@ namespace ctre {
 				/**
 				 * @return object that can set simulation inputs.
 				 */
+                [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 				CANCoderSimCollection& GetSimCollection();
 
 			private:

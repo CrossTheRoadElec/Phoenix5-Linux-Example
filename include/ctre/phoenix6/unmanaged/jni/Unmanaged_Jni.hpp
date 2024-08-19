@@ -61,6 +61,22 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_unmanaged_jni_UnmanagedJNI_JNI_1Io
 JNIEXPORT void JNICALL Java_com_ctre_phoenix6_unmanaged_jni_UnmanagedJNI_JNI_1SetPhoenixDiagnosticsStartTime
   (JNIEnv *, jclass, jdouble);
 
+/*
+ * Class:     com_ctre_phoenix6_unmanaged_jni_UnmanagedJNI
+ * Method:    JNI_GetApiCompliancy
+ * Signature: ()I
+ */
+JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_unmanaged_jni_UnmanagedJNI_JNI_1GetApiCompliancy
+  (JNIEnv *, jclass);
+
+/*
+ * Class:     com_ctre_phoenix6_unmanaged_jni_UnmanagedJNI
+ * Method:    JNI_IoControlArray
+ * Signature: ([D)V
+ */
+JNIEXPORT void JNICALL Java_com_ctre_phoenix6_unmanaged_jni_UnmanagedJNI_JNI_1IoControlArray
+  (JNIEnv *, jclass, jdoubleArray);
+
 #ifdef __cplusplus
 }
 #endif

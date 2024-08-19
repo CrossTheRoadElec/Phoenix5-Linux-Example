@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 /**
  * This header implements macros for creating storage objects 
  * with 1 byte (8bit) packing across all supported platforms.

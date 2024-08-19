@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 #pragma once
 
 /* If you are linking Phoenix on a platform that is *not* the NI RoboRIO, 

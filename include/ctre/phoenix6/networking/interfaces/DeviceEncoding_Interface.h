@@ -14,7 +14,7 @@
 extern "C"
 {
 #endif
-    CTREXPORT int c_ctre_phoenix6_encode_device(Context context, int deviceId, const char *model, uint32_t *deviceEncoding);
+    CTREXPORT int c_ctre_phoenix6_encode_device(int deviceId, const char *model, const char *canbus, uint32_t *deviceEncoding);
 #ifdef __cplusplus
 }
 #endif

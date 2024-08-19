@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 /*
  *  Software License Agreement
  *
@@ -35,17 +36,6 @@
 #include "ctre/phoenix/sensors/BasePigeonSimCollection.h"
 #include "ctre/phoenix/sensors/BasePigeon.h"
 
-/* forward prototype */
-namespace ctre {
-namespace phoenix {
-namespace motorcontrol {
-namespace can {
-class TalonSRX;
-}
-}
-}
-}
-
 namespace ctre {
 namespace phoenix {
 /** sensors namespace */
@@ -53,6 +43,15 @@ namespace sensors {
 
 /**
  * Configurables available to Pigeon
+ *
+ * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+ * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+ * Phoenix 6 API. A migration guide is available at
+ * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+ *
+ * If the Phoenix 5 API must be used for this device, the device must have 22.X
+ * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+ * the firmware year dropdown.
  */
 struct Pigeon2Configuration : CustomParamConfiguration{
     double MountPoseYaw {0};
@@ -64,6 +63,10 @@ struct Pigeon2Configuration : CustomParamConfiguration{
 	double XAxisGyroError{0};
 	double YAxisGyroError{0};
 	double ZAxisGyroError{0};
+
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+                "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 	Pigeon2Configuration() {}
 
     /**
@@ -87,8 +90,20 @@ struct Pigeon2Configuration : CustomParamConfiguration{
 
 /**
  * Util class to help with Pigeon configurations
+ *
+ * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+ * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+ * Phoenix 6 API. A migration guide is available at
+ * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+ *
+ * If the Phoenix 5 API must be used for this device, the device must have 22.X
+ * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+ * the firmware year dropdown.
  */
-struct Pigeon2ConfigUtils {
+struct [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+				"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+				"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+Pigeon2ConfigUtils {
 private:
 	static Pigeon2Configuration _default;
 public:
@@ -98,16 +113,49 @@ public:
 	 * @return if specified value is different from default
 	 * @{
 	 */
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool MountPoseYawDifferent (const Pigeon2Configuration &  settings) { return (!(settings.MountPoseYaw == _default.MountPoseYaw)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool MountPosePitchDifferent (const Pigeon2Configuration &  settings) { return (!(settings.MountPosePitch == _default.MountPosePitch)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool MountPoseRollDifferent(const Pigeon2Configuration &  settings) { return (!(settings.MountPoseRoll == _default.MountPoseRoll)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool EnableCompassDifferent(const Pigeon2Configuration &  settings) { return (!(settings.EnableCompass == _default.EnableCompass)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool DisableTemperatureCompensationDifferent(const Pigeon2Configuration &  settings) { return (!(settings.DisableTemperatureCompensation == _default.DisableTemperatureCompensation)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool DisableNoMotionCalibrationDifferent(const Pigeon2Configuration &  settings) { return (!(settings.DisableNoMotionCalibration == _default.DisableNoMotionCalibration)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool XAxisGyroErrorDifferent(Pigeon2Configuration settings) { return (!(settings.XAxisGyroError == _default.XAxisGyroError)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool YAxisGyroErrorDifferent(Pigeon2Configuration settings) { return (!(settings.YAxisGyroError == _default.YAxisGyroError)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     static bool ZAxisGyroErrorDifferent(Pigeon2Configuration settings) { return (!(settings.ZAxisGyroError == _default.ZAxisGyroError)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 	static bool CustomParam0Different (const Pigeon2Configuration & settings) { return (!(settings.customParam0 == _default.customParam0)) || !settings.enableOptimizations; }
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+            "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+            "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 	static bool CustomParam1Different (const Pigeon2Configuration & settings) { return (!(settings.customParam1 == _default.customParam1)) || !settings.enableOptimizations; }
 	/** @} */
 };
@@ -115,8 +163,20 @@ public:
 /**
  * Enumerations for what primary axis to talk about
  * Positive indicates in n the direction, negative indicates in the opposite direction
+ *
+ * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+ * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+ * Phoenix 6 API. A migration guide is available at
+ * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+ *
+ * If the Phoenix 5 API must be used for this device, the device must have 22.X
+ * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+ * the firmware year dropdown.
  */
-enum class AxisDirection {
+enum class [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+				"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+				"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+AxisDirection {
 	PositiveZ,
 	PositiveY,
 	PositiveX,
@@ -152,8 +212,20 @@ enum class AxisDirection {
  * ErrorCode faultsError = pigeon.GetFaults(faults); // fills faults with the current Pigeon 2 faults; returns the last error generated
  * }
  * </pre>
+ *
+ * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+ * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
+ * Phoenix 6 API. A migration guide is available at
+ * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+ *
+ * If the Phoenix 5 API must be used for this device, the device must have 22.X
+ * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+ * the firmware year dropdown.
  */
-class Pigeon2: public BasePigeon {
+class [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+				"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+				"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+Pigeon2: public BasePigeon {
 public:
 	/**
 	 * Create a Pigeon object that communicates with Pigeon on CAN Bus.
@@ -171,6 +243,9 @@ public:
 	 *            Container for fault statuses.
 	 * @return Error Code generated by function. 0 indicates no error.
 	 */
+	[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 	ErrorCode GetFaults(Pigeon2_Faults & toFill) ;
 	/**
 	 * Gets the sticky fault status
@@ -179,18 +254,24 @@ public:
 	 *            Container for sticky fault statuses.
 	 * @return Error Code generated by function. 0 indicates no error.
 	 */
+	[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 	ErrorCode GetStickyFaults(Pigeon2_StickyFaults & toFill);
 
 	/**
 	 * Configure the Mount Pose using the primary axis.
 	 * This is useful if the Pigeon 2.0 is mounted straight, and you only
 	 * need to describe what axis is forward and what axis is up.
-	 * 
+	 *
 	 * @param forward Axis that points forward from the robot
 	 * @param up Axis that points up from the robot
 	 * @param timeoutMs Config timeout in milliseconds.
 	 * @return OK if successful, InvalidParamValue if both forward and up are of the same primary axis, otherwise config return.
 	 */
+	[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 	ErrorCode ConfigMountPose(AxisDirection forward, AxisDirection up, int timeoutMs = 50);
 
 	/**
@@ -331,6 +412,9 @@ public:
      *
      * @return Error Code generated by function. 0 indicates no error.
      */
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 	ErrorCode ConfigAllSettings(Pigeon2Configuration& settings, int timeoutMs = 50);
 	/**
 	 * Gets all persistant settings.
@@ -341,6 +425,9 @@ public:
 	 *              config success and report an error if it times out.
 	 *              If zero, no blocking or checking is performed.
 	 */
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 	void GetAllConfigs(Pigeon2Configuration& allConfigs, int timeoutMs = 50);
 
 };// class Pigeon2

@@ -10,6 +10,7 @@
 #include "ctre/phoenix/export.h"
 #include "ctre/phoenix6/networking/interfaces/DeviceEncoding_Interface.h"
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifdef __cplusplus
 extern "C"
@@ -17,7 +18,7 @@ extern "C"
 #endif
 
     CTREXPORT int c_ctre_phoenix6_set_configs(
-        Context context,
+        int context,
         const char *network,
         int deviceHash,
         double timeoutSeconds,
@@ -28,7 +29,7 @@ extern "C"
         bool useDid);
 
     CTREXPORT int c_ctre_phoenix6_get_configs(
-        Context context,
+        int context,
         const char *network,
         int deviceHash,
         double timeoutSeconds,
