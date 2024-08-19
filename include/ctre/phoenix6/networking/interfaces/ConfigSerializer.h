@@ -31,6 +31,8 @@ extern "C"
     CTREXPORT int c_ctre_phoenix6_deserialize_int(int spn, const char *str, uint32_t strlen, int *val);
     CTREXPORT int c_ctre_phoenix6_deserialize_bool(int spn, const char *str, uint32_t strlen, bool *val);
     CTREXPORT int c_ctre_phoenix6_deserialize_pgn(int spn, const char *str, uint32_t strlen, uint16_t *frame_index, uint16_t *framePeriodMs);
+
+    CTREXPORT void c_ctre_phoenix6_free_memory(char **str);
 #ifdef __cplusplus
 }
 #endif

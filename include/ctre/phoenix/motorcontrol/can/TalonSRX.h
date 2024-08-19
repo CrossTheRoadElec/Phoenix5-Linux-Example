@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 #pragma once
 #if defined(WIN32) || defined(_WIN32) || defined(_WIN64)
 #pragma warning (push)

@@ -39,6 +39,8 @@ namespace unmanaged {
 	 */
 	CTREXPORT int GetPhoenixVersion();
 	CTREXPORT void LoadPhoenix();
+
+    CTREXPORT int GetApiCompliancy();
 }
 }
 }

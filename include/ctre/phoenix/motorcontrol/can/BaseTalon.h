@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿/* Copyright (C) Cross The Road Electronics 2024 */
+#pragma once
 #if defined(WIN32) || defined(_WIN32) || defined(_WIN64)
 #pragma warning (push)
 #pragma warning (disable : 4250)
@@ -272,10 +273,22 @@ namespace ctre {
 					ctre::phoenix::motorcontrol::TalonFXSimCollection* _simCollFx;
 
 				protected:
+                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::motorcontrol::SensorCollection& GetTalonSRXSensorCollection() { return *_sensorCollSrx; }
+                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::motorcontrol::TalonFXSensorCollection& GetTalonFXSensorCollection() { return *_sensorCollFx; }
 
+                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::motorcontrol::TalonSRXSimCollection& GetTalonSRXSimCollection() { return *_simCollSrx; }
+                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
+							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::motorcontrol::TalonFXSimCollection& GetTalonFXSimCollection() { return *_simCollFx; }
 
 					ctre::phoenix::ErrorCode ConfigurePID(const BaseTalonPIDSetConfiguration& pid, int pidIdx, int timeoutMs, bool enableOptimizations);

@@ -16,10 +16,10 @@ extern "C" {
 /*
  * Class:     com_ctre_phoenix6_hardware_jni_HardwareJNI
  * Method:    getDeviceHash
- * Signature: (IILjava/lang/String;)I
+ * Signature: (ILjava/lang/String;Ljava/lang/String;)I
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix6_hardware_jni_HardwareJNI_getDeviceHash
-  (JNIEnv *, jclass, jint, jint, jstring);
+  (JNIEnv *, jclass, jint, jstring, jstring);
 
 #ifdef __cplusplus
 }

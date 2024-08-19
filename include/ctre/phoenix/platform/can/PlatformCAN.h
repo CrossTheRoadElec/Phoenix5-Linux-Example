@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 #include "ctre/phoenix/cci/PlatformCAN_CCI.h"
 
 namespace ctre {

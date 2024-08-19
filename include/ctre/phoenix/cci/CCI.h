@@ -1,3 +1,4 @@
+/* Copyright (C) Cross The Road Electronics 2024 */
 //Legacy Export Define.  New code should use CTREXPORT from ctre/phoenix/export.h
 #ifndef CCIEXPORT
 
