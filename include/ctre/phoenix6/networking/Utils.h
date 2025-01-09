@@ -14,7 +14,9 @@ extern "C"
 #endif
 
 CTREXPORT double c_ctre_phoenix6_get_current_time_seconds();
+CTREXPORT double c_ctre_phoenix6_get_system_time_seconds();
 CTREXPORT int c_ctre_phoenix6_is_simulation();
+CTREXPORT int c_ctre_phoenix6_is_replay();
 
 #ifdef __cplusplus
 }

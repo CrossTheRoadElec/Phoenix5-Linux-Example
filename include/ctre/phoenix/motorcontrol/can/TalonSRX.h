@@ -97,7 +97,7 @@ namespace ctre {
 				 */
 				class TalonSRXConfigUtil : BaseTalonConfigUtil { 
 				private:
-					static struct TalonSRXConfiguration _default;
+					static const struct TalonSRXConfiguration &_default();
 				public:
 					/**
 					 * Determine if specified value is different from default
@@ -105,9 +105,9 @@ namespace ctre {
 					 * @return if specified value is different from default
 					 * @{
 					 */
-					static bool PeakCurrentLimitDifferent(const TalonSRXConfiguration& settings) { return (!(settings.peakCurrentLimit == _default.peakCurrentLimit)) || !settings.enableOptimizations; }
-					static bool PeakCurrentDurationDifferent(const TalonSRXConfiguration& settings) { return (!(settings.peakCurrentDuration == _default.peakCurrentDuration)) || !settings.enableOptimizations; }
-					static bool ContinuousCurrentLimitDifferent(const TalonSRXConfiguration& settings) { return (!(settings.continuousCurrentLimit == _default.continuousCurrentLimit)) || !settings.enableOptimizations; }
+					static bool PeakCurrentLimitDifferent(const TalonSRXConfiguration& settings) { return (!(settings.peakCurrentLimit == _default().peakCurrentLimit)) || !settings.enableOptimizations; }
+					static bool PeakCurrentDurationDifferent(const TalonSRXConfiguration& settings) { return (!(settings.peakCurrentDuration == _default().peakCurrentDuration)) || !settings.enableOptimizations; }
+					static bool ContinuousCurrentLimitDifferent(const TalonSRXConfiguration& settings) { return (!(settings.continuousCurrentLimit == _default().continuousCurrentLimit)) || !settings.enableOptimizations; }
 
 					/** @} */
 				};

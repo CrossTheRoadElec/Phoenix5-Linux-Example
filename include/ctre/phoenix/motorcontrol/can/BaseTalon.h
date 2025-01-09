@@ -10,9 +10,7 @@
 #include "ctre/phoenix/motorcontrol/SupplyCurrentLimitConfiguration.h"
 #include "ctre/phoenix/CustomParamConfiguration.h"
 #include "ctre/phoenix/motorcontrol/SensorCollection.h"
-#include "ctre/phoenix/motorcontrol/TalonFXSensorCollection.h"
 #include "ctre/phoenix/motorcontrol/TalonSRXSimCollection.h"
-#include "ctre/phoenix/motorcontrol/TalonFXSimCollection.h"
 
 /* forward proto's */
 namespace ctre {
@@ -38,7 +36,6 @@ namespace ctre {
 					 * Alternatively the product specific enum can be used instead.
 					 *	@code
 					 *	configs.primaryPID.selectedFeedbackSensor = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
-					 *	configs.primaryPID.selectedFeedbackSensor = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice selectedFeedbackSensor;
@@ -73,7 +70,7 @@ namespace ctre {
 				 */
 				struct BaseTalonPIDSetConfigUtil {
 				private:
-					static BaseTalonPIDSetConfiguration _default;
+					static const BaseTalonPIDSetConfiguration &_default();
 				public:
 					/* Default feedback sensor is product specific. In order to ensure user always gets what they expect when selecting feedback sensor,
 					   SelectedFeedbackSensorDifferent will always return true */
@@ -84,8 +81,8 @@ namespace ctre {
 					 * @return if specified value is different from default
 					 * @{
 					 */
-					static bool SelectedFeedbackSensorDifferent(const BaseTalonPIDSetConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.selectedFeedbackSensor == _default.selectedFeedbackSensor)); }
-					static bool SelectedFeedbackCoefficientDifferent(const BaseTalonPIDSetConfiguration& settings) { return (!(settings.selectedFeedbackCoefficient == _default.selectedFeedbackCoefficient)); }
+					static bool SelectedFeedbackSensorDifferent(const BaseTalonPIDSetConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.selectedFeedbackSensor == _default().selectedFeedbackSensor)); }
+					static bool SelectedFeedbackCoefficientDifferent(const BaseTalonPIDSetConfiguration& settings) { return (!(settings.selectedFeedbackCoefficient == _default().selectedFeedbackCoefficient)); }
 					/** @} */
 				};
 
@@ -140,7 +137,6 @@ namespace ctre {
 					 * Alternatively the product specific enum can be used instead.
 					 *	@code
 					 *	configs.sum0Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
-					 *	configs.sum0Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice sum0Term;
@@ -150,7 +146,6 @@ namespace ctre {
 					 * Alternatively the product specific enum can be used instead.
 					 *	@code
 					 *	configs.sum1Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
-					 *	configs.sum1Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice sum1Term;
@@ -160,7 +155,6 @@ namespace ctre {
 					 * Alternatively the product specific enum can be used instead.
 					 *	@code
 					 *	configs.diff0Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
-					 *	configs.diff0Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice diff0Term;
@@ -170,7 +164,6 @@ namespace ctre {
 					 * Alternatively the product specific enum can be used instead.
 					 *	@code
 					 *	configs.diff1Term = (FeedbackDevice)TalonSRXFeedbackDevice::QuadEncoder;
-					 *	configs.diff1Term = (FeedbackDevice)TalonFXFeedbackDevice::IntegratedSensor;
 					 *	@endcode
 					 */
 					FeedbackDevice diff1Term;
@@ -229,7 +222,7 @@ namespace ctre {
 				 */
 				class BaseTalonConfigUtil {
 				private:
-					static struct BaseTalonConfiguration _default;
+					static const struct BaseTalonConfiguration &_default();
 				public:
 					/* Default feedback sensor is product specific. In order to ensure user always gets what they expect when selecting feedback sensor,
 					   (Sum/Diff)(0/1)TermDifferent will always return true */
@@ -240,16 +233,16 @@ namespace ctre {
 					 * @return if specified value is different from default
 					 * @{
 					 */
-					static bool ForwardLimitSwitchSourceDifferent(const BaseTalonConfiguration& settings) { return (!(settings.forwardLimitSwitchSource == _default.forwardLimitSwitchSource)) || !settings.enableOptimizations; }
-					static bool ReverseLimitSwitchSourceDifferent(const BaseTalonConfiguration& settings) { return (!(settings.reverseLimitSwitchSource == _default.reverseLimitSwitchSource)) || !settings.enableOptimizations; }
-					static bool ForwardLimitSwitchDeviceIDDifferent(const BaseTalonConfiguration& settings) { return (!(settings.forwardLimitSwitchDeviceID == _default.forwardLimitSwitchDeviceID)) || !settings.enableOptimizations; }
-					static bool ReverseLimitSwitchDeviceIDDifferent(const BaseTalonConfiguration& settings) { return (!(settings.reverseLimitSwitchDeviceID == _default.reverseLimitSwitchDeviceID)) || !settings.enableOptimizations; }
-					static bool ForwardLimitSwitchNormalDifferent(const BaseTalonConfiguration& settings) { return (!(settings.forwardLimitSwitchNormal == _default.forwardLimitSwitchNormal)) || !settings.enableOptimizations; }
-					static bool ReverseLimitSwitchNormalDifferent(const BaseTalonConfiguration& settings) { return (!(settings.reverseLimitSwitchNormal == _default.reverseLimitSwitchNormal)) || !settings.enableOptimizations; }
-					static bool Sum0TermDifferent(const BaseTalonConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.sum0Term == _default.sum0Term)) || !settings.enableOptimizations; }
-					static bool Sum1TermDifferent(const BaseTalonConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.sum1Term == _default.sum1Term)) || !settings.enableOptimizations; }
-					static bool Diff0TermDifferent(const BaseTalonConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.diff0Term == _default.diff0Term)) || !settings.enableOptimizations; }
-					static bool Diff1TermDifferent(const BaseTalonConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.diff1Term == _default.diff1Term)) || !settings.enableOptimizations; }
+					static bool ForwardLimitSwitchSourceDifferent(const BaseTalonConfiguration& settings) { return (!(settings.forwardLimitSwitchSource == _default().forwardLimitSwitchSource)) || !settings.enableOptimizations; }
+					static bool ReverseLimitSwitchSourceDifferent(const BaseTalonConfiguration& settings) { return (!(settings.reverseLimitSwitchSource == _default().reverseLimitSwitchSource)) || !settings.enableOptimizations; }
+					static bool ForwardLimitSwitchDeviceIDDifferent(const BaseTalonConfiguration& settings) { return (!(settings.forwardLimitSwitchDeviceID == _default().forwardLimitSwitchDeviceID)) || !settings.enableOptimizations; }
+					static bool ReverseLimitSwitchDeviceIDDifferent(const BaseTalonConfiguration& settings) { return (!(settings.reverseLimitSwitchDeviceID == _default().reverseLimitSwitchDeviceID)) || !settings.enableOptimizations; }
+					static bool ForwardLimitSwitchNormalDifferent(const BaseTalonConfiguration& settings) { return (!(settings.forwardLimitSwitchNormal == _default().forwardLimitSwitchNormal)) || !settings.enableOptimizations; }
+					static bool ReverseLimitSwitchNormalDifferent(const BaseTalonConfiguration& settings) { return (!(settings.reverseLimitSwitchNormal == _default().reverseLimitSwitchNormal)) || !settings.enableOptimizations; }
+					static bool Sum0TermDifferent(const BaseTalonConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.sum0Term == _default().sum0Term)) || !settings.enableOptimizations; }
+					static bool Sum1TermDifferent(const BaseTalonConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.sum1Term == _default().sum1Term)) || !settings.enableOptimizations; }
+					static bool Diff0TermDifferent(const BaseTalonConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.diff0Term == _default().diff0Term)) || !settings.enableOptimizations; }
+					static bool Diff1TermDifferent(const BaseTalonConfiguration& settings) { (void) settings; return true; } //{ return (!(settings.diff1Term == _default().diff1Term)) || !settings.enableOptimizations; }
 
 					static bool ForwardLimitSwitchDifferent(const BaseTalonConfiguration& settings) {
 						return ForwardLimitSwitchDeviceIDDifferent(settings) || ForwardLimitSwitchNormalDifferent(settings) || ForwardLimitSwitchSourceDifferent(settings);
@@ -267,29 +260,12 @@ namespace ctre {
 				{
 				private:
 					ctre::phoenix::motorcontrol::SensorCollection* _sensorCollSrx;
-					ctre::phoenix::motorcontrol::TalonFXSensorCollection* _sensorCollFx;
 
 					ctre::phoenix::motorcontrol::TalonSRXSimCollection* _simCollSrx;
-					ctre::phoenix::motorcontrol::TalonFXSimCollection* _simCollFx;
 
 				protected:
-                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
-							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
-							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::motorcontrol::SensorCollection& GetTalonSRXSensorCollection() { return *_sensorCollSrx; }
-                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
-							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
-							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-					ctre::phoenix::motorcontrol::TalonFXSensorCollection& GetTalonFXSensorCollection() { return *_sensorCollFx; }
-
-                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
-							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
-							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					ctre::phoenix::motorcontrol::TalonSRXSimCollection& GetTalonSRXSimCollection() { return *_simCollSrx; }
-                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
-							"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
-							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-					ctre::phoenix::motorcontrol::TalonFXSimCollection& GetTalonFXSimCollection() { return *_simCollFx; }
 
 					ctre::phoenix::ErrorCode ConfigurePID(const BaseTalonPIDSetConfiguration& pid, int pidIdx, int timeoutMs, bool enableOptimizations);
 
@@ -442,7 +418,6 @@ namespace ctre {
 					/**
 					 * Gets the output current of the motor controller.
 					 * In the case of TalonSRX class, this routine returns supply current for legacy reasons.  In order to get the "true" output current, call GetStatorCurrent().
-					 * In the case of TalonFX class, this routine returns the true output stator current.
 					 *
 					 * [[deprecated("Use GetStatorCurrent/GetSupplyCurrent instead.")]]
 					 *

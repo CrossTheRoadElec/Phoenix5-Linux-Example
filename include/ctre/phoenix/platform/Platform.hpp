@@ -1,4 +1,4 @@
-/*
+ /*
  * Copyright (C) Cross The Road Electronics.  All rights reserved.
  * License information can be found in CTRE_LICENSE.txt
  * For support and suggestions contact support@ctr-electronics.com or file
@@ -13,6 +13,7 @@
 #include <map>
 #include <set>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace ctre
@@ -24,7 +25,7 @@ namespace ctre
             namespace can
             {
 
-                CTREXPORT int32_t RegisterCANbus(char const *canbus);
+                CTREXPORT int32_t RegisterCANbus(char const *canbus, bool printErr = true);
                 CTREXPORT std::string GetCANivoreDevName(char const *canbus);
 
                 CTREXPORT std::vector<std::string> GetCANbusList(void);
@@ -75,6 +76,18 @@ namespace ctre
             CTREXPORT int32_t SimSetPhysicsInput(DeviceType type, int id, std::string_view physicsType, double value);
             CTREXPORT int32_t SimGetPhysicsValue(DeviceType type, int id, std::string_view physicsType, double &value);
             CTREXPORT int32_t SimGetLastError(DeviceType type, int id);
+
+            CTREXPORT int32_t ReplayLoadFile(char const *filepath);
+            CTREXPORT void ReplayCloseFile();
+            CTREXPORT bool ReplayIsFileLoaded();
+
+            CTREXPORT int32_t ReplayPlay();
+            CTREXPORT int32_t ReplayPause();
+            CTREXPORT int32_t ReplayStop();
+            CTREXPORT bool ReplayIsRunning(uint16_t timeoutMs);
+
+            CTREXPORT void ReplaySetSpeed(double speed);
+            CTREXPORT int32_t ReplayStepTiming(double stepTimeSeconds);
 
         } // namespace platform
     } // namespace phoenix

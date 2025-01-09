@@ -180,21 +180,46 @@ License Options
         Each season pass is bound to a single FRC team number, and requires use of a roboRIO.
         The release year of all involved software components must match license year for licensing to occur.
 
-    Phoenix Tuner
+    Phoenix Tuner X
 
-        Phoenix Tuner does not require a monetary purchase.
-        However certain features may not be available without purchased licensing.
+        Phoenix Tuner X does not require a monetary purchase on the Microsoft Windows or Google Android
+        platforms.
+
+        Phoenix Tuner X does require a monetary purchase on Apple iOS or Apple
+        macOS platforms.
+
+        Certain features may not be available without additional license purchase.
 
         The Company licenses to You the right to use Tuner to monitor, field-upgrade, and configure
         Devices.
 
     owlet
         The owlet extraction tool may be used without monetary purchase.
-        However certain features may not be available without purchased licensing.
 
         The Company licenses to You the right to use owlet to extract data logged from Phoenix integrated logger (hoot files).
 
-        Notwithstanding the license restrictions above, owlet may be re-distributed only with expressed permission from CTRE.
+        Certain features may not be available without additional license purchase.
+
+        owlet may be re-distributed only with expressed permission from the Company.
+
+    caniv
+        The caniv tool may be used without monetary purchase.
+
+        The Company licenses to You the right to use caniv to manage Devices.
+        
+        Certain features may not be available without additional license purchase.
+
+        caniv may be re-distributed only with expressed permission from the Company.
+
+    Phoenix Diagnostic Server
+        The Phoenix Diagnostic Server may be used without monetary purchase.
+
+        The Company licenses to You the right to use Phoenix Diagnostic Server to manage Devices.
+
+        Certain features may not be available without additional license purchase.
+
+        Phoenix Diagnostics Server may be re-distributed only with expressed 
+        permission from the Company.
 
 Indemnification
 

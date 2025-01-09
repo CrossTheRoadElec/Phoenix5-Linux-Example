@@ -52,7 +52,7 @@ struct VictorSPXPIDSetConfiguration : BasePIDSetConfiguration {
  */
 struct VictorSPXPIDSetConfigUtil {
 	private:
-		static VictorSPXPIDSetConfiguration _default;
+		static const VictorSPXPIDSetConfiguration &_default();
 	public:
 		/**
 		 * Determine if specified value is different from default
@@ -60,8 +60,8 @@ struct VictorSPXPIDSetConfigUtil {
 		 * @return if specified value is different from default
 		 * @{
 		 */
-		static bool SelectedFeedbackSensorDifferent (const VictorSPXPIDSetConfiguration & settings) { return (!(settings.selectedFeedbackSensor == _default.selectedFeedbackSensor)); }
-		static bool SelectedFeedbackCoefficientDifferent (const VictorSPXPIDSetConfiguration & settings) { return (!(settings.selectedFeedbackCoefficient == _default.selectedFeedbackCoefficient)); }
+		static bool SelectedFeedbackSensorDifferent (const VictorSPXPIDSetConfiguration & settings) { return (!(settings.selectedFeedbackSensor == _default().selectedFeedbackSensor)); }
+		static bool SelectedFeedbackCoefficientDifferent (const VictorSPXPIDSetConfiguration & settings) { return (!(settings.selectedFeedbackCoefficient == _default().selectedFeedbackCoefficient)); }
 		/** @} */
 };
 
@@ -176,7 +176,7 @@ struct VictorSPXConfiguration : BaseMotorControllerConfiguration {
  */
 class VictorConfigUtil {
 	private:
-		static struct VictorSPXConfiguration _default;
+		static const struct VictorSPXConfiguration &_default();
 	public:
 		/**
 		 * Determine if specified value is different from default
@@ -184,16 +184,16 @@ class VictorConfigUtil {
 		 * @return if specified value is different from default
 		 * @{
 		 */
-		static bool ForwardLimitSwitchSourceDifferent (const VictorSPXConfiguration & settings) { return (!(settings.forwardLimitSwitchSource == _default.forwardLimitSwitchSource)) || !settings.enableOptimizations; }
-		static bool ReverseLimitSwitchSourceDifferent (const VictorSPXConfiguration & settings) { return (!(settings.reverseLimitSwitchSource == _default.reverseLimitSwitchSource)) || !settings.enableOptimizations; }
-		static bool ForwardLimitSwitchDeviceIDDifferent (const VictorSPXConfiguration & settings) { return (!(settings.forwardLimitSwitchDeviceID == _default.forwardLimitSwitchDeviceID)) || !settings.enableOptimizations; }
-		static bool ReverseLimitSwitchDeviceIDDifferent (const VictorSPXConfiguration & settings) { return (!(settings.reverseLimitSwitchDeviceID == _default.reverseLimitSwitchDeviceID)) || !settings.enableOptimizations; }
-		static bool ForwardLimitSwitchNormalDifferent (const VictorSPXConfiguration & settings) { return (!(settings.forwardLimitSwitchNormal == _default.forwardLimitSwitchNormal)) || !settings.enableOptimizations; }
-		static bool ReverseLimitSwitchNormalDifferent (const VictorSPXConfiguration & settings) { return (!(settings.reverseLimitSwitchNormal == _default.reverseLimitSwitchNormal)) || !settings.enableOptimizations; }
-		static bool Sum0TermDifferent (const VictorSPXConfiguration & settings) { return (!(settings.sum0Term == _default.sum0Term)) || !settings.enableOptimizations; }
-		static bool Sum1TermDifferent (const VictorSPXConfiguration & settings) { return (!(settings.sum1Term == _default.sum1Term)) || !settings.enableOptimizations; }
-		static bool Diff0TermDifferent (const VictorSPXConfiguration & settings) { return (!(settings.diff0Term == _default.diff0Term)) || !settings.enableOptimizations; }
-		static bool Diff1TermDifferent (const VictorSPXConfiguration & settings) { return (!(settings.diff1Term == _default.diff1Term)) || !settings.enableOptimizations; }
+		static bool ForwardLimitSwitchSourceDifferent (const VictorSPXConfiguration & settings) { return (!(settings.forwardLimitSwitchSource == _default().forwardLimitSwitchSource)) || !settings.enableOptimizations; }
+		static bool ReverseLimitSwitchSourceDifferent (const VictorSPXConfiguration & settings) { return (!(settings.reverseLimitSwitchSource == _default().reverseLimitSwitchSource)) || !settings.enableOptimizations; }
+		static bool ForwardLimitSwitchDeviceIDDifferent (const VictorSPXConfiguration & settings) { return (!(settings.forwardLimitSwitchDeviceID == _default().forwardLimitSwitchDeviceID)) || !settings.enableOptimizations; }
+		static bool ReverseLimitSwitchDeviceIDDifferent (const VictorSPXConfiguration & settings) { return (!(settings.reverseLimitSwitchDeviceID == _default().reverseLimitSwitchDeviceID)) || !settings.enableOptimizations; }
+		static bool ForwardLimitSwitchNormalDifferent (const VictorSPXConfiguration & settings) { return (!(settings.forwardLimitSwitchNormal == _default().forwardLimitSwitchNormal)) || !settings.enableOptimizations; }
+		static bool ReverseLimitSwitchNormalDifferent (const VictorSPXConfiguration & settings) { return (!(settings.reverseLimitSwitchNormal == _default().reverseLimitSwitchNormal)) || !settings.enableOptimizations; }
+		static bool Sum0TermDifferent (const VictorSPXConfiguration & settings) { return (!(settings.sum0Term == _default().sum0Term)) || !settings.enableOptimizations; }
+		static bool Sum1TermDifferent (const VictorSPXConfiguration & settings) { return (!(settings.sum1Term == _default().sum1Term)) || !settings.enableOptimizations; }
+		static bool Diff0TermDifferent (const VictorSPXConfiguration & settings) { return (!(settings.diff0Term == _default().diff0Term)) || !settings.enableOptimizations; }
+		static bool Diff1TermDifferent (const VictorSPXConfiguration & settings) { return (!(settings.diff1Term == _default().diff1Term)) || !settings.enableOptimizations; }
 		
 		static bool ForwardLimitSwitchDifferent (const VictorSPXConfiguration & settings) {
 			return ForwardLimitSwitchDeviceIDDifferent(settings) || ForwardLimitSwitchNormalDifferent(settings) || ForwardLimitSwitchSourceDifferent(settings);

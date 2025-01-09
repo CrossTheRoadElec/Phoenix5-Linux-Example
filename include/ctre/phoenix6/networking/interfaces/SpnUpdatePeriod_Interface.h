@@ -20,6 +20,7 @@ extern "C"
     CTREXPORT int c_ctre_phoenix6_SetUpdateFrequencyForAll(Context context, const network_signal_t *signals_list, size_t num_signals, double frequencyHz, double timeoutSeconds);
     CTREXPORT double c_ctre_phoenix6_GetUpdateFrequency(const char *network, uint32_t deviceHash, uint16_t spn);
     CTREXPORT int c_ctre_phoenix6_OptimizeUpdateFrequencies(Context context, const char *network, uint32_t deviceHash, double optimizedFreqHz, double timeoutSeconds);
+    CTREXPORT int c_ctre_phoenix6_ResetUpdateFrequencies(Context context, const char *network, uint32_t deviceHash, double timeoutSeconds);
     CTREXPORT int c_ctre_phoenix6_ResendUpdateFrequencies(Context context, const char *network, uint32_t deviceHash, double timeoutSeconds);
 
 #ifdef __cplusplus

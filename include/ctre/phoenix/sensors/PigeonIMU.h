@@ -73,7 +73,7 @@ struct PigeonIMUConfiguration : public BasePigeonConfiguration{
  */
 struct PigeonIMUConfigUtils : public BasePigeonConfigUtils {
 private:
-	static PigeonIMUConfiguration _default;
+	static const PigeonIMUConfiguration &_default();
 public:
 	/** @} */
 };

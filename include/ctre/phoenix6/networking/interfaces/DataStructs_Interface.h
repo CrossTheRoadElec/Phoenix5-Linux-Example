@@ -10,6 +10,7 @@
 typedef struct _return_values_t
 {
     double outValue;
+    uint32_t unitsKey;
     char const *units;
     double hwtimestampSeconds;
     double swtimestampSeconds;

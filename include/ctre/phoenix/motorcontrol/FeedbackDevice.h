@@ -17,10 +17,6 @@ namespace ctre {
 				 */
 				QuadEncoder = 0,
 				/**
-				 * TalonFX supports an integrated sensor.
-				 */
-				IntegratedSensor = 1,
-				/**
 				 * Analog potentiometer/encoder
 				 */
 				Analog = 2,
@@ -130,50 +126,6 @@ namespace ctre {
 				CTRE_MagEncoder_Relative = QuadEncoder,
 			};
 			/**
-			 * Choose the feedback device for a Talon FX/Falcon 500.
-			 *
-			 * @deprecated This device's Phoenix 5 API is deprecated for removal in the
-			 * 2025 season. Users should update to Phoenix 6 firmware and migrate to the
-			 * Phoenix 6 API. A migration guide is available at
-			 * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
-			 *
-			 * If the Phoenix 5 API must be used for this device, the device must have 22.X
-			 * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
-			 * the firmware year dropdown.
-			 */
-			enum class TalonFXFeedbackDevice {
-				//0
-				/**
-				 * TalonFX supports an integrated sensor.
-				 */
-				IntegratedSensor = 1,
-				/**
-				 * Sum0 + Sum1
-				 */
-				SensorSum = 9,
-				/**
-				 * Diff0 - Diff1
-				 */
-				SensorDifference = 10,
-				/**
-				 * Sensor configured in RemoteFilter0
-				 */
-				RemoteSensor0 = 11,
-				/**
-				 * Sensor configured in RemoteFilter1
-				 */
-				RemoteSensor1 = 12,
-				//13
-				/**
-				 * Position and velocity will read 0.
-				 */
-				None = 14,
-				/**
-				 * Motor Controller will fake a sensor based on applied motor output.
-				 */
-				SoftwareEmulatedSensor = 15,
-			};
-			/**
 			 * Choose the remote feedback device for a motor controller.
 			 */
 			enum class RemoteFeedbackDevice {
@@ -260,7 +212,6 @@ namespace ctre {
 				static std::string toString(FeedbackDevice value) {
 					switch (value) {
 						case FeedbackDevice::QuadEncoder: return "QuadEncoder";
-						case FeedbackDevice::IntegratedSensor: return "Integrated Sensor";
 						case FeedbackDevice::Analog: return "Analog";
 						case FeedbackDevice::Tachometer: return "Tachometer";
 						case FeedbackDevice::PulseWidthEncodedPosition: return "PulseWidthEncodedPosition";
@@ -290,26 +241,6 @@ namespace ctre {
 						case TalonSRXFeedbackDevice::RemoteSensor1: return "RemoteSensor1";
 						case TalonSRXFeedbackDevice::None: return "None";
 						case TalonSRXFeedbackDevice::SoftwareEmulatedSensor: return "SoftwareEmulatedSensor";
-						default: return "InvalidValue";
-					}
-				}
-				/**
-				 * Gets the string representation of selected feedback device
-				 * @param value feedback device to get string representation of
-				 * @return String representation of selected feedback device
-				 */
-				[[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
-						"Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
-						"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static std::string toString(TalonFXFeedbackDevice value) {
-					switch (value) {
-						case TalonFXFeedbackDevice::IntegratedSensor: return "Integrated Sensor";
-						case TalonFXFeedbackDevice::SensorSum: return "SensorSum";
-						case TalonFXFeedbackDevice::SensorDifference: return "SensorDifference";
-						case TalonFXFeedbackDevice::RemoteSensor0: return "RemoteSensor0";
-						case TalonFXFeedbackDevice::RemoteSensor1: return "RemoteSensor1";
-						case TalonFXFeedbackDevice::None: return "None";
-						case TalonFXFeedbackDevice::SoftwareEmulatedSensor: return "SoftwareEmulatedSensor";
 						default: return "InvalidValue";
 					}
 				}

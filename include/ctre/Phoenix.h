@@ -19,7 +19,6 @@
 #include "ctre/phoenix/motion/BufferedTrajectoryPointStream.h"
 #include "ctre/phoenix/motion/MotionProfileStatus.h"
 #include "ctre/phoenix/motion/TrajectoryPoint.h"
-#include "ctre/phoenix/motorcontrol/can/TalonFX.h"
 #include "ctre/phoenix/motorcontrol/can/TalonSRX.h"
 #include "ctre/phoenix/motorcontrol/can/VictorSPX.h"
 #include "ctre/phoenix/motorcontrol/DemandType.h"
@@ -29,10 +28,8 @@
 #include "ctre/phoenix/motorcontrol/IMotorControllerEnhanced.h"
 #include "ctre/phoenix/motorcontrol/InvertType.h"
 #include "ctre/phoenix/motorcontrol/SensorCollection.h"
-#include "ctre/phoenix/music/Orchestra.h"
 #include "ctre/phoenix/sensors/CANCoder.h"
 #include "ctre/phoenix/sensors/PigeonIMU.h"
-#include "ctre/phoenix/sensors/Pigeon2.h"
 #include "ctre/phoenix/signals/MovingAverage.h"
 #include "ctre/phoenix/tasking/Schedulers/ConcurrentScheduler.h"
 #include "ctre/phoenix/tasking/ILoopable.h"
@@ -40,12 +37,10 @@
 #include "ctre/phoenix/Utilities.h"
 
 #ifdef Phoenix_WPI
-#include "ctre/phoenix/motorcontrol/can/WPI_TalonFX.h"
 #include "ctre/phoenix/motorcontrol/can/WPI_TalonSRX.h"
 #include "ctre/phoenix/motorcontrol/can/WPI_VictorSPX.h"
 #include "ctre/phoenix/sensors/WPI_CANCoder.h"
 #include "ctre/phoenix/sensors/WPI_PigeonIMU.h"
-#include "ctre/phoenix/sensors/WPI_Pigeon2.h"
 #include "ctre/phoenix/tasking/ButtonMonitor.h"
 #endif
 
@@ -66,7 +61,6 @@ using namespace ctre::phoenix::led;
 using namespace ctre::phoenix::motion;
 using namespace ctre::phoenix::motorcontrol;
 using namespace ctre::phoenix::motorcontrol::can;
-using namespace ctre::phoenix::music;
 using namespace ctre::phoenix::sensors;
 using namespace ctre::phoenix::signals;
 using namespace ctre::phoenix::tasking;

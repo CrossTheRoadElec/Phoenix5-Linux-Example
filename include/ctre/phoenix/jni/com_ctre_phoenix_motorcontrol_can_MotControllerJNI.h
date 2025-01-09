@@ -1066,34 +1066,10 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_C
 
 /*
  * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    ConfigMotorCommutation
- * Signature: (JII)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigMotorCommutation
-  (JNIEnv *, jclass, jlong, jint, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    ConfigGetMotorCommutation
- * Signature: (JI)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigGetMotorCommutation
-  (JNIEnv *, jclass, jlong, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
  * Method:    ConfigSupplyCurrentLimit
  * Signature: (J[DII)I
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigSupplyCurrentLimit
-  (JNIEnv *, jclass, jlong, jdoubleArray, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    ConfigStatorCurrentLimit
- * Signature: (J[DII)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigStatorCurrentLimit
   (JNIEnv *, jclass, jlong, jdoubleArray, jint);
 
 /*
@@ -1114,14 +1090,6 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_C
 
 /*
  * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    ConfigStatorCurrentLimitEnable
- * Signature: (JZI)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigStatorCurrentLimitEnable
-  (JNIEnv *, jclass, jlong, jboolean, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
  * Method:    ConfigBrakeCurrentLimitEnable
  * Signature: (JZI)I
  */
@@ -1135,78 +1103,6 @@ JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_C
  */
 JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigGetSupplyCurrentLimit
   (JNIEnv *, jclass, jlong, jdoubleArray, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    ConfigGetStatorCurrentLimit
- * Signature: (J[DII)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigGetStatorCurrentLimit
-  (JNIEnv *, jclass, jlong, jdoubleArray, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    SetIntegratedSensorPosition
- * Signature: (JDI)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_SetIntegratedSensorPosition
-  (JNIEnv *, jclass, jlong, jdouble, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    SetIntegratedSensorPositionToAbsolute
- * Signature: (JI)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_SetIntegratedSensorPositionToAbsolute
-  (JNIEnv *, jclass, jlong, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    GetIntegratedSensorPosition
- * Signature: (J)D
- */
-JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_GetIntegratedSensorPosition
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    GetIntegratedSensorAbsolutePosition
- * Signature: (J)D
- */
-JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_GetIntegratedSensorAbsolutePosition
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    GetIntegratedSensorVelocity
- * Signature: (J)D
- */
-JNIEXPORT jdouble JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_GetIntegratedSensorVelocity
-  (JNIEnv *, jclass, jlong);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    ConfigIntegratedSensorAbsoluteRange
- * Signature: (JII)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigIntegratedSensorAbsoluteRange
-  (JNIEnv *, jclass, jlong, jint, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    ConfigIntegratedSensorOffset
- * Signature: (JDI)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigIntegratedSensorOffset
-  (JNIEnv *, jclass, jlong, jdouble, jint);
-
-/*
- * Class:     com_ctre_phoenix_motorcontrol_can_MotControllerJNI
- * Method:    ConfigIntegratedSensorInitializationStrategy
- * Signature: (JII)I
- */
-JNIEXPORT jint JNICALL Java_com_ctre_phoenix_motorcontrol_can_MotControllerJNI_ConfigIntegratedSensorInitializationStrategy
-  (JNIEnv *, jclass, jlong, jint, jint);
 
 #ifdef __cplusplus
 }

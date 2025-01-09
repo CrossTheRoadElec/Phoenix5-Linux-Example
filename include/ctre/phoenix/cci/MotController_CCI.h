@@ -2,9 +2,7 @@
 #include "ctre/phoenix/cci/CCI.h"
 #include "ctre/phoenix/ErrorCode.h"
 #include "ctre/phoenix/motorcontrol/ControlMode.h"
-#include "ctre/phoenix/motorcontrol/MotorCommutation.h"
 #include "ctre/phoenix/motorcontrol/SupplyCurrentLimitConfiguration.h"
-#include "ctre/phoenix/motorcontrol/StatorCurrentLimitConfiguration.h"
 #include "ctre/phoenix/sensors/AbsoluteSensorRange.h"
 #include "ctre/phoenix/sensors/SensorInitializationStrategy.h"
 #include <cstddef>
@@ -175,18 +173,7 @@ extern "C"{
 	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_GetQuadPinStates(void *handle, int * quadA, int * quadB, int * quadIdx);
 	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_GetLimitSwitchState(void *handle, int * isFwdClosed, int * isRevClosed);
 	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_GetClosedLoopTarget(void *handle, int * value, int pidIdx);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigMotorCommutation(void* handle, ctre::phoenix::motorcontrol::MotorCommutation motorCommutation, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigGetMotorCommutation(void* handle, ctre::phoenix::motorcontrol::MotorCommutation *motorCommutation, int timeoutMs);
 	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigSupplyCurrentLimit(void* handle, const double* params, int paramCnt, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigStatorCurrentLimit(void* handle, const double* params, int paramCnt, int timeoutMs);
 	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigSupplyCurrentLimitEnable(void* handle, bool enable, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigStatorCurrentLimitEnable(void* handle, bool enable, int timeoutMs);
 	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigGetSupplyCurrentLimit(void* handle, double* toFill, int * fillCnt, int fillCapacity, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigGetStatorCurrentLimit(void* handle, double* toFill, int* fillCnt, int fillCapacity, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_SetIntegratedSensorPosition(void* handle, double newpos, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_SetIntegratedSensorPositionToAbsolute(void* handle, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_GetIntegratedSensor(void* handle, double* pos, double * absPos, double * vel);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigIntegratedSensorAbsoluteRange(void* handle, ctre::phoenix::sensors::AbsoluteSensorRange absoluteSensorRange, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigIntegratedSensorOffset(void* handle, double offsetDegrees, int timeoutMs);
-	CCIEXPORT ctre::phoenix::ErrorCode c_MotController_ConfigIntegratedSensorInitializationStrategy(void* handle, ctre::phoenix::sensors::SensorInitializationStrategy initializationStrategy, int timeoutMs);
 }

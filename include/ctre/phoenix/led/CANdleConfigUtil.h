@@ -11,7 +11,7 @@ namespace ctre{ namespace phoenix{ namespace led{
  * Util class to help with configuring CANifier
  */
 class CANdleConfigUtil : public CustomParamConfigUtil{
-	static CANdleConfiguration _default;
+	static const CANdleConfiguration &_default();
 public:
 
 	static bool StripTypeDifferent (CANdleConfiguration settings);

@@ -144,7 +144,7 @@ namespace ctre {
 							"A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 			CANCoderConfigUtils : CustomParamConfigUtil {
 			private:
-				static CANCoderConfiguration _default;
+				static const CANCoderConfiguration &_default();
 			public:
 				/**
 				 * Determine if specified value is different from default
@@ -155,39 +155,39 @@ namespace ctre {
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool VelocityMeasurementPeriodDifferent(const CANCoderConfiguration& settings) { return (!(settings.velocityMeasurementPeriod == _default.velocityMeasurementPeriod)) || !settings.enableOptimizations; }
+				static bool VelocityMeasurementPeriodDifferent(const CANCoderConfiguration& settings) { return (!(settings.velocityMeasurementPeriod == _default().velocityMeasurementPeriod)) || !settings.enableOptimizations; }
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool VelocityMeasurementWindowDifferent(const CANCoderConfiguration& settings) { return (!(settings.velocityMeasurementWindow == _default.velocityMeasurementWindow)) || !settings.enableOptimizations; }
+				static bool VelocityMeasurementWindowDifferent(const CANCoderConfiguration& settings) { return (!(settings.velocityMeasurementWindow == _default().velocityMeasurementWindow)) || !settings.enableOptimizations; }
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool AbsoluteSensorRangeDifferent(const CANCoderConfiguration& settings) { return (!(settings.absoluteSensorRange == _default.absoluteSensorRange)) || !settings.enableOptimizations; }
+				static bool AbsoluteSensorRangeDifferent(const CANCoderConfiguration& settings) { return (!(settings.absoluteSensorRange == _default().absoluteSensorRange)) || !settings.enableOptimizations; }
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool MagnetOffsetDegreesDifferent(const CANCoderConfiguration& settings) { return (!(settings.magnetOffsetDegrees == _default.magnetOffsetDegrees)) || !settings.enableOptimizations; }
+				static bool MagnetOffsetDegreesDifferent(const CANCoderConfiguration& settings) { return (!(settings.magnetOffsetDegrees == _default().magnetOffsetDegrees)) || !settings.enableOptimizations; }
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool SensorDirectionDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorDirection == _default.sensorDirection)) || !settings.enableOptimizations; }
+				static bool SensorDirectionDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorDirection == _default().sensorDirection)) || !settings.enableOptimizations; }
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool InitializationStrategyDifferent(const CANCoderConfiguration& settings) { return (!(settings.initializationStrategy == _default.initializationStrategy)) || !settings.enableOptimizations; }
+				static bool InitializationStrategyDifferent(const CANCoderConfiguration& settings) { return (!(settings.initializationStrategy == _default().initializationStrategy)) || !settings.enableOptimizations; }
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool SensorCoefficientDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorCoefficient == _default.sensorCoefficient)) || !settings.enableOptimizations; }
+				static bool SensorCoefficientDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorCoefficient == _default().sensorCoefficient)) || !settings.enableOptimizations; }
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool UnitStringDifferent(const CANCoderConfiguration& settings) { return (!(settings.unitString == _default.unitString)) || !settings.enableOptimizations; }
+				static bool UnitStringDifferent(const CANCoderConfiguration& settings) { return (!(settings.unitString == _default().unitString)) || !settings.enableOptimizations; }
                 [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
                             "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
                             "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
-				static bool SensorTimeBaseDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorTimeBase == _default.sensorTimeBase)) || !settings.enableOptimizations; }
+				static bool SensorTimeBaseDifferent(const CANCoderConfiguration& settings) { return (!(settings.sensorTimeBase == _default().sensorTimeBase)) || !settings.enableOptimizations; }
 				/** @} */
 			};
 

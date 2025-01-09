@@ -169,7 +169,6 @@ public:
 	/**
 	 * Gets the output current of the motor controller.
 	 * In the case of TalonSRX class, this routine returns supply current for legacy reasons.  In order to get the "true" output current, call GetStatorCurrent().
-	 * In the case of TalonFX class, this routine returns the true output stator current.
 	 *
 	 * [[deprecated("Use GetStatorCurrent/GetSupplyCurrent instead.")]]
 	 *

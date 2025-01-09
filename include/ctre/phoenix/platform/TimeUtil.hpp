@@ -32,12 +32,31 @@ namespace platform {
 #endif
 	}
 
+	/** The raw current time source. */
+	std::chrono::steady_clock::duration CurrentTimeRaw();
+
 	/**
-	 * Returns the monotonic time of the system, converted to the given duration.
+	 * Returns the current time of the system, converted to the given duration.
 	 * The default duration is in microseconds.
+	 *
+	 * This time source is typically continuous and monotonic. However, it may
+	 * be overridden in simulation to use a non-monotonic, non-continuous source.
 	 */
 	template <typename DURATION = std::chrono::microseconds>
 	static inline auto CurrentTime()
+	{
+		using namespace std::chrono;
+		return duration_cast<DURATION>(CurrentTimeRaw()).count();
+	}
+
+	/**
+	 * Returns the monotonic time of the system, converted to the given duration.
+	 * The default duration is in microseconds.
+	 *
+	 * This time source is guaranteed to be continuous and monotonic.
+	 */
+	template <typename DURATION = std::chrono::microseconds>
+	static inline auto SystemTime()
 	{
 		using namespace std::chrono;
 		return duration_cast<DURATION>(steady_clock::now().time_since_epoch()).count();

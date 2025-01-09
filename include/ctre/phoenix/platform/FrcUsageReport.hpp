@@ -8,14 +8,14 @@
 #include <string>
 #include "ctre/phoenix/export.h"
 
-namespace ctre{
-namespace phoenix{
-namespace platform{
+namespace ctre {
+namespace phoenix {
+namespace platform {
 
 CTREXPORT int FRC_Report(int resource, int instanceNumber, std::string const &canbus = "", int callerIdx = 0, int context = 0, const char* feature = nullptr);
 CTREXPORT int FRC_Report(std::string const &model, int instanceNumber, std::string const &canbus = "", int callerIdx = 0, int context = 0, const char* feature = nullptr);
 
-enum FrcUsageType{
+enum FrcUsageType {
     TalonSRX,
     PigeonIMU,
     CANifier,
@@ -24,7 +24,12 @@ enum FrcUsageType{
     TalonFX,
     CANdle,
     CANivore,
-    Pigeon2
+    Pigeon2,
+    TalonFXS,
+    CANdi,
+    CANrange,
+    API_Swerve,
+    API_LegacySwerve
 };
 
 } //namespace platform

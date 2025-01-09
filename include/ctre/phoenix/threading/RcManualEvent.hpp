@@ -25,13 +25,14 @@ namespace threading {
 	class CTREXPORT RcManualEvent {
 	private:
 		size_t _signal = 0;
-		mutable size_t _waitCnt = 0;
+		size_t _refCnt = 0;
 		mutable std::mutex _m;
 		mutable std::condition_variable _cv;
 
 	public:
 		/**
 		 * Wait for event to be signaled, or for timeout
+		 * \param timeoutMs timeout of the wait; -1 is indefinite, 0 is a fast check
 		 * \returns true if event is signaled, false if timed out.
 		 */
 		bool WaitForSignal(int timeoutMs) const;
@@ -43,12 +44,11 @@ namespace threading {
 		 */
 		void Signal();
 		/**
-		 * Clear the event. Any threads waiting on WaitForSignal() will time out
-		 * if this is the last thread to clear the signal.
+		 * Clear the event signal without signaling other threads.
 		 */
 		void Clear();
 		/**
-		 * Reset the event signal to 0 without signaling other threads.
+		 * Reset the event signal to 0 and force any threads waiting on WaitForSignal() to time out.
 		 */
 		void Reset();
 	};

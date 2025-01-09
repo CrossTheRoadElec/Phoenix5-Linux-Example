@@ -80,13 +80,6 @@ enum class RemoteSensorSource {
 	/**
 	 * Remote Sensor Source 14 is reserved
 	 */
-
-	/**
-	 * Use a sensor connected to
-	 * a TalonFX and configured on
-	 * the TalonFX
-	 */
-	RemoteSensorSource_TalonFX_SelectedSensor = RemoteSensorSource_TalonSRX_SelectedSensor,
 };
 /**
  * Class used to get string representation of a remote sensor source

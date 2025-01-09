@@ -81,7 +81,7 @@ struct BasePigeonConfiguration : CustomParamConfiguration{
  */
 struct BasePigeonConfigUtils {
 private:
-	static BasePigeonConfiguration _default;
+	static const BasePigeonConfiguration &_default();
 public:
 	/**
 	 * Determine if specified value is different from default
@@ -89,8 +89,8 @@ public:
 	 * @return if specified value is different from default
 	 * @{
 	 */
-	static bool CustomParam0Different (const BasePigeonConfiguration & settings) { return (!(settings.customParam0 == _default.customParam0)) || !settings.enableOptimizations; }
-	static bool CustomParam1Different (const BasePigeonConfiguration & settings) { return (!(settings.customParam1 == _default.customParam1)) || !settings.enableOptimizations; }
+	static bool CustomParam0Different (const BasePigeonConfiguration & settings) { return (!(settings.customParam0 == _default().customParam0)) || !settings.enableOptimizations; }
+	static bool CustomParam1Different (const BasePigeonConfiguration & settings) { return (!(settings.customParam1 == _default().customParam1)) || !settings.enableOptimizations; }
 	/** @} */
 };
 

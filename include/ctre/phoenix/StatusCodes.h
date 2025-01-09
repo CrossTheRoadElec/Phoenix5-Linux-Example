@@ -301,7 +301,8 @@ namespace ctre
              */
             static constexpr int AppIsTerminating = -800;
             /**
-             * \brief CAN Message is stale.
+             * \brief CAN message is stale, data is valid but old. Check the CAN bus wiring,
+             *        CAN bus utilization, and power to the device.
              */
             static constexpr int CanMessageStale = 1000;
             /**
@@ -626,6 +627,10 @@ namespace ctre
              */
             static constexpr int HwTimestampOutOfSync = 10001;
             /**
+             * \brief Do not apply or refresh configs periodically, as configs are blocking.
+             */
+            static constexpr int FrequentConfigCalls = 10002;
+            /**
              * \brief InvalidNetwork
              */
             static constexpr int InvalidNetwork = -10001;
@@ -774,29 +779,91 @@ namespace ctre
              *        neutral the device to apply the licenses.
              */
             static constexpr int CannotLicenseWhileEnabled = -10033;
+            /**
+             * \brief Could not open or read the given file.
+             */
+            static constexpr int InvalidFile = -10034;
+            /**
+             * \brief The given hoot log requires an older version of Phoenix API.
+             */
+            static constexpr int HootLogTooOld = -10035;
+            /**
+             * \brief The given hoot log requires a newer version of Phoenix API.
+             */
+            static constexpr int HootLogTooNew = -10036;
+            /**
+             * \brief Hoot log is not licensed. Cannot get any data from it.
+             */
+            static constexpr int UnlicensedHootLog = -10037;
+            /**
+             * \brief The simulation timing cannot be advanced by a time step while
+             *        unpaused. Pause the simulator before advancing time.
+             */
+            static constexpr int CannotStepWhileUnpaused = -10038;
+            /**
+             * \brief Hoot replay does not support replaying multiple files. Ensure that
+             *        only one file is loaded at a time.
+             */
+            static constexpr int MultipleReplayNotSupported = -10039;
+            /**
+             * \brief The maximum number of loggable user signals has been exceeded.
+             *        Additional user signals will not be logged.
+             */
+            static constexpr int UserSignalLimitExceeded = -10040;
+            /**
+             * \brief The provided model was not a valid device type.
+             */
+            static constexpr int InvalidDeviceModel = -10041;
 
-            operator int() const { return this->value; }
+            constexpr StatusCode(int val) : value{val} {}
+            constexpr StatusCode() : value{StatusCode::StatusCodeNotInitialized} {}
 
-            bool operator==(const StatusCode &data) const
+            constexpr operator int() const { return this->value; }
+
+            constexpr bool operator==(StatusCode data) const
             {
                 return this->value == data.value;
             }
-            bool operator==(int data) const
+            constexpr bool operator==(int data) const
             {
                 return this->value == data;
             }
-            bool operator<(const StatusCode &data) const
+            constexpr bool operator!=(StatusCode data) const
+            {
+                return this->value != data.value;
+            }
+            constexpr bool operator!=(int data) const
+            {
+                return this->value != data;
+            }
+            constexpr bool operator<(StatusCode data) const
             {
                 return this->value < data.value;
             }
-            bool operator<(int data) const
+            constexpr bool operator<(int data) const
             {
                 return this->value < data;
             }
-            StatusCode(int val) : value{val} {}
-            StatusCode() : value{StatusCode::StatusCodeNotInitialized} {}
 
-            const char *GetName() const
+            /**
+             * \returns true if this code is an error
+             */
+            constexpr bool IsError() const { return value < 0; }
+            /**
+             * \returns true if this code is a warning
+             */
+            constexpr bool IsWarning() const { return value > 0; }
+            /**
+             * \returns true if this code is OK
+             */
+            constexpr bool IsOK() const { return value == OK; }
+
+            /**
+             * Gets the name of this StatusCode
+             *
+             * \returns Name of this StatusCode
+             */
+            constexpr const char *GetName() const
             {
                 switch (value)
                 {
@@ -943,6 +1010,7 @@ namespace ctre
                 case -10000: return "StatusCodeNotInitialized";
                 case 10000: return "WarningNotInitialized";
                 case 10001: return "HwTimestampOutOfSync";
+                case 10002: return "FrequentConfigCalls";
                 case -10001: return "InvalidNetwork";
                 case -10002: return "MultiSignalNotSupported";
                 case -10003: return "CouldNotCast";
@@ -976,13 +1044,26 @@ namespace ctre
                 case -10031: return "LoggerNotRunning";
                 case -10032: return "TimeoutCannotBeZero";
                 case -10033: return "CannotLicenseWhileEnabled";
+                case -10034: return "InvalidFile";
+                case -10035: return "HootLogTooOld";
+                case -10036: return "HootLogTooNew";
+                case -10037: return "UnlicensedHootLog";
+                case -10038: return "CannotStepWhileUnpaused";
+                case -10039: return "MultipleReplayNotSupported";
+                case -10040: return "UserSignalLimitExceeded";
+                case -10041: return "InvalidDeviceModel";
                 default:
                     /* because we return const char*, we cannot create
                      * a string with the status error code */
                     return "Could not find name for StatusCode";
                 }
             }
-            const char *GetDescription() const
+            /**
+             * Gets the description of this StatusCode
+             *
+             * \returns Description of this StatusCode
+             */
+            constexpr const char *GetDescription() const
             {
                 switch (value)
                 {
@@ -1053,7 +1134,7 @@ namespace ctre
                 case -605: return "TimeoutIso15Response";
                 case -700: return "InvalidJson";
                 case -800: return "The user application is shutting down.";
-                case 1000: return "CAN Message is stale.";
+                case 1000: return "CAN message is stale, data is valid but old. Check the CAN bus wiring, CAN bus utilization, and power to the device.";
                 case 1006: return "Buffer is full, cannot insert more data.";
                 case 1010: return "PulseWidthSensorNotPresent";
                 case 1100: return "General Warning Occurred.";
@@ -1129,6 +1210,7 @@ namespace ctre
                 case -10000: return "This StatusCode has not been initialized. Make sure the StatusCode is getting assigned to the return of a method.";
                 case 10000: return "WarningNotInitialized";
                 case 10001: return "The timestamp reported by CANivore is at least 10ms older than the timestamp reported by the system, indicating it's fallen out of sync. This does not impact the data of this message, only the timing.";
+                case 10002: return "Do not apply or refresh configs periodically, as configs are blocking.";
                 case -10001: return "InvalidNetwork";
                 case -10002: return "The CAN bus does not support multi-signal synchronization.";
                 case -10003: return "Could not cast from base value to this particular signal's type";
@@ -1162,6 +1244,14 @@ namespace ctre
                 case -10031: return "The signal logger is not running. Start the signal logger before writing any signals.";
                 case -10032: return "Blocking operations, such as configs, cannot have a timeout of 0. Pass in a non-zero timeout (typically 0.050+ seconds) for normal operation.";
                 case -10033: return "Device cannot be licensed while it is control enabled. Disable and neutral the device to apply the licenses.";
+                case -10034: return "Could not open or read the given file.";
+                case -10035: return "The given hoot log requires an older version of Phoenix API.";
+                case -10036: return "The given hoot log requires a newer version of Phoenix API.";
+                case -10037: return "Hoot log is not licensed. Cannot get any data from it.";
+                case -10038: return "The simulation timing cannot be advanced by a time step while unpaused. Pause the simulator before advancing time.";
+                case -10039: return "Hoot replay does not support replaying multiple files. Ensure that only one file is loaded at a time.";
+                case -10040: return "The maximum number of loggable user signals has been exceeded. Additional user signals will not be logged.";
+                case -10041: return "The provided model was not a valid device type.";
                 default:
                     /* because we return const char*, we cannot create
                      * a string with the status error code */
@@ -1173,9 +1263,6 @@ namespace ctre
                 os << status.GetName() << ": " << status.GetDescription();
                 return os;
             }
-            bool IsError() const { return value < 0; }
-            bool IsWarning() const { return value > 0; }
-            bool IsOK() const { return value == OK; }
         };
 
     }
@@ -1463,7 +1550,8 @@ typedef enum _StatusCode_t
      */
     AppIsTerminating = -800,
     /**
-     * \brief CAN Message is stale.
+     * \brief CAN message is stale, data is valid but old. Check the CAN bus wiring,
+     *        CAN bus utilization, and power to the device.
      */
     CanMessageStale = 1000,
     /**
@@ -1788,6 +1876,10 @@ typedef enum _StatusCode_t
      */
     HwTimestampOutOfSync = 10001,
     /**
+     * \brief Do not apply or refresh configs periodically, as configs are blocking.
+     */
+    FrequentConfigCalls = 10002,
+    /**
      * \brief InvalidNetwork
      */
     InvalidNetwork = -10001,
@@ -1936,6 +2028,41 @@ typedef enum _StatusCode_t
      *        neutral the device to apply the licenses.
      */
     CannotLicenseWhileEnabled = -10033,
+    /**
+     * \brief Could not open or read the given file.
+     */
+    InvalidFile = -10034,
+    /**
+     * \brief The given hoot log requires an older version of Phoenix API.
+     */
+    HootLogTooOld = -10035,
+    /**
+     * \brief The given hoot log requires a newer version of Phoenix API.
+     */
+    HootLogTooNew = -10036,
+    /**
+     * \brief Hoot log is not licensed. Cannot get any data from it.
+     */
+    UnlicensedHootLog = -10037,
+    /**
+     * \brief The simulation timing cannot be advanced by a time step while
+     *        unpaused. Pause the simulator before advancing time.
+     */
+    CannotStepWhileUnpaused = -10038,
+    /**
+     * \brief Hoot replay does not support replaying multiple files. Ensure that
+     *        only one file is loaded at a time.
+     */
+    MultipleReplayNotSupported = -10039,
+    /**
+     * \brief The maximum number of loggable user signals has been exceeded.
+     *        Additional user signals will not be logged.
+     */
+    UserSignalLimitExceeded = -10040,
+    /**
+     * \brief The provided model was not a valid device type.
+     */
+    InvalidDeviceModel = -10041,
 } StatusCode_t;
 
 /**

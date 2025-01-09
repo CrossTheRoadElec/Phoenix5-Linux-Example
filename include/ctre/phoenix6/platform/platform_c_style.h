@@ -18,12 +18,36 @@ CTREXPORT bool c_ctre_phoenix6_platform_canbus_is_network_fd(char const *canbus)
 CTREXPORT int32_t c_ctre_phoenix6_platform_canbus_get_status(float *busUtilPerc, uint32_t *busOffCount, uint32_t *txFullCount, uint32_t *rec, uint32_t *tec, char const *canbus, bool printErr);
 CTREXPORT void c_ctre_phoenix6_platform_canbus_sendmessage(uint32_t messageId, uint8_t const *data, uint8_t dataSize, char const *canbus, bool printErr);
 CTREXPORT int32_t c_ctre_phoenix6_platform_canbus_receivemessage(uint32_t messageId, uint8_t *data, uint8_t * dataSize, char const *canbus, bool printErr);
+
 CTREXPORT int32_t c_ctre_phoenix6_platform_sim_create(int deviceType, int id);
 CTREXPORT int32_t c_ctre_phoenix6_platform_sim_destroy(int deviceType, int id);
 CTREXPORT int32_t c_ctre_phoenix6_platform_sim_destroy_all(void);
 CTREXPORT int32_t c_ctre_phoenix6_platform_sim_set_physics_input(int deviceType, int id, char const *physicsType, double value);
 CTREXPORT int32_t c_ctre_phoenix6_platform_sim_get_physics_value(int deviceType, int id, char const *physicsType, double *value);
 CTREXPORT int32_t c_ctre_phoenix6_platform_sim_get_last_error(int deviceType, int id);
+
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_load_file(char const *filepath);
+CTREXPORT void c_ctre_phoenix6_platform_replay_close_file();
+CTREXPORT bool c_ctre_phoenix6_platform_replay_is_file_loaded();
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_play();
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_pause();
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_stop();
+CTREXPORT bool c_ctre_phoenix6_platform_replay_is_running(uint16_t timeoutMs);
+CTREXPORT void c_ctre_phoenix6_platform_replay_set_speed(double speed);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_step_timing(double stepTimeSeconds);
+
+/* NOTE: For Raw and Arrays, caller must allocate a buffer >= 64 bytes. For String, the buffer must be >= 65 bytes. */
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_raw(char const *name, char **units, uint8_t *data, uint8_t *len, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_boolean(char const *name, char **units, bool *value, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_integer(char const *name, char **units, int64_t *value, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_float(char const *name, char **units, float *value, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_double(char const *name, char **units, double *value, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_string(char const *name, char **units, char *value, uint8_t *len, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_boolean_array(char const *name, char **units, bool *values, uint8_t *count, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_integer_array(char const *name, char **units, int64_t *values, uint8_t *count, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_float_array(char const *name, char **units, float *values, uint8_t *count, double *timestampSeconds);
+CTREXPORT int32_t c_ctre_phoenix6_platform_replay_get_double_array(char const *name, char **units, double *values, uint8_t *count, double *timestampSeconds);
+
 CTREXPORT int32_t c_ctre_phoenix6_platform_set_logger_path(char const *path);
 CTREXPORT int32_t c_ctre_phoenix6_platform_start_logger(void);
 CTREXPORT int32_t c_ctre_phoenix6_platform_stop_logger(void);

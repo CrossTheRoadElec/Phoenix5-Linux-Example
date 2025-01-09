@@ -52,18 +52,18 @@ struct CustomParamConfiguration {
  */
 struct CustomParamConfigUtil {
 	private:
-		static CustomParamConfiguration _default;
+		static const CustomParamConfiguration &_default();
 	public:
 		/**
 		 * @param settings Settings to compare against
 		 * @return Whether CustomParam0 is different
 		 */
-		static bool CustomParam0Different (const CustomParamConfiguration & settings) { return (!(settings.customParam0 == _default.customParam0)) || !settings.enableOptimizations; }
+		static bool CustomParam0Different (const CustomParamConfiguration & settings) { return (!(settings.customParam0 == _default().customParam0)) || !settings.enableOptimizations; }
 		/**
 		 * @param settings Settings to compare against
 		 * @return Whether CustomParam1 is different
 		 */
-		static bool CustomParam1Different (const CustomParamConfiguration & settings) { return (!(settings.customParam1 == _default.customParam1)) || !settings.enableOptimizations; }
+		static bool CustomParam1Different (const CustomParamConfiguration & settings) { return (!(settings.customParam1 == _default().customParam1)) || !settings.enableOptimizations; }
 };
 }
 }

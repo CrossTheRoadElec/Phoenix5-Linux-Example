@@ -122,7 +122,7 @@ namespace ctre {
 				 */
 				struct FilterConfigUtil {
 				private:
-					static FilterConfiguration _default;
+					static const FilterConfiguration &_default();
 				public:
 					/**
 					 * Determine if specified value is different from default
@@ -130,8 +130,8 @@ namespace ctre {
 					 * @return if specified value is different from default
 					 * @{
 					 */
-					static bool RemoteSensorDeviceIDDifferent(const FilterConfiguration& settings) { return (!(settings.remoteSensorDeviceID == _default.remoteSensorDeviceID)); }
-					static bool RemoteSensorSourceDifferent(const FilterConfiguration& settings) { return (!(settings.remoteSensorSource == _default.remoteSensorSource)); }
+					static bool RemoteSensorDeviceIDDifferent(const FilterConfiguration& settings) { return (!(settings.remoteSensorDeviceID == _default().remoteSensorDeviceID)); }
+					static bool RemoteSensorSourceDifferent(const FilterConfiguration& settings) { return (!(settings.remoteSensorSource == _default().remoteSensorSource)); }
 					static bool FilterConfigurationDifferent(const FilterConfiguration& settings) { return RemoteSensorDeviceIDDifferent(settings) || RemoteSensorSourceDifferent(settings); }
 					/** @} */
 				};
@@ -249,7 +249,7 @@ namespace ctre {
 				 */
 				class SlotConfigUtil {
 				private:
-					static struct SlotConfiguration _default;
+					static const struct SlotConfiguration &_default();
 				public:
 					/**
 					 * Determine if specified value is different from default
@@ -257,15 +257,15 @@ namespace ctre {
 					 * @return if specified value is different from default
 					 * @{
 					 */
-					static bool KPDifferent(const SlotConfiguration& settings) { return (!(settings.kP == _default.kP)); }
-					static bool KIDifferent(const SlotConfiguration& settings) { return (!(settings.kI == _default.kI)); }
-					static bool KDDifferent(const SlotConfiguration& settings) { return (!(settings.kD == _default.kD)); }
-					static bool KFDifferent(const SlotConfiguration& settings) { return (!(settings.kF == _default.kF)); }
-					static bool IntegralZoneDifferent(const SlotConfiguration& settings) { return (!(settings.integralZone == _default.integralZone)); }
-					static bool AllowableClosedloopErrorDifferent(const SlotConfiguration& settings) { return (!(settings.allowableClosedloopError == _default.allowableClosedloopError)); }
-					static bool MaxIntegralAccumulatorDifferent(const SlotConfiguration& settings) { return (!(settings.maxIntegralAccumulator == _default.maxIntegralAccumulator)); }
-					static bool ClosedLoopPeakOutputDifferent(const SlotConfiguration& settings) { return (!(settings.closedLoopPeakOutput == _default.closedLoopPeakOutput)); }
-					static bool ClosedLoopPeriodDifferent(const SlotConfiguration& settings) { return (!(settings.closedLoopPeriod == _default.closedLoopPeriod)); }
+					static bool KPDifferent(const SlotConfiguration& settings) { return (!(settings.kP == _default().kP)); }
+					static bool KIDifferent(const SlotConfiguration& settings) { return (!(settings.kI == _default().kI)); }
+					static bool KDDifferent(const SlotConfiguration& settings) { return (!(settings.kD == _default().kD)); }
+					static bool KFDifferent(const SlotConfiguration& settings) { return (!(settings.kF == _default().kF)); }
+					static bool IntegralZoneDifferent(const SlotConfiguration& settings) { return (!(settings.integralZone == _default().integralZone)); }
+					static bool AllowableClosedloopErrorDifferent(const SlotConfiguration& settings) { return (!(settings.allowableClosedloopError == _default().allowableClosedloopError)); }
+					static bool MaxIntegralAccumulatorDifferent(const SlotConfiguration& settings) { return (!(settings.maxIntegralAccumulator == _default().maxIntegralAccumulator)); }
+					static bool ClosedLoopPeakOutputDifferent(const SlotConfiguration& settings) { return (!(settings.closedLoopPeakOutput == _default().closedLoopPeakOutput)); }
+					static bool ClosedLoopPeriodDifferent(const SlotConfiguration& settings) { return (!(settings.closedLoopPeriod == _default().closedLoopPeriod)); }
 					/** @} */
 				};
 
@@ -532,7 +532,7 @@ namespace ctre {
 				 */
 				class BaseMotorControllerUtil : public ctre::phoenix::CustomParamConfigUtil {
 				private:
-					static struct BaseMotorControllerConfiguration _default;
+					static const struct BaseMotorControllerConfiguration &_default();
 				public:
 					/**
 					 * Determine if specified value is different from default
@@ -540,36 +540,36 @@ namespace ctre {
 					 * @return if specified value is different from default
 					 * @{
 					 */
-					static bool OpenloopRampDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.openloopRamp == _default.openloopRamp)) || !settings.enableOptimizations; }
-					static bool ClosedloopRampDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.closedloopRamp == _default.closedloopRamp)) || !settings.enableOptimizations; }
-					static bool PeakOutputForwardDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.peakOutputForward == _default.peakOutputForward)) || !settings.enableOptimizations; }
-					static bool PeakOutputReverseDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.peakOutputReverse == _default.peakOutputReverse)) || !settings.enableOptimizations; }
-					static bool NominalOutputForwardDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.nominalOutputForward == _default.nominalOutputForward)) || !settings.enableOptimizations; }
-					static bool NominalOutputReverseDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.nominalOutputReverse == _default.nominalOutputReverse)) || !settings.enableOptimizations; }
-					static bool NeutralDeadbandDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.neutralDeadband == _default.neutralDeadband)) || !settings.enableOptimizations; }
-					static bool VoltageCompSaturationDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.voltageCompSaturation == _default.voltageCompSaturation)) || !settings.enableOptimizations; }
-					static bool VoltageMeasurementFilterDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.voltageMeasurementFilter == _default.voltageMeasurementFilter)) || !settings.enableOptimizations; }
-					static bool VelocityMeasurementPeriodDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.velocityMeasurementPeriod == _default.velocityMeasurementPeriod)) || !settings.enableOptimizations; }
-					static bool VelocityMeasurementWindowDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.velocityMeasurementWindow == _default.velocityMeasurementWindow)) || !settings.enableOptimizations; }
-					static bool ForwardSoftLimitThresholdDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.forwardSoftLimitThreshold == _default.forwardSoftLimitThreshold)) || !settings.enableOptimizations; }
-					static bool ReverseSoftLimitThresholdDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.reverseSoftLimitThreshold == _default.reverseSoftLimitThreshold)) || !settings.enableOptimizations; }
-					static bool ForwardSoftLimitEnableDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.forwardSoftLimitEnable == _default.forwardSoftLimitEnable)) || !settings.enableOptimizations; }
-					static bool ReverseSoftLimitEnableDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.reverseSoftLimitEnable == _default.reverseSoftLimitEnable)) || !settings.enableOptimizations; }
-					static bool AuxPIDPolarityDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.auxPIDPolarity == _default.auxPIDPolarity)) || !settings.enableOptimizations; }
-					static bool MotionCruiseVelocityDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.motionCruiseVelocity == _default.motionCruiseVelocity)) || !settings.enableOptimizations; }
-					static bool MotionAccelerationDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.motionAcceleration == _default.motionAcceleration)) || !settings.enableOptimizations; }
-					static bool MotionSCurveStrength(const BaseMotorControllerConfiguration& settings) { return (!(settings.motionCurveStrength == _default.motionCurveStrength)) || !settings.enableOptimizations; }
-					static bool MotionProfileTrajectoryPeriodDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.motionProfileTrajectoryPeriod == _default.motionProfileTrajectoryPeriod)) || !settings.enableOptimizations; }
-					static bool FeedbackNotContinuousDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.feedbackNotContinuous == _default.feedbackNotContinuous)) || !settings.enableOptimizations; }
-					static bool RemoteSensorClosedLoopDisableNeutralOnLOSDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.remoteSensorClosedLoopDisableNeutralOnLOS == _default.remoteSensorClosedLoopDisableNeutralOnLOS)) || !settings.enableOptimizations; }
-					static bool ClearPositionOnLimitFDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.clearPositionOnLimitF == _default.clearPositionOnLimitF)) || !settings.enableOptimizations; }
-					static bool ClearPositionOnLimitRDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.clearPositionOnLimitR == _default.clearPositionOnLimitR)) || !settings.enableOptimizations; }
-					static bool ClearPositionOnQuadIdxDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.clearPositionOnQuadIdx == _default.clearPositionOnQuadIdx)) || !settings.enableOptimizations; }
-					static bool LimitSwitchDisableNeutralOnLOSDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.limitSwitchDisableNeutralOnLOS == _default.limitSwitchDisableNeutralOnLOS)) || !settings.enableOptimizations; }
-					static bool SoftLimitDisableNeutralOnLOSDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.softLimitDisableNeutralOnLOS == _default.softLimitDisableNeutralOnLOS)) || !settings.enableOptimizations; }
-					static bool PulseWidthPeriod_EdgesPerRotDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.pulseWidthPeriod_EdgesPerRot == _default.pulseWidthPeriod_EdgesPerRot)) || !settings.enableOptimizations; }
-					static bool PulseWidthPeriod_FilterWindowSzDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.pulseWidthPeriod_FilterWindowSz == _default.pulseWidthPeriod_FilterWindowSz)) || !settings.enableOptimizations; }
-					static bool TrajectoryInterpolationEnableDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.trajectoryInterpolationEnable == _default.trajectoryInterpolationEnable)) || !settings.enableOptimizations; }
+					static bool OpenloopRampDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.openloopRamp == _default().openloopRamp)) || !settings.enableOptimizations; }
+					static bool ClosedloopRampDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.closedloopRamp == _default().closedloopRamp)) || !settings.enableOptimizations; }
+					static bool PeakOutputForwardDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.peakOutputForward == _default().peakOutputForward)) || !settings.enableOptimizations; }
+					static bool PeakOutputReverseDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.peakOutputReverse == _default().peakOutputReverse)) || !settings.enableOptimizations; }
+					static bool NominalOutputForwardDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.nominalOutputForward == _default().nominalOutputForward)) || !settings.enableOptimizations; }
+					static bool NominalOutputReverseDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.nominalOutputReverse == _default().nominalOutputReverse)) || !settings.enableOptimizations; }
+					static bool NeutralDeadbandDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.neutralDeadband == _default().neutralDeadband)) || !settings.enableOptimizations; }
+					static bool VoltageCompSaturationDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.voltageCompSaturation == _default().voltageCompSaturation)) || !settings.enableOptimizations; }
+					static bool VoltageMeasurementFilterDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.voltageMeasurementFilter == _default().voltageMeasurementFilter)) || !settings.enableOptimizations; }
+					static bool VelocityMeasurementPeriodDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.velocityMeasurementPeriod == _default().velocityMeasurementPeriod)) || !settings.enableOptimizations; }
+					static bool VelocityMeasurementWindowDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.velocityMeasurementWindow == _default().velocityMeasurementWindow)) || !settings.enableOptimizations; }
+					static bool ForwardSoftLimitThresholdDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.forwardSoftLimitThreshold == _default().forwardSoftLimitThreshold)) || !settings.enableOptimizations; }
+					static bool ReverseSoftLimitThresholdDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.reverseSoftLimitThreshold == _default().reverseSoftLimitThreshold)) || !settings.enableOptimizations; }
+					static bool ForwardSoftLimitEnableDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.forwardSoftLimitEnable == _default().forwardSoftLimitEnable)) || !settings.enableOptimizations; }
+					static bool ReverseSoftLimitEnableDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.reverseSoftLimitEnable == _default().reverseSoftLimitEnable)) || !settings.enableOptimizations; }
+					static bool AuxPIDPolarityDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.auxPIDPolarity == _default().auxPIDPolarity)) || !settings.enableOptimizations; }
+					static bool MotionCruiseVelocityDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.motionCruiseVelocity == _default().motionCruiseVelocity)) || !settings.enableOptimizations; }
+					static bool MotionAccelerationDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.motionAcceleration == _default().motionAcceleration)) || !settings.enableOptimizations; }
+					static bool MotionSCurveStrength(const BaseMotorControllerConfiguration& settings) { return (!(settings.motionCurveStrength == _default().motionCurveStrength)) || !settings.enableOptimizations; }
+					static bool MotionProfileTrajectoryPeriodDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.motionProfileTrajectoryPeriod == _default().motionProfileTrajectoryPeriod)) || !settings.enableOptimizations; }
+					static bool FeedbackNotContinuousDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.feedbackNotContinuous == _default().feedbackNotContinuous)) || !settings.enableOptimizations; }
+					static bool RemoteSensorClosedLoopDisableNeutralOnLOSDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.remoteSensorClosedLoopDisableNeutralOnLOS == _default().remoteSensorClosedLoopDisableNeutralOnLOS)) || !settings.enableOptimizations; }
+					static bool ClearPositionOnLimitFDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.clearPositionOnLimitF == _default().clearPositionOnLimitF)) || !settings.enableOptimizations; }
+					static bool ClearPositionOnLimitRDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.clearPositionOnLimitR == _default().clearPositionOnLimitR)) || !settings.enableOptimizations; }
+					static bool ClearPositionOnQuadIdxDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.clearPositionOnQuadIdx == _default().clearPositionOnQuadIdx)) || !settings.enableOptimizations; }
+					static bool LimitSwitchDisableNeutralOnLOSDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.limitSwitchDisableNeutralOnLOS == _default().limitSwitchDisableNeutralOnLOS)) || !settings.enableOptimizations; }
+					static bool SoftLimitDisableNeutralOnLOSDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.softLimitDisableNeutralOnLOS == _default().softLimitDisableNeutralOnLOS)) || !settings.enableOptimizations; }
+					static bool PulseWidthPeriod_EdgesPerRotDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.pulseWidthPeriod_EdgesPerRot == _default().pulseWidthPeriod_EdgesPerRot)) || !settings.enableOptimizations; }
+					static bool PulseWidthPeriod_FilterWindowSzDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.pulseWidthPeriod_FilterWindowSz == _default().pulseWidthPeriod_FilterWindowSz)) || !settings.enableOptimizations; }
+					static bool TrajectoryInterpolationEnableDifferent(const BaseMotorControllerConfiguration& settings) { return (!(settings.trajectoryInterpolationEnable == _default().trajectoryInterpolationEnable)) || !settings.enableOptimizations; }
 					/** @} */
 				};
 				/**
@@ -636,7 +636,6 @@ namespace ctre {
 					/**
 					 * Gets the output current of the motor controller.
 					 * In the case of TalonSRX class, this routine returns supply current for legacy reasons.  In order to get the "true" output current, call GetStatorCurrent().
-					 * In the case of TalonFX class, this routine returns the true output stator current.
 					 *
 					 * [[deprecated("Use GetStatorCurrent/GetSupplyCurrent instead.")]]
 					 *
@@ -1035,9 +1034,6 @@ namespace ctre {
 					 *            If zero, no blocking or checking is performed.
 					 * @return Error Code generated by function. 0 indicates no error.
 					 */
-                    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2025 season."
-                                "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
-                                "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
 					virtual ctre::phoenix::ErrorCode ConfigRemoteFeedbackFilter(int deviceID,
 						RemoteSensorSource remoteSensorSource, int remoteOrdinal,
 						int timeoutMs = 0);
