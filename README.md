@@ -2,8 +2,9 @@
 
 General example using CTRE Phoenix class library on Linux/RaspPi platforms.
 Two use cases are demonstrated...
+
 - Run robot with **no roboRIO** for nonFRC use cases (wireless gamepad plugged into Raspberry PI).
-- Run  robot **with roboRIO** in FRC competition (roboRIO is used for gamepad and enable/disable, Talons controlled from Raspberry PI).
+- Run robot **with roboRIO** in FRC competition (roboRIO is used for gamepad and enable/disable, Talons controlled from Raspberry PI).
 
 Note: Requires libsdl2-dev (sudo apt-get install libsdl2-dev) for USB Gamepad interface on Raspberry PI.
 
@@ -13,70 +14,71 @@ Simple example here, we use libSDL2 to get gamepad values...
 - [example.cpp](example.cpp)
 
 Library binaries here
-- [Raspberry PI (linux-armhf) ](lib/raspberry)
+- [Raspberry PI / NVIDIA Jetson (linux-arm64) ](lib/arm64)
 - [Linux Desktop (linux-amd64)](lib/x86-64)
-- [Jetson TX2 (linux-aarch64)](lib/jetsontx)
-
-This is the requisite platform interface for the integrator to provide for other platforms.
-- [include/ctre/phoenix/Platform/Platform.h](include/ctre/phoenix/Platform/Platform.h)
-
-If you link in phoenix-can-utils, you don't need to implement   CANComm_* , just implement   CANbus_*.  Conversely you can just implement the mid-level and don't bother with the low-level.
-- [include/ctre/phoenix/Platform/Platform.h#L27](include/ctre/phoenix/Platform/Platform.h#L27)
 
 #### Binaries
+
 | Name        |  Notes |
 | ------------- | ------------- |
-| libCTRE_PhoenixPlatformLinuxSocketCan.a | Platform implementation to support USB-to-CANbus adapters in Linux (see parent folder for arch).|
-| libCTRE_PhoenixCanutils.a | Implements CANComm_* routines so you don't have to.  But if you want to, remove this from the link list. |
-| libCTRE_PhoenixCCI.a | Phoenix Common C Interface, leave this be. |
-| libCTRE_Phoenix.a | Class library, this is built from Phoenix-frc-lib. |
-
-For the latest version of binaries, see our maven repository here:  
-http://devsite.ctr-electronics.com/maven/release/com/ctre/phoenix/
+| libCTRE_PhoenixTools.a | Phoenix 5 and 6 common backend. |
+| libCTRE_PhoenixCCI.a | Phoenix 5 Common C Interface. |
+| libCTRE_Phoenix.so | Phoenix 5 class library. |
 
 #### CAN USB Adapter
+
 SocketCAN USB adapter used below.
-- Firmware : https://github.com/HubertD/candleLight_fw
+
+- Firmware : https://github.com/candle-usb/candleLight_fw
 - Hardware : http://canable.io/
 
 Or alternatively deploy the SocketCAN firmware to a HERO
-- Firmware : https://github.com/CrossTheRoadElec/HERO-STM32F4
-- Hardware : http://www.ctr-electronics.com/control-system/hro.html
+
+- Firmware : https://github.com/CrossTheRoadElec/HERO-STM32F4-Applications
+- Hardware : https://store.ctr-electronics.com/products/hero-development-board
 
 #### Test Platform
-Test robot has a RaspPi + CANable.
+
+Test robot has a Raspberry Pi + CANable.
 ![image](https://user-images.githubusercontent.com/14191527/48369511-c7fb3200-e684-11e8-8188-a9b38075beb3.png)
 
 Robot also has an FRC roboRIO - however this only necessary to enable actuators if CTRE CAN devices are FRC-Locked.  See Phoenix Tuner to determine/modify FRC Lock state.
 
-# Using Raspberry Pi OS image to control your robot
+## Using Raspberry Pi OS image to control your robot
 
-### Materials needed:
- - Raspberry Pi (3B+)
- - Micro SD card
- - CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
- - Laptop
- - Raspberry Pi OS Bookworm or newer (https://www.raspberrypi.com/software/operating-systems/)
+### Materials needed
 
+- Raspberry Pi (3B+)
+- Micro SD card
+- CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
+- Laptop
+- Raspberry Pi OS Bookworm or newer (https://www.raspberrypi.com/software/operating-systems/)
 
-### Procedure:
+### Procedure
+
  1. Flash SD card with Raspberry Pi OS Desktop image. (see https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system)  
     NOTE: Phoenix libraries require Debian **Bookworm** or later.
  2. Boot your Pi and connect to a Wi-Fi network (if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network).
  3. Continue with Software Setup.
 
 
-# Jetson Nano setup
-### Materials needed:
- - Jetson Nano
- - Micro SD card
- - CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
- - Laptop  
+## Jetson Nano setup
+
+### Materials needed
+
+- Jetson Nano
+- Micro SD card
+- CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
+- Laptop
+
+### Procedure
+
 1. Setup Jetson Nano using instructions from Nvidia. 
 https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro  
 2. Continue with Software Setup.
 
-# Software Setup: 
+## Software Setup
+
 1. Once you have your Device setup open a terminal and run the following commands to install necessary files.  
      -  `sudo apt update`    
      -  `sudo apt upgrade`  
@@ -93,7 +95,8 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
      -  `chmod +x canableStart.sh`  
 8.	Bring up can0 using `./canableStart.sh` (if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
      
-# Validating SocketCan functionality 
+## Validating SocketCan functionality
+
 1. Make sure you have talons or another CTRE CAN device connected for validation of can network.
 2. Use `ifconfig` to display status of the CAN socket.
 3. The first network listed should be can0 and should look like this
@@ -103,9 +106,8 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 6. You should see a constant stream of messages similar to this:![candump](https://user-images.githubusercontent.com/51933047/63384109-2f5cb580-c36c-11e9-8688-d3fa774eab43.png)
 7. To end the stream press `Ctrl+z`.
 
-
-
 ## Set up hot swapping
+
 1. adding files for hot swapping compatibility 
 2. Open a new terminal
 3. Type `cd /etc/network/.`
@@ -121,14 +123,17 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 6.	When saving you may get a warning in your terminal; this is expected and not an issue.
 7. Type `cd`.
 
-# Running Socket Can Example: 
+## Running Socket Can Example:
+
 1.	Run Build.sh with `./build.sh`.
 2.	Run program with `./run.sh`.
 3.	You're now running Phoenix on your device. Confirm there are no error messages being sent to console output.
 4.	You can stop your Program with `Ctrl+z`.
 
-# Connecting to Diagnostics server:
-## Setting up Phoenix Tuner
+## Connecting to Diagnostics server:
+
+### Setting up Phoenix Tuner
+
 Note: SSH must be enabled on the Linux Robot Controller to perform a field upgrade or modify a device's configuration using Phoenix Tuner.
 1. Make sure your device is connected to the same Wi-Fi network as the windows PC you want to run Tuner on. 
 2. Open a terminal on the device and run `ifconfig`.
@@ -136,7 +141,8 @@ Note: SSH must be enabled on the Linux Robot Controller to perform a field upgra
 ![ip](https://user-images.githubusercontent.com/51933047/63195155-e214d700-c03f-11e9-949a-33190ce20944.PNG)  
 4. Enter your ip into Phoenix tuner. 
 
-## Setting up the Phoenix Diagnostics Server
+### Setting up the Phoenix Diagnostics Server
+
 The Phoenix Diagnostics Server is an HTTP server that communicates with the Phoenix Tuner. There are two versions of the server:
 a standalone version installed through Phoenix Tuner (legacy), and a version built into your user program (latest). Only one version of
 the diagnostics server may be running at any given time. We recommend you run the diagnostics server through your user program.
@@ -151,6 +157,7 @@ Warning: The legacy instructions below currently do not work. See: https://githu
 <s>
 
 To install the standalone diagnostics server:
+
 1. Click `Install Phoenix Library/Diagnostics`.
 2. Enter your username and password when prompted. (**Note: The user must have sudo permissions to successfully install Tuner** ).  
 	(To find your username look at the text before the `@` in the terminal for example in this terminal the user is `ctre`. ).  
@@ -166,4 +173,3 @@ to confirm the device you are using is not frc locked.
 
 
 #### Errata: The wireless Logitech F710 is currently not supported on the Nvidia Jetson Nano due to a driver issue.
-
