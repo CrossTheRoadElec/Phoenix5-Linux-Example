@@ -8,8 +8,20 @@ namespace ctre{ namespace phoenix{ namespace led{
 /**
  * The base class for one generic type of animation.
  * These animations do not allow the user to specify a color.
+ *
+ * @deprecated This device's Phoenix 5 API is deprecated for removal in the
+ * 2027 season. Users should update to Phoenix 6 firmware and migrate to the
+ * Phoenix 6 API. A migration guide is available at
+ * https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html.
+ *
+ * If the Phoenix 5 API must be used for this device, the device must have 22.X
+ * firmware. This firmware is available in Tuner X after selecting Phoenix 5 in
+ * the firmware year dropdown.
  */
-class BaseStandardAnimation : public Animation {
+class [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2027 season."
+                "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
+BaseStandardAnimation : public Animation {
     double _brightness, _param4, _param5;
     bool _reverseDirection;
 public:
@@ -27,7 +39,13 @@ public:
     BaseStandardAnimation(int idx, double brightness, double speed, int numLed, double param4, double param5, bool reverseDirection, int ledOffset);
     ~BaseStandardAnimation();
     
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2027 season."
+                "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     BaseStandardAnimation *GetBaseStandardAnimation();
+    [[deprecated("This device's Phoenix 5 API is deprecated for removal in the 2027 season."
+                "Users should update to Phoenix 6 firmware and migrate to the Phoenix 6 API."
+                "A migration guide is available at https://v6.docs.ctr-electronics.com/en/stable/docs/migration/migration-guide/index.html")]]
     BaseTwoSizeAnimation *GetBaseTwoSizeAnimation();
 
     /**

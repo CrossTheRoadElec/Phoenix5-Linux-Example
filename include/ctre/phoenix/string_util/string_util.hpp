@@ -7,6 +7,7 @@
 #pragma once
 
 #include "ctre/phoenix/export.h"
+#include <span>
 #include <sstream>
 #include <stdint.h>
 #include <string>
@@ -29,9 +30,7 @@ namespace string_util {
 	/** Case-insensitive strcmp */
 	CTREXPORT int strcmp_nocase(char const *a, char const *b);
 	/** \returns number of doubles copied */
-	CTREXPORT uint32_t safe_copyDoubles(double *dest, double const *src, int32_t numDoubles, int32_t capacityDoubles);
-	/** \returns number of doubles copied */
-	CTREXPORT uint32_t safe_copyDoubles(double *dest, std::vector<double> const &src, int32_t capacityDoubles);
+	CTREXPORT uint32_t safe_copyDoubles(double *dest, std::span<double const> src, int32_t capacityDoubles);
 	/** Safely copies data from the source to the destination. At most capacity bytes will be copied. */
 	CTREXPORT size_t safe_memcpy(void *dest, void const *src, size_t numBytesToCopy, size_t capacity);
 	/**

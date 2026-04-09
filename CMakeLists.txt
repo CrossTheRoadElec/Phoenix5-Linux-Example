@@ -5,7 +5,10 @@ PROJECT ( example C CXX )
 
 cmake_minimum_required(VERSION 3.1)
 
-add_definitions(-std=c++17)
+# Use C++20
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_definitions(-std=c++20)
 
 # Set the output folder where your program will be created
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/bin)

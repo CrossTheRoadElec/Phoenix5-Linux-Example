@@ -16,8 +16,8 @@ using namespace ctre::phoenix::motorcontrol::can;
 
 /* make some talons for drive train */
 std::string interface = "can0";
-TalonSRX talLeft(1, interface); //Use the specified interface
-TalonSRX talRght(0); //Use the default interface (can0)
+TalonSRX talLeft{1, interface}; //Use the specified interface
+TalonSRX talRght{0}; //Use the default interface (can0)
 
 void initDrive()
 {
@@ -48,7 +48,7 @@ int main() {
 
 	while (true) {
 		/* we are looking for gamepad (first time or after disconnect),
-			neutral drive until gamepad (re)connected. */
+		   neutral drive until gamepad (re)connected. */
 		drive(0, 0);
 
 		// wait for gamepad

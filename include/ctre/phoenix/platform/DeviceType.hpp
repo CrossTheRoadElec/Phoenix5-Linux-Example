@@ -16,11 +16,13 @@ namespace platform {
         VictorSPXType,	\
         PigeonIMUType,	\
         RibbonPigeonIMUType,	\
-        CANCoderType,	\
         P6_TalonFXType,	\
         P6_CANcoderType,	\
         P6_Pigeon2Type,	\
-        P6_CANrangeType
+        P6_TalonFXSType,	\
+        P6_CANrangeType,	\
+        P6_CANdiType,	\
+        P6_CANdleType
 
     /** Enumeration of all supported device types. */
     enum DeviceType {kDeviceTypeListInitializer};

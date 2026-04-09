@@ -11,8 +11,7 @@
 namespace ctre {
 namespace phoenix6 {
 
-    class ISerializable
-    {
+    class ISerializable {
     public:
         virtual std::string Serialize() const = 0;
     };

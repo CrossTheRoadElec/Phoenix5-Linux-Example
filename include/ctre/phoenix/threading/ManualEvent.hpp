@@ -9,6 +9,8 @@
 #include "ctre/phoenix/export.h"
 #include <array>
 #include <condition_variable>
+#include <span>
+#include <vector>
 
 namespace ctre {
 namespace phoenix {
@@ -22,6 +24,7 @@ namespace threading {
 		size_t _signal;
 		mutable std::mutex _m;
 		mutable std::condition_variable _cv;
+		mutable std::vector<ManualEvent *> _anyEvents;
 
 	public:
 		/**
@@ -45,11 +48,10 @@ namespace threading {
 		 * \param events comma-separated list of event references to wait on
 		 * \returns true if all events are signaled, false if timed out
 		 */
-		template < typename... Event, typename = std::enable_if_t<std::conjunction_v<std::is_same<Event, ManualEvent>...>> >
-		static bool WaitForAllSignals(int timeoutMs, int minTimeoutMs, Event &... events)
+		template <std::same_as<ManualEvent>... Events>
+		static bool WaitForAllSignals(int timeoutMs, int minTimeoutMs, Events const &... events)
 		{
-			std::array eventsArr{(&events)...};
-			return WaitForAllSignals(timeoutMs, minTimeoutMs, eventsArr.data(), eventsArr.size());
+			return WaitForAllSignals(timeoutMs, minTimeoutMs, std::array<ManualEvent const *, sizeof...(Events)>{(&events)...});
 		}
 
 		/**
@@ -58,11 +60,30 @@ namespace threading {
 		 * \param minTimeoutMs when timeoutMs > 0, minimum amount of time to wait for
 		 *                     a signal; this can be used to ensure that a non-zero
 		 *                     timeout is used for every signal; typically 0 or 1 ms
-		 * \param events pointer to an array of event pointers to wait on
-		 * \param eventCnt number of events in the array
+		 * \param events a span of event pointers to wait on
 		 * \returns true if all events are signaled, false if timed out
 		 */
-		static bool WaitForAllSignals(int timeoutMs, int minTimeoutMs, ManualEvent *const *events, size_t eventCnt);
+		static bool WaitForAllSignals(int timeoutMs, int minTimeoutMs, std::span<ManualEvent const* const> events);
+
+		/**
+		 * Waits for any event to be signaled, or for timeout.
+		 * \param timeoutMs timeout of the wait; -1 is indefinite, 0 is a fast check
+		 * \param events comma-separated list of event references to wait on
+		 * \returns true if any event is signaled, false if timed out
+		 */
+		template <std::same_as<ManualEvent>... Events>
+		static bool WaitForAnySignal(int timeoutMs, Events const &... events)
+		{
+			return WaitForAnySignal(timeoutMs, std::array<ManualEvent const *, sizeof...(Events)>{(&events)...});
+		}
+
+		/**
+		 * Waits for any event to be signaled, or for timeout.
+		 * \param timeoutMs timeout of the wait; -1 is indefinite, 0 is a fast check
+		 * \param events a span of event pointers to wait on
+		 * \returns true if any event is signaled, false if timed out
+		 */
+		static bool WaitForAnySignal(int timeoutMs, std::span<ManualEvent const* const> events);
 
 		/**
 		 * Signal the event. Any threads waiting on WaitForSignal() will return true.

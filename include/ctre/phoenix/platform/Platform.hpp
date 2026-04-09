@@ -10,7 +10,6 @@
 #include "ctre/phoenix/export.h"
 #include "ctre/phoenix/platform/DeviceType.hpp"
 #include "ctre/phoenix/platform/canframe.hpp"
-#include <map>
 #include <set>
 #include <string>
 #include <string_view>
@@ -85,6 +84,7 @@ namespace ctre
             CTREXPORT int32_t ReplayPause();
             CTREXPORT int32_t ReplayStop();
             CTREXPORT bool ReplayIsRunning(uint16_t timeoutMs);
+            CTREXPORT bool ReplayIsFinished();
 
             CTREXPORT void ReplaySetSpeed(double speed);
             CTREXPORT int32_t ReplayStepTiming(double stepTimeSeconds);

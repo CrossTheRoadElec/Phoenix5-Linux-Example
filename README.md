@@ -49,20 +49,20 @@ Test robot has a RaspPi + CANable.
 
 Robot also has an FRC roboRIO - however this only necessary to enable actuators if CTRE CAN devices are FRC-Locked.  See Phoenix Tuner to determine/modify FRC Lock state.
 
-# Using Raspbian Bullseye Raspberry Pi image to control your robot
+# Using Raspberry Pi OS image to control your robot
 
 ### Materials needed:
  - Raspberry Pi (3B+)
  - Micro SD card
  - CANable with CandleLight Firmware (https://canable.io/updater/ update here if not already done)
  - Laptop
- - Raspbian Buster with desktop (https://www.raspberrypi.org/downloads/raspbian/)
+ - Raspberry Pi OS Bookworm or newer (https://www.raspberrypi.com/software/operating-systems/)
 
 
 ### Procedure:
- 1. Flash SD card with Raspbian Desktop image. (see https://www.raspberrypi.org/documentation/installation/installing-images/README.md)  
-    NOTE: Phoenix libraries require Debian **Bullseye** or later.
- 2. Boot your Pi and connect to a Wi-Fi network (if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network.
+ 1. Flash SD card with Raspberry Pi OS Desktop image. (see https://www.raspberrypi.com/documentation/computers/getting-started.html#installing-the-operating-system)  
+    NOTE: Phoenix libraries require Debian **Bookworm** or later.
+ 2. Boot your Pi and connect to a Wi-Fi network (if you'd like to use Tuner on a windows PC make sure your windows PC and Raspberry Pi is connected to the same network).
  3. Continue with Software Setup.
 
 
@@ -78,21 +78,20 @@ https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#intro
 
 # Software Setup: 
 1. Once you have your Device setup open a terminal and run the following commands to install necessary files.  
-     -  `sudo apt-get upgrade`  
-     -  `sudo apt-get update`    
-     -  `sudo apt-get upgrade`  
-2.	Install CAN tools `sudo apt-get install can-utils`.
-3.	Install git `sudo apt-get install git`.  
+     -  `sudo apt update`    
+     -  `sudo apt upgrade`  
+2.	Install CAN tools `sudo apt install can-utils`.
+3.	Install git `sudo apt install git`.  
 4.	Install necessary libs to build example.   
-     -  `sudo apt-get install cmake`  
-     -  `sudo apt-get install libsdl2-dev`    
-5. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix-Linux-SocketCAN-Example.git`.  
-6. Navigate into repo `cd ./Phoenix-Linux-SocketCAN-Example/.`
+     -  `sudo apt install cmake`  
+     -  `sudo apt install libsdl2-dev`    
+5. Clone repo into user directory `git clone https://github.com/CrossTheRoadElec/Phoenix5-Linux-Example.git`.  
+6. Navigate into repo `cd ./Phoenix5-Linux-Example/.`
 7.	Chmod shell scripts to allow you to use them:  
      -  `chmod +x build.sh`  
      -  `chmod +x clean.sh`  
      -  `chmod +x canableStart.sh`  
-8.	Bring up can 0 `./canableStart.sh` (if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
+8.	Bring up can0 using `./canableStart.sh` (if you see the message `Device or resource busy` it means the can network is already up and requires no further action).   
      
 # Validating SocketCan functionality 
 1. Make sure you have talons or another CTRE CAN device connected for validation of can network.

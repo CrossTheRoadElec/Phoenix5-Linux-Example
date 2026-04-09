@@ -3,8 +3,6 @@
 #include "ctre/phoenix/ErrorCode.h"
 #include "ctre/phoenix/motorcontrol/ControlMode.h"
 #include "ctre/phoenix/motorcontrol/SupplyCurrentLimitConfiguration.h"
-#include "ctre/phoenix/sensors/AbsoluteSensorRange.h"
-#include "ctre/phoenix/sensors/SensorInitializationStrategy.h"
 #include <cstddef>
 
 extern "C"{

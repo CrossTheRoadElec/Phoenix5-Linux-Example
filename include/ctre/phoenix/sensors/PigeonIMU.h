@@ -247,16 +247,6 @@ public:
 	/**
 	 * Create a Pigeon object that communciates with Pigeon through the
 	 * Gadgeteer ribbon cable connected to a Talon on CAN Bus.
-	 * 
-	 * [[deprecated("Pass in a TalonSRX reference instead.")]]
-	 *
-	 * @param talonSrx
-	 *            Object for the TalonSRX connected via ribbon cable.
-	 */
-	PigeonIMU(ctre::phoenix::motorcontrol::can::TalonSRX * talonSrx);
-	/**
-	 * Create a Pigeon object that communciates with Pigeon through the
-	 * Gadgeteer ribbon cable connected to a Talon on CAN Bus.
 	 *
 	 * @param talonSrx
 	 *            Object for the TalonSRX connected via ribbon cable.
