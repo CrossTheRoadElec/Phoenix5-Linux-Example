@@ -102,11 +102,18 @@ int main() {
 		// Keep reading the state of the joystick in a loop
 		while (true) {
 			/* poll for disconnects or bad things */
+			bool joystick_err = false;
 			SDL_Event event;
-			if (SDL_PollEvent(&event)) {
-				if (event.type == SDL_QUIT) { break; }
-				if (event.jdevice.type == SDL_JOYDEVICEREMOVED) { break; }
+			while (SDL_PollEvent(&event)) {
+				if (event.type == SDL_QUIT) {
+					joystick_err = true;
+					break;
+				} else if (event.jdevice.type == SDL_JOYDEVICEREMOVED) {
+					joystick_err = true;
+					break;
+				}
 			}
+			if (joystick_err) { break; }
 
 			/* grab some stick values */
 			double y = ((double)SDL_JoystickGetAxis(joy, 1)) / -32767.0;
